@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Okto Pulse — Spec-driven project management for AI agents</title>
-  <meta name="description" content="A local-first kanban board with native MCP support. Built for teams where humans and AI agents plan, refine, and ship together." />
-  <meta property="og:title" content="Okto Pulse — Spec-driven project management for AI agents" />
-  <meta property="og:description" content="A local-first kanban board with native MCP support. Five specialised agent roles, one board, zero collisions." />
+  <title>Okto Pulse — The open-source ADLC platform</title>
+  <meta name="description" content="Okto Pulse is the first open-source platform for the Agentic Development Life Cycle (ADLC). Local-first, spec-driven, MCP-native — humans and agents ship together." />
+  <meta property="og:title" content="Okto Pulse — The open-source ADLC platform" />
+  <meta property="og:description" content="First open-source platform for the Agentic Development Life Cycle. Spec-driven, MCP-native, local-first. Humans and AI agents on the same board, distinct roles, zero collisions." />
   <meta property="og:image" content="./assets/logos/pulse-dark-sq.png" />
   <meta name="theme-color" content="#070709" />
 
+  <link rel="icon" type="image/svg+xml" href="./assets/logos/pulse-icon.svg" />
   <link rel="icon" type="image/png" href="./assets/logos/pulse-dark-sq.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   />
 
@@ -33,17 +34,15 @@
   <!-- Navigation -->
   <header class="nav">
     <div class="nav__inner">
-      <a class="nav__brand" href="#top" aria-label="OktoLabs home">
-        <img src="./assets/logos/okto-labs-cropped.jpg" alt="" class="nav__mark" />
-        <span class="nav__labs">OktoLabs</span>
-        <span class="nav__divider" aria-hidden="true">/</span>
-        <span class="nav__product">Pulse</span>
+      <a class="nav__brand" href="#top" aria-label="Okto Pulse home">
+        <img src="./assets/logos/pulse-icon.svg" alt="" class="nav__mark" width="32" height="32" />
+        <span class="nav__wordmark">Okto Pulse</span>
       </a>
       <nav class="nav__links" aria-label="Primary">
+        <a href="#adlc">ADLC</a>
         <a href="#pipeline">Pipeline</a>
         <a href="#features">Features</a>
         <a href="#agents">Agents</a>
-        <a href="#analytics">Analytics</a>
         <a href="#mcp">MCP</a>
         <a href="#install">Install</a>
       </nav>
@@ -62,7 +61,7 @@
     <section class="hero">
       <div class="hero__inner">
         <div class="hero__meta">
-          <span class="tag tag--dot">OKTO LABS &nbsp;/&nbsp; PRODUCT NO. 01</span>
+          <span class="tag tag--dot">OktoLabs &middot; Product no. 01</span>
           <span class="tag tag--thin">v0.1.1 &middot; 2026</span>
         </div>
 
@@ -85,7 +84,7 @@
               <code>pip install okto-pulse</code>
             </div>
             <button class="terminal__copy" type="button" aria-label="Copy install command">
-              <span class="terminal__copy-label">COPY</span>
+              <span class="terminal__copy-label">Copy</span>
             </button>
           </div>
           <a class="btn btn--primary" href="#agents">
@@ -139,6 +138,53 @@
         <span class="bracket">[</span> The board view at a glance — every card carries its spec,
         sprint, priority, and assignee. <span class="bracket">]</span>
       </p>
+    </section>
+
+    <!-- ──────────────────── ADLC ──────────────────── -->
+    <section id="adlc" class="section section--adlc">
+      <header class="section__head">
+        <span class="section__eyebrow">00 &nbsp;·&nbsp; PHILOSOPHY</span>
+        <h2 class="section__title">
+          Built for the <em>Agentic Development Life Cycle</em>.
+        </h2>
+        <p class="section__lede">
+          ADLC is what the SDLC becomes once AI agents are first-class
+          participants, not helpers on the side. Humans set intent, agents execute against
+          spec, validators gate the result — and every artefact is traceable end to end. Okto
+          Pulse is the first open-source platform built from the ground up for this cycle.
+        </p>
+      </header>
+
+      <div class="pipeline">
+        <article class="pipeline__step" style="--step-i:1">
+          <span class="pipeline__num">01</span>
+          <div class="pipeline__body">
+            <h3>Intent is specified</h3>
+            <p>Humans (and agents in upstream roles) define problem, scope, acceptance criteria. No code without spec.</p>
+          </div>
+        </article>
+        <article class="pipeline__step" style="--step-i:2">
+          <span class="pipeline__num">02</span>
+          <div class="pipeline__body">
+            <h3>Agents execute</h3>
+            <p>Executor agents pick tasks linked to specs. MCP exposes the board so any agent can act — with its role permissions enforced.</p>
+          </div>
+        </article>
+        <article class="pipeline__step" style="--step-i:3">
+          <span class="pipeline__num">03</span>
+          <div class="pipeline__body">
+            <h3>Gates validate</h3>
+            <p>Validator agents (or humans) gate the output against the original spec. Nothing ships without passing its gate.</p>
+          </div>
+        </article>
+        <article class="pipeline__step" style="--step-i:4">
+          <span class="pipeline__num">04</span>
+          <div class="pipeline__body">
+            <h3>Everything is traceable</h3>
+            <p>Task → sprint → spec → refinement → ideation. Every artefact linked, every decision auditable.</p>
+          </div>
+        </article>
+      </div>
     </section>
 
     <!-- ──────────────────── PIPELINE ──────────────────── -->
@@ -558,28 +604,52 @@
       <ol class="install">
         <li class="install__step">
           <span class="install__num">01</span>
-          <div>
+          <div class="install__body">
             <h3>Install from PyPI</h3>
-            <pre><code><span class="sigil">$</span> pip install okto-pulse</code></pre>
+            <div class="terminal" data-copy>
+              <div class="terminal__prompt">
+                <span class="terminal__sigil">$</span>
+                <code>pip install okto-pulse</code>
+              </div>
+              <button class="terminal__copy" type="button" aria-label="Copy command">
+                <span class="terminal__copy-label">Copy</span>
+              </button>
+            </div>
           </div>
         </li>
         <li class="install__step">
           <span class="install__num">02</span>
-          <div>
+          <div class="install__body">
             <h3>Initialise local data</h3>
-            <pre><code><span class="sigil">$</span> okto-pulse init</code></pre>
+            <div class="terminal" data-copy>
+              <div class="terminal__prompt">
+                <span class="terminal__sigil">$</span>
+                <code>okto-pulse init</code>
+              </div>
+              <button class="terminal__copy" type="button" aria-label="Copy command">
+                <span class="terminal__copy-label">Copy</span>
+              </button>
+            </div>
           </div>
         </li>
         <li class="install__step">
           <span class="install__num">03</span>
-          <div>
+          <div class="install__body">
             <h3>Run the board and MCP server</h3>
-            <pre><code><span class="sigil">$</span> okto-pulse --api-port 8100 --mcp-port 8101 serve</code></pre>
+            <div class="terminal" data-copy>
+              <div class="terminal__prompt">
+                <span class="terminal__sigil">$</span>
+                <code>okto-pulse --api-port 8100 --mcp-port 8101 serve</code>
+              </div>
+              <button class="terminal__copy" type="button" aria-label="Copy command">
+                <span class="terminal__copy-label">Copy</span>
+              </button>
+            </div>
           </div>
         </li>
         <li class="install__step">
           <span class="install__num">04</span>
-          <div>
+          <div class="install__body">
             <h3>Point your agent at <span class="mono">.mcp.json</span></h3>
             <p class="install__hint">
               Okto Pulse generates the config on first init. Drop it next to your agent and the
@@ -594,7 +664,7 @@
           <span>Install from PyPI</span>
           <span class="btn__arrow" aria-hidden="true">↗</span>
         </a>
-        <a class="btn btn--quiet btn--large" href="https://github.com/TechridyAI/okto-pulse-community" rel="noopener">
+        <a class="btn btn--quiet btn--large" href="https://github.com/OktoLabsAI/okto-pulse" rel="noopener">
           <span>Source on GitHub</span>
           <span class="btn__arrow" aria-hidden="true">↗</span>
         </a>
@@ -606,18 +676,18 @@
   <footer class="foot">
     <div class="foot__inner">
       <div class="foot__brand">
-        <img src="./assets/logos/pulse-dark.png" alt="Okto Pulse" class="foot__logo" />
-        <p class="foot__tag">Spec-driven. Local-first. MCP-native.</p>
+        <img src="./assets/logos/pulse-wordmark.svg" alt="Okto Pulse" class="foot__logo" width="240" height="48" />
+        <p class="foot__tag">The open-source ADLC platform. Spec-driven, local-first, MCP-native.</p>
       </div>
 
       <div class="foot__cols">
         <div>
           <h4>Product</h4>
           <ul>
+            <li><a href="#adlc">ADLC</a></li>
             <li><a href="#pipeline">Pipeline</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#agents">Agents</a></li>
-            <li><a href="#analytics">Analytics</a></li>
             <li><a href="#mcp">MCP</a></li>
           </ul>
         </div>
@@ -626,14 +696,14 @@
           <ul>
             <li><a href="https://pypi.org/project/okto-pulse/" rel="noopener">PyPI</a></li>
             <li><a href="https://pypi.org/project/okto-pulse-core/" rel="noopener">PyPI (core)</a></li>
-            <li><a href="https://github.com/TechridyAI/okto-pulse-community" rel="noopener">GitHub</a></li>
+            <li><a href="https://github.com/OktoLabsAI/okto-pulse" rel="noopener">GitHub</a></li>
           </ul>
         </div>
         <div>
           <h4>Legal</h4>
           <ul>
-            <li><a href="https://github.com/TechridyAI/okto-pulse-community/blob/main/LICENSE" rel="noopener">License</a></li>
-            <li><a href="https://github.com/TechridyAI/okto-pulse-community/blob/main/TRADEMARKS.md" rel="noopener">Trademarks</a></li>
+            <li><a href="https://github.com/OktoLabsAI/okto-pulse/blob/main/LICENSE" rel="noopener">License</a></li>
+            <li><a href="https://github.com/OktoLabsAI/okto-pulse/blob/main/TRADEMARKS.md" rel="noopener">Trademarks</a></li>
             <li><a href="mailto:contact@oktolabs.ai">Contact</a></li>
           </ul>
         </div>
@@ -644,10 +714,10 @@
 
     <div class="foot__base">
       <div class="foot__labs">
-        <img src="./assets/logos/okto-labs-cropped.jpg" alt="" />
-        <span>An <strong>Okto&nbsp;Labs</strong> product</span>
+        <img src="./assets/logos/oktolabs-icon.svg" alt="" width="20" height="20" />
+        <span>An <strong>OktoLabs</strong> product</span>
       </div>
-      <span class="foot__copy">© 2024&ndash;2026 Okto Labs &middot; Elastic&nbsp;License&nbsp;2.0</span>
+      <span class="foot__copy">© 2026 OktoLabs &middot; Elastic&nbsp;License&nbsp;2.0</span>
     </div>
   </footer>
 

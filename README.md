@@ -1,15 +1,15 @@
 # Okto Pulse — Landing Page
 
-Static marketing site for [Okto Pulse](https://pypi.org/project/okto-pulse/), the spec-driven project management board with native MCP support from [Okto Labs](https://oktolabs.ai).
+Static marketing site for [Okto Pulse](https://pypi.org/project/okto-pulse/), the spec-driven project management board with native MCP support from [OktoLabs](https://oktolabs.ai).
 
 ## Stack
 
 Plain HTML, CSS, and a sliver of JavaScript. No build step.
 
 - `index.html` — page structure
-- `styles.css` — all visual styling (CSS variables, dark obsidian theme, Fraunces + IBM Plex typography)
+- `styles.css` — all visual styling (CSS variables, dark obsidian theme, IBM Plex typography)
 - `script.js` — copy-to-clipboard on the install command
-- `assets/logos/` — Okto Labs and Okto Pulse wordmarks
+- `assets/logos/` — OktoLabs and Okto Pulse wordmarks
 - `assets/screenshots/` — real product captures used across the page
 
 ## Sections
@@ -27,11 +27,11 @@ Plain HTML, CSS, and a sliver of JavaScript. No build step.
 ## Run locally
 
 ```bash
-python -m http.server 8787
+python -m http.server 8765
 ```
 
-Then open http://127.0.0.1:8787.
+Then open http://127.0.0.1:8765.
 
 ## License
 
-Copyright (c) 2024–2026 Okto Labs. All rights reserved.
+Copyright (c) 2024–2026 OktoLabs. All rights reserved.
