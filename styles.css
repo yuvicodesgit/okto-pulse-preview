@@ -1664,6 +1664,91 @@ ol {
    Avoid reveal-on-scroll so captures and no-JS visitors both see the
    final layout instantly. */
 
+/* ---------- Consent banner (LGPD) ---------- */
+.consent {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(0.75rem, 2vw, 1.5rem);
+  transform: translateX(-50%);
+  width: min(calc(100vw - 1.5rem), 640px);
+  z-index: 80;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1.1rem;
+  background: rgba(19, 21, 28, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--ink-faint);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+  animation: consent-in 320ms var(--ease);
+}
+
+.consent[hidden] {
+  display: none;
+}
+
+.consent__text {
+  flex: 1 1 260px;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+
+.consent__link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--ink-faint);
+  transition: text-decoration-color 180ms var(--ease);
+}
+
+.consent__link:hover {
+  text-decoration-color: var(--ink);
+}
+
+.consent__actions {
+  display: inline-flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.consent__btn {
+  font-size: 12px;
+  padding: 0.45rem 0.9rem;
+}
+
+.consent__btn--primary {
+  background: var(--ink);
+  color: var(--surface-2);
+  border-color: var(--ink);
+}
+
+.consent__btn--primary:hover {
+  background: var(--ink-dim);
+  border-color: var(--ink-dim);
+  color: var(--surface-2);
+}
+
+@keyframes consent-in {
+  from { opacity: 0; transform: translate(-50%, 12px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@media (max-width: 520px) {
+  .consent {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .consent__actions {
+    justify-content: flex-end;
+  }
+}
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   *,

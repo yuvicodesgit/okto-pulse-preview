@@ -21,6 +21,15 @@
   />
 
   <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Cloudflare Web Analytics (cookieless, privacy-first) -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "CF_BEACON_TOKEN"}'></script>
+
+  <!-- Google Analytics 4 stub — real loader fires only after consent (see script.js) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+  </script>
 </head>
 
 <body>
@@ -721,6 +730,18 @@
       <span class="foot__copy">© 2026 OktoLabs &middot; Elastic&nbsp;License&nbsp;2.0</span>
     </div>
   </footer>
+
+  <!-- Analytics consent banner — shown only until user decides -->
+  <div id="consent" class="consent" role="dialog" aria-live="polite" aria-label="Analytics consent" hidden>
+    <p class="consent__text">
+      We use analytics cookies to understand how this site is used and improve the experience.
+      <a class="consent__link" href="https://oktolabs.ai/legal/privacy" rel="noopener">Learn more</a>
+    </p>
+    <div class="consent__actions">
+      <button class="btn btn--quiet consent__btn" data-consent="denied" type="button">Reject</button>
+      <button class="btn btn--quiet consent__btn consent__btn--primary" data-consent="granted" type="button">Accept</button>
+    </div>
+  </div>
 
   <script src="./script.js" defer></script>
 </body>
