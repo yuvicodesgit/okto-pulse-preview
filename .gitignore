@@ -1,0 +1,14 @@
+# Preview renders captured during development
+.preview/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Node / frontend build tooling (none yet, but guard anyway)
+node_modules/
+dist/
+.cache/
