@@ -328,7 +328,7 @@ ol {
 
 @media (max-width: 900px) {
   .nav__links,
-  .nav__ext {
+  .nav__ext[href*="pypi"] {
     display: none;
   }
 }
