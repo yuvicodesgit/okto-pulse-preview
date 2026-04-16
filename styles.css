@@ -327,12 +327,7 @@ ol {
 }
 
 @media (max-width: 900px) {
-  .nav__links {
-    display: none;
-  }
-}
-
-@media (max-width: 720px) {
+  .nav__links,
   .nav__ext {
     display: none;
   }
