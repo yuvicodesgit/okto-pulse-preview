@@ -38,7 +38,7 @@ Regra decidida 2026-04-15. **Seguir em toda copy da landing.**
 
 ## Text casing
 
-- **Default: sentence case** em tags, botões, nav, stat labels (`Try Pulse`, `OktoLabs · Open source`).
+- **Default: sentence case** em tags, botões, nav, stat labels (`Try Pulse`, `OktoLabs · Source-available`).
 - **Caps reservado a micro-editorial**: eyebrows numerados (`01 · PIPELINE`, `02 · CAPABILITIES`), códigos alfanuméricos (`F·01`, `01 / 05`), siglas (MCP, API, CLI).
 - Canonical reference: `../omni_flow_design` (GuidelinesPage e CLAUDE.md).
 
@@ -74,4 +74,4 @@ Regra decidida 2026-04-15. **Seguir em toda copy da landing.**
 |------|-------------|
 | `omni_flow_design` | Canonical design system — tokens sync from this landing |
 | `omni_flow_site` | Main OktoLabs site — consumes same visual language |
-| `OktoLabsAI/okto-pulse` | The actual Pulse OSS product |
+| `OktoLabsAI/okto-pulse` | The actual Pulse product |
