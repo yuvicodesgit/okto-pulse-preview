@@ -337,8 +337,13 @@ ol {
 }
 
 @media (max-width: 900px) {
-  .nav__links {
+  .nav__links,
+  .nav__ext[href*="pypi"],
+  .nav__ext-arrow {
     display: none;
+  }
+  .nav__cta {
+    gap: 0.6rem;
   }
 }
 
@@ -2106,6 +2111,22 @@ ol {
   }
 }
 
+.install__license {
+  text-align: center;
+  color: var(--okto-ink-50, rgba(255 255 255 / .5));
+  font-size: var(--step--1, .875rem);
+  letter-spacing: .04em;
+  margin-block: 2rem 0;
+}
+.install__license a {
+  color: var(--okto-ink-70, rgba(255 255 255 / .7));
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.install__license a:hover {
+  color: var(--okto-ink, #f0f0f0);
+}
+
 .install__cta {
   display: flex;
   gap: 1rem;
@@ -2327,12 +2348,10 @@ ol {
     gap: 0.75rem;
     padding: 0.75rem;
     align-items: stretch;
-    animation-name: consent-mobile-in;
+    gap: 0.6rem;
   }
   .consent__text {
-    flex: 0 1 auto;
-    font-size: 11px;
-    line-height: 1.45;
+    flex: 0 0 auto;
   }
   .consent__actions {
     display: grid;
