@@ -1,8 +1,7 @@
 // -----------------------------------------------------------------------------
 // Okto Pulse · landing page enhancements
 // 1. Copy-to-clipboard on the hero terminal
-// 2. Reveal-on-scroll for section heads and product frames
-// 3. Analytics consent gate (LGPD) — loads GA4 only after "Aceitar"
+// 2. Analytics consent gate (LGPD) — loads analytics only after consent
 // -----------------------------------------------------------------------------
 
 (() => {
@@ -28,13 +27,20 @@
 (() => {
   // -- analytics consent gate --------------------------------------------
   const GA_ID = "GA4_MEASUREMENT_ID";
+  const CF_BEACON_TOKEN = "CF_BEACON_TOKEN";
   const STORAGE_KEY = "okto_consent";
   const banner = document.getElementById("consent");
   if (!banner) return;
 
   let gaLoaded = false;
+  let cfLoaded = false;
+  const hasGA = GA_ID && !GA_ID.startsWith("GA4_");
+  const hasCF = CF_BEACON_TOKEN && !CF_BEACON_TOKEN.startsWith("CF_");
+
+  if (!hasGA && !hasCF) return;
+
   const loadGA = () => {
-    if (gaLoaded || !GA_ID || GA_ID.startsWith("GA4_")) return;
+    if (gaLoaded || !hasGA) return;
     gaLoaded = true;
     const s = document.createElement("script");
     s.async = true;
@@ -44,9 +50,24 @@
     window.gtag("config", GA_ID, { anonymize_ip: true });
   };
 
+  const loadCF = () => {
+    if (cfLoaded || !hasCF) return;
+    cfLoaded = true;
+    const s = document.createElement("script");
+    s.defer = true;
+    s.src = "https://static.cloudflareinsights.com/beacon.min.js";
+    s.dataset.cfBeacon = JSON.stringify({ token: CF_BEACON_TOKEN });
+    document.head.appendChild(s);
+  };
+
+  const loadAnalytics = () => {
+    loadGA();
+    loadCF();
+  };
+
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored === "granted") {
-    loadGA();
+    loadAnalytics();
   } else if (stored !== "denied") {
     banner.hidden = false;
   }
@@ -56,7 +77,7 @@
       const choice = btn.getAttribute("data-consent");
       localStorage.setItem(STORAGE_KEY, choice);
       banner.hidden = true;
-      if (choice === "granted") loadGA();
+      if (choice === "granted") loadAnalytics();
     });
   });
 })();
