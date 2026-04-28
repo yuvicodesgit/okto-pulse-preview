@@ -111,28 +111,45 @@
 
         </div>
 
-        <aside class="hero__visual" aria-label="Okto Pulse board preview">
-          <div class="showcase__frame showcase__frame--hero">
+        <aside class="hero__visual" aria-label="Okto Pulse product preview">
+          <div class="showcase__frame showcase__frame--hero hero-slider">
             <div class="showcase__bar" aria-hidden="true">
               <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="showcase__path">okto-pulse &nbsp;·&nbsp; My Board &nbsp;·&nbsp; Tasks</span>
+              <span class="showcase__path">okto-pulse &nbsp;·&nbsp; Board + Analytics</span>
             </div>
-            <picture>
-              <source srcset="./assets/screenshots/04-tasks-kanban.webp" type="image/webp" />
-              <img
-                src="./assets/screenshots/04-tasks-kanban.png"
-                alt="Okto Pulse kanban board with columns Not Started, Started, In Progress, Validation, and On Hold"
-                class="showcase__img"
-                width="1680"
-                height="1000"
-                loading="eager"
-                fetchpriority="high"
-              />
-            </picture>
+            <div class="hero-slider__viewport">
+              <figure class="hero-slide hero-slide--cards" aria-hidden="false">
+                <picture>
+                  <source srcset="./assets/screenshots/04-tasks-kanban.webp" type="image/webp" />
+                  <img
+                    src="./assets/screenshots/04-tasks-kanban.png"
+                    alt="Okto Pulse kanban board with columns Not Started, Started, In Progress, Validation, and On Hold"
+                    class="showcase__img"
+                    width="1680"
+                    height="1000"
+                    loading="eager"
+                    fetchpriority="high"
+                  />
+                </picture>
+              </figure>
+              <figure class="hero-slide hero-slide--analytics" aria-hidden="false">
+                <picture>
+                  <source srcset="./assets/screenshots/08-analytics-overview.webp" type="image/webp" />
+                  <img
+                    src="./assets/screenshots/08-analytics-overview.png"
+                    alt="Okto Pulse analytics dashboard with KPI tiles, validation gates, conversion funnel, and velocity"
+                    class="showcase__img"
+                    width="1680"
+                    height="1000"
+                    loading="eager"
+                  />
+                </picture>
+              </figure>
+            </div>
           </div>
           <p class="showcase__caption hero__caption">
-            <span class="bracket">[</span> The board view at a glance — every card carries its spec,
-            sprint, priority, and assignee. <span class="bracket">]</span>
+            <span class="bracket">[</span> The board and analytics views cycle together — cards
+            carry the work, metrics show the signal. <span class="bracket">]</span>
           </p>
         </aside>
 
@@ -541,12 +558,56 @@
           <img
             src="./assets/screenshots/08-analytics-overview.png"
             alt="Okto Pulse analytics dashboard showing KPI tiles, validation gates, conversion funnel, velocity chart, and per-board breakdown"
-            width="1280"
-            height="720"
+            width="1680"
+            height="1000"
             loading="lazy"
           />
         </picture>
       </figure>
+
+      <div class="analytics__screens" aria-label="Additional analytics views">
+        <figure class="analytics__screen">
+          <div class="analytics__bar" aria-hidden="true">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Coverage</span>
+          </div>
+          <picture>
+            <source srcset="./assets/screenshots/09-analytics-coverage.webp" type="image/webp" />
+            <img
+              src="./assets/screenshots/09-analytics-coverage.png"
+              alt="Okto Pulse analytics coverage screen showing completeness versus drift, coverage by spec, agent ranking, and searchable spec table"
+              width="1919"
+              height="912"
+              loading="lazy"
+            />
+          </picture>
+          <figcaption>
+            <span>Coverage by spec</span>
+            Completeness, drift, tests, rules, contracts, and agent contribution in one view.
+          </figcaption>
+        </figure>
+
+        <figure class="analytics__screen">
+          <div class="analytics__bar" aria-hidden="true">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Spec detail</span>
+          </div>
+          <picture>
+            <source srcset="./assets/screenshots/10-analytics-spec-detail.webp" type="image/webp" />
+            <img
+              src="./assets/screenshots/10-analytics-spec-detail.png"
+              alt="Okto Pulse analytics detail screen for a spec with acceptance criteria coverage, functional requirements, test scenario status, and task metrics"
+              width="1919"
+              height="906"
+              loading="lazy"
+            />
+          </picture>
+          <figcaption>
+            <span>Spec drill-down</span>
+            Trace a single spec through acceptance criteria, requirements, tests, tasks, and cycle time.
+          </figcaption>
+        </figure>
+      </div>
 
       <div class="analytics__highlights">
         <article class="highlight">
@@ -587,10 +648,73 @@
       </div>
     </section>
 
+    <!-- ──────────────────── KNOWLEDGE GRAPH ──────────────────── -->
+    <section id="knowledge" class="section section--knowledge">
+      <header class="section__head section__head--split">
+        <div>
+          <span class="section__eyebrow">06 &nbsp;·&nbsp; KNOWLEDGE</span>
+          <h2 class="section__title">
+            Evolves with you, <br />
+            <em>one initiative at a time.</em>
+          </h2>
+        </div>
+        <p class="section__lede section__lede--right">
+          As projects move through the ADLC, Okto Pulse consolidates ideations, refinements,
+          specs, tasks, and bugs into a living knowledge graph. Every shipped decision becomes
+          reusable context for future dashboards, discovery, and the next round of ideation.
+        </p>
+      </header>
+
+      <figure class="knowledge__frame">
+        <div class="knowledge__bar" aria-hidden="true">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="knowledge__path">okto-pulse &nbsp;·&nbsp; Knowledge Graph &nbsp;·&nbsp; Evolution</span>
+        </div>
+        <picture>
+          <source srcset="./assets/screenshots/11-knowledge-graph.webp" type="image/webp" />
+          <img
+            src="./assets/screenshots/11-knowledge-graph.png"
+            alt="Okto Pulse knowledge graph view showing connected decisions, requirements, constraints, bugs, test scenarios, and learnings"
+            width="1919"
+            height="911"
+            loading="lazy"
+          />
+        </picture>
+        <figcaption class="knowledge__caption">
+          <span>Project memory becomes operational knowledge.</span>
+          The graph connects delivery evidence back to the ideas that started it, so the next
+          initiative begins with sharper context instead of an empty board.
+        </figcaption>
+      </figure>
+
+      <div class="knowledge__flow" aria-label="Knowledge graph flow">
+        <article class="knowledge__node">
+          <span class="knowledge__node-label">K &middot; 01</span>
+          <h3>Capture the work</h3>
+          <p>Ideations, refinements, specs, tasks, and bugs become typed nodes with provenance.</p>
+        </article>
+        <article class="knowledge__node">
+          <span class="knowledge__node-label">K &middot; 02</span>
+          <h3>Connect the evidence</h3>
+          <p>Decisions, requirements, constraints, tests, and implementation signals stay linked.</p>
+        </article>
+        <article class="knowledge__node">
+          <span class="knowledge__node-label">K &middot; 03</span>
+          <h3>Grow the dashboard</h3>
+          <p>Analytics gains a reusable knowledge base for discovery, drift, and future planning.</p>
+        </article>
+        <article class="knowledge__node">
+          <span class="knowledge__node-label">K &middot; 04</span>
+          <h3>Start smarter</h3>
+          <p>New initiatives inherit what the project already learned, reducing repeated context work.</p>
+        </article>
+      </div>
+    </section>
+
     <!-- ──────────────────── MCP ──────────────────── -->
     <section id="mcp" class="section section--mcp">
       <header class="section__head">
-        <span class="section__eyebrow">06 &nbsp;·&nbsp; PROTOCOL</span>
+        <span class="section__eyebrow">07 &nbsp;·&nbsp; PROTOCOL</span>
         <h2 class="section__title">
           Plug any MCP-aware agent <br />
           directly into your board.
@@ -639,7 +763,7 @@
     <!-- ──────────────────── INSTALL ──────────────────── -->
     <section id="install" class="section section--install">
       <header class="section__head">
-        <span class="section__eyebrow">07 &nbsp;·&nbsp; GETTING STARTED</span>
+        <span class="section__eyebrow">08 &nbsp;·&nbsp; GETTING STARTED</span>
         <h2 class="section__title">Four commands to a running board.</h2>
       </header>
 

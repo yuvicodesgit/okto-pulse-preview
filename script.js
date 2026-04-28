@@ -1,8 +1,7 @@
 // -----------------------------------------------------------------------------
 // Okto Pulse · landing page enhancements
 // 1. Copy-to-clipboard on the hero terminal
-// 2. Reveal-on-scroll for section heads and product frames
-// 3. Analytics consent gate (LGPD) — loads GA4 only after "Aceitar"
+// 2. Analytics consent gate (LGPD) — loads analytics only after consent
 // -----------------------------------------------------------------------------
 
 (() => {
