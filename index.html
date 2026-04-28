@@ -5,9 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Okto Pulse — The open-source ADLC platform</title>
   <meta name="description" content="Okto Pulse is the first open-source platform for the Agentic Development Life Cycle (ADLC). Local-first, spec-driven, MCP-native — humans and agents ship together." />
+  <link rel="canonical" href="https://oktolabs.ai/okto-pulse/" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://oktolabs.ai/okto-pulse/" />
   <meta property="og:title" content="Okto Pulse — The open-source ADLC platform" />
   <meta property="og:description" content="First open-source platform for the Agentic Development Life Cycle. Spec-driven, MCP-native, local-first. Humans and AI agents on the same board, distinct roles, zero collisions." />
-  <meta property="og:image" content="./assets/logos/pulse-dark-sq.png" />
+  <meta property="og:image" content="https://oktolabs.ai/okto-pulse/assets/logos/pulse-dark-sq.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Okto Pulse — The open-source ADLC platform" />
+  <meta name="twitter:description" content="Spec-driven, MCP-native project management for humans and AI agents." />
+  <meta name="twitter:image" content="https://oktolabs.ai/okto-pulse/assets/logos/pulse-dark-sq.png" />
   <meta name="theme-color" content="#070709" />
 
   <link rel="icon" type="image/svg+xml" href="./assets/logos/pulse-icon.svg" />
@@ -21,9 +29,6 @@
   />
 
   <link rel="stylesheet" href="./styles.css" />
-
-  <!-- Cloudflare Web Analytics (cookieless, privacy-first) -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "CF_BEACON_TOKEN"}'></script>
 
   <!-- Google Analytics 4 stub — real loader fires only after consent (see script.js) -->
   <script>
@@ -70,38 +75,66 @@
     <!-- ───────────────────── HERO ───────────────────── -->
     <section class="hero">
       <div class="hero__inner">
-        <div class="hero__meta">
-          <span class="tag tag--dot">OktoLabs &middot; Product no. 01</span>
-          <span class="tag tag--thin">v0.1.2 &middot; 2026</span>
-        </div>
-
-        <h1 class="hero__title">
-          <span class="line">Spec-driven</span>
-          <span class="line">project management</span>
-          <span class="line">for <em class="accent">AI agents</em>.</span>
-        </h1>
-
-        <p class="hero__lead">
-          A local-first kanban board with native MCP support. Okto Pulse is where humans and AI
-          agents plan, refine, and ship together — on the same board, with distinct roles and zero
-          collisions.
-        </p>
-
-        <div class="hero__actions">
-          <div class="terminal terminal--inline" data-copy>
-            <div class="terminal__prompt">
-              <span class="terminal__sigil">$</span>
-              <code>pip install okto-pulse</code>
-            </div>
-            <button class="terminal__copy" type="button" aria-label="Copy install command">
-              <span class="terminal__copy-label">Copy</span>
-            </button>
+        <div class="hero__copy">
+          <div class="hero__meta">
+            <span class="tag tag--dot">OktoLabs &middot; Product no. 01</span>
+            <span class="tag tag--thin">v0.1.2 &middot; 2026</span>
           </div>
-          <a class="btn btn--primary" href="#agents">
-            <span>See how agents collaborate</span>
-            <span class="btn__arrow" aria-hidden="true">→</span>
-          </a>
+
+          <h1 class="hero__title">
+            <span class="line">Spec-driven</span>
+            <span class="line">project management</span>
+            <span class="line">for <em class="accent">AI agents</em>.</span>
+          </h1>
+
+          <p class="hero__lead">
+            A local-first kanban board with native MCP support. Okto Pulse is where humans and AI
+            agents plan, refine, and ship together — on the same board, with distinct roles and zero
+            collisions.
+          </p>
+
+          <div class="hero__actions">
+            <div class="terminal terminal--inline" data-copy>
+              <div class="terminal__prompt">
+                <span class="terminal__sigil">$</span>
+                <code>pip install okto-pulse</code>
+              </div>
+              <button class="terminal__copy" type="button" aria-label="Copy install command">
+                <span class="terminal__copy-label">Copy</span>
+              </button>
+            </div>
+            <a class="btn btn--primary" href="#install">
+              <span>Install in one command</span>
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
         </div>
+
+        <aside class="hero__visual" aria-label="Okto Pulse board preview">
+          <div class="showcase__frame showcase__frame--hero">
+            <div class="showcase__bar" aria-hidden="true">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="showcase__path">okto-pulse &nbsp;·&nbsp; My Board &nbsp;·&nbsp; Tasks</span>
+            </div>
+            <picture>
+              <source srcset="./assets/screenshots/04-tasks-kanban.webp" type="image/webp" />
+              <img
+                src="./assets/screenshots/04-tasks-kanban.png"
+                alt="Okto Pulse kanban board with columns Not Started, Started, In Progress, Validation, and On Hold"
+                class="showcase__img"
+                width="1680"
+                height="1000"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </picture>
+          </div>
+          <p class="showcase__caption hero__caption">
+            <span class="bracket">[</span> The board view at a glance — every card carries its spec,
+            sprint, priority, and assignee. <span class="bracket">]</span>
+          </p>
+        </aside>
 
         <ul class="hero__stats" aria-label="At a glance">
           <li>
@@ -128,26 +161,6 @@
       <span class="crosshair crosshair--tr" aria-hidden="true"></span>
       <span class="crosshair crosshair--bl" aria-hidden="true"></span>
       <span class="crosshair crosshair--br" aria-hidden="true"></span>
-    </section>
-
-    <!-- ─────────────────── HERO SCREENSHOT ─────────────────── -->
-    <section class="showcase">
-      <div class="showcase__frame">
-        <div class="showcase__bar" aria-hidden="true">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="showcase__path">okto-pulse &nbsp;·&nbsp; My Board &nbsp;·&nbsp; Tasks</span>
-        </div>
-        <img
-          src="./assets/screenshots/04-tasks-kanban.png"
-          alt="Okto Pulse kanban board with columns Not Started, Started, In Progress, Validation, and On Hold"
-          class="showcase__img"
-          loading="lazy"
-        />
-      </div>
-      <p class="showcase__caption">
-        <span class="bracket">[</span> The board view at a glance — every card carries its spec,
-        sprint, priority, and assignee. <span class="bracket">]</span>
-      </p>
     </section>
 
     <!-- ──────────────────── ADLC ──────────────────── -->
@@ -431,11 +444,16 @@
 
         <aside class="agents__proof">
           <div class="agents__frame">
-            <img
-              src="./assets/screenshots/06-modal.png"
-              alt="Permission Presets panel inside Okto Pulse showing the five built-in roles and their permissions"
-              loading="lazy"
-            />
+            <picture>
+              <source srcset="./assets/screenshots/06-modal.webp" type="image/webp" />
+              <img
+                src="./assets/screenshots/06-modal.png"
+                alt="Permission Presets panel inside Okto Pulse showing the five built-in roles and their permissions"
+                width="1680"
+                height="1000"
+                loading="lazy"
+              />
+            </picture>
           </div>
           <p class="agents__caption">
             <span class="bracket">[</span> Permission Presets panel — each preset enumerates what
@@ -466,7 +484,10 @@
             <h3>Ideations</h3>
             <p>Raw ideas with problem statements, proposed approaches, and evaluation state.</p>
           </div>
-          <img src="./assets/screenshots/01-ideations.png" alt="Ideations tab with five draft items" loading="lazy" />
+          <picture>
+            <source srcset="./assets/screenshots/01-ideations.webp" type="image/webp" />
+            <img src="./assets/screenshots/01-ideations.png" alt="Ideations tab with five draft items" width="1680" height="1000" loading="lazy" />
+          </picture>
         </figure>
 
         <figure class="tab-frame">
@@ -475,7 +496,10 @@
             <h3>Specs</h3>
             <p>Versioned specifications in Draft, Review, Approved, Validated, or Done.</p>
           </div>
-          <img src="./assets/screenshots/02-specs.png" alt="Specs tab with three done specifications" loading="lazy" />
+          <picture>
+            <source srcset="./assets/screenshots/02-specs.webp" type="image/webp" />
+            <img src="./assets/screenshots/02-specs.png" alt="Specs tab with three done specifications" width="1680" height="1000" loading="lazy" />
+          </picture>
         </figure>
 
         <figure class="tab-frame">
@@ -484,7 +508,10 @@
             <h3>Sprints</h3>
             <p>A spec broken into shippable iterations. Each sprint owns a set of cards and a validation gate.</p>
           </div>
-          <img src="./assets/screenshots/03-sprints.png" alt="Sprints tab with two draft sprints" loading="lazy" />
+          <picture>
+            <source srcset="./assets/screenshots/03-sprints.webp" type="image/webp" />
+            <img src="./assets/screenshots/03-sprints.png" alt="Sprints tab with two draft sprints" width="1680" height="1000" loading="lazy" />
+          </picture>
         </figure>
       </div>
     </section>
@@ -509,11 +536,16 @@
           <span class="dot"></span><span class="dot"></span><span class="dot"></span>
           <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; 30d window</span>
         </div>
-        <img
-          src="./assets/screenshots/08-analytics-overview.png"
-          alt="Okto Pulse analytics dashboard showing KPI tiles, validation gates, conversion funnel, velocity chart, and per-board breakdown"
-          loading="lazy"
-        />
+        <picture>
+          <source srcset="./assets/screenshots/08-analytics-overview.webp" type="image/webp" />
+          <img
+            src="./assets/screenshots/08-analytics-overview.png"
+            alt="Okto Pulse analytics dashboard showing KPI tiles, validation gates, conversion funnel, velocity chart, and per-board breakdown"
+            width="1280"
+            height="720"
+            loading="lazy"
+          />
+        </picture>
       </figure>
 
       <div class="analytics__highlights">
