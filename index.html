@@ -107,9 +107,44 @@
           <div class="showcase__frame showcase__frame--hero hero-slider">
             <div class="showcase__bar" aria-hidden="true">
               <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="showcase__path">okto-pulse &nbsp;·&nbsp; Board + Analytics</span>
+              <span class="showcase__path">okto-pulse &nbsp;·&nbsp; Pulse + Board + Analytics</span>
             </div>
             <div class="hero-slider__viewport">
+              <figure class="hero-slide hero-slide--pulse" aria-label="Animated Okto Pulse signal">
+                <div class="pulse-stage" aria-hidden="true">
+                  <svg class="pulse-stage__svg" viewBox="0 0 900 220" role="presentation" focusable="false">
+                    <defs>
+                      <linearGradient id="heroPulseGradient" x1="268" y1="110" x2="404" y2="110" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#22d3ee" />
+                        <stop offset="55%" stop-color="#3b82f6" />
+                        <stop offset="100%" stop-color="#1e40af" />
+                      </linearGradient>
+                      <filter id="heroPulseGlow" x="-20%" y="-120%" width="140%" height="340%">
+                        <feGaussianBlur stdDeviation="7" result="blur" />
+                        <feColorMatrix
+                          in="blur"
+                          type="matrix"
+                          values="0 0 0 0 0.13 0 0 0 0 0.83 0 0 0 0 0.93 0 0 0 0.85 0"
+                        />
+                        <feMerge>
+                          <feMergeNode />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                    </defs>
+                    <path
+                      class="pulse-stage__guide"
+                      d="M -180 110 L 900 110"
+                      pathLength="1260"
+                    />
+                    <path
+                      class="pulse-stage__trace"
+                      d="M -180 110 L 268 110 L 300 110 L 312 110 L 324 62 L 340 158 L 356 86 L 372 110 L 404 110 L 900 110"
+                      pathLength="1260"
+                    />
+                  </svg>
+                </div>
+              </figure>
               <figure class="hero-slide hero-slide--cards" aria-hidden="false">
                 <picture>
                   <source srcset="./assets/screenshots/04-tasks-kanban.webp" type="image/webp" />
@@ -140,8 +175,8 @@
             </div>
           </div>
           <p class="showcase__caption hero__caption">
-            <span class="bracket">[</span> The board and analytics views cycle together — cards
-            carry the work, metrics show the signal. <span class="bracket">]</span>
+            <span class="bracket">[</span> The Pulse signal leads the loop — cards carry the work,
+            analytics shows the signal. <span class="bracket">]</span>
           </p>
         </aside>
 
