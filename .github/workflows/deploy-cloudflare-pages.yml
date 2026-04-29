@@ -39,6 +39,7 @@ jobs:
           mkdir -p dist
           cp index.html styles.css script.js dist/
           cp -R assets dist/assets
+          cp _headers dist/_headers
 
       - name: Check Cloudflare token
         env:
