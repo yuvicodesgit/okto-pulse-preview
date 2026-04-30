@@ -5,14 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Okto Pulse — The spec-driven ADLC platform</title>
   <meta name="description" content="Okto Pulse is the first spec-driven platform for the Agentic Development Life Cycle (ADLC). Local-first, MCP-native — humans and agents ship together." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pulse.oktolabs.ai/" />
   <meta property="og:title" content="Okto Pulse — The spec-driven ADLC platform" />
   <meta property="og:description" content="First spec-driven platform for the Agentic Development Life Cycle. Spec-driven, MCP-native, local-first. Humans and AI agents on the same board, distinct roles, zero collisions." />
-  <meta property="og:image" content="https://oktolabs.ai/products/okto-pulse-wordmark.svg" />
-  <meta property="og:image:type" content="image/svg+xml" />
-  <meta property="og:image:width" content="220" />
-  <meta property="og:image:height" content="40" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:image" content="https://oktolabs.ai/products/okto-pulse-wordmark.svg" />
+  <meta property="og:image" content="https://pulse.oktolabs.ai/assets/social/okto-pulse-share.png" />
+  <meta property="og:image:secure_url" content="https://pulse.oktolabs.ai/assets/social/okto-pulse-share.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Okto Pulse — The spec-driven ADLC platform" />
+  <meta name="twitter:description" content="Spec-driven, MCP-native, local-first. Humans and AI agents on the same board, distinct roles, zero collisions." />
+  <meta name="twitter:image" content="https://pulse.oktolabs.ai/assets/social/okto-pulse-share.png" />
   <meta name="theme-color" content="#070709" />
 
   <link rel="icon" type="image/svg+xml" href="./assets/logos/pulse-icon.svg" />
@@ -229,28 +234,70 @@
 
       <div class="pipeline">
         <article class="pipeline__step" style="--step-i:1">
-          <span class="pipeline__num">01</span>
+          <div class="card-meta">
+            <span class="pipeline__num">01</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M6 3h9l3 3v15H6z" />
+                <path d="M14 3v4h4" />
+                <path d="M9 13l2 2 4-5" />
+              </svg>
+            </span>
+          </div>
           <div class="pipeline__body">
             <h3>Intent is specified</h3>
             <p>Humans (and agents in upstream roles) define problem, scope, acceptance criteria. No code without spec.</p>
           </div>
         </article>
         <article class="pipeline__step" style="--step-i:2">
-          <span class="pipeline__num">02</span>
+          <div class="card-meta">
+            <span class="pipeline__num">02</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <rect x="5" y="7" width="14" height="11" rx="3" />
+                <path d="M12 7V4" />
+                <path d="M9 12h.01" />
+                <path d="M15 12h.01" />
+                <path d="M9 16h6" />
+              </svg>
+            </span>
+          </div>
           <div class="pipeline__body">
             <h3>Agents execute</h3>
             <p>Executor agents pick tasks linked to specs. MCP exposes the board so any agent can act — with its role permissions enforced.</p>
           </div>
         </article>
         <article class="pipeline__step" style="--step-i:3">
-          <span class="pipeline__num">03</span>
+          <div class="card-meta">
+            <span class="pipeline__num">03</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M12 3 19 6v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" />
+                <path d="m9 12 2 2 4-5" />
+              </svg>
+            </span>
+          </div>
           <div class="pipeline__body">
             <h3>Gates validate</h3>
             <p>Validator agents (or humans) gate the output against the original spec. Nothing ships without passing its gate.</p>
           </div>
         </article>
         <article class="pipeline__step" style="--step-i:4">
-          <span class="pipeline__num">04</span>
+          <div class="card-meta">
+            <span class="pipeline__num">04</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <circle cx="6" cy="6" r="2" />
+                <circle cx="18" cy="7" r="2" />
+                <circle cx="8" cy="18" r="2" />
+                <circle cx="18" cy="17" r="2" />
+                <path d="M8 7h8" />
+                <path d="M7 8l1 8" />
+                <path d="M10 18h6" />
+                <path d="m17 9 1 6" />
+              </svg>
+            </span>
+          </div>
           <div class="pipeline__body">
             <h3>Everything is traceable</h3>
             <p>Task → sprint → spec → refinement → ideation. Every artefact linked, every decision auditable.</p>
@@ -276,35 +323,87 @@
 
       <ol class="pipeline">
         <li class="pipeline__step" style="--step-i:1">
-          <span class="pipeline__num">01</span>
+          <div class="card-meta">
+            <span class="pipeline__num">01</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M9 18h6" />
+                <path d="M10 21h4" />
+                <path d="M8 14a6 6 0 1 1 8 0c-1.2.9-1.5 1.6-1.7 2H9.7c-.2-.4-.5-1.1-1.7-2z" />
+              </svg>
+            </span>
+          </div>
           <div class="pipeline__body">
             <h3>Ideation</h3>
             <p>Raw ideas, problem statements, proposed approaches. Evaluated before promotion.</p>
           </div>
         </li>
         <li class="pipeline__step" style="--step-i:2">
-          <span class="pipeline__num">02</span>
+          <div class="card-meta">
+            <span class="pipeline__num">02</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M4 7h10" />
+                <path d="M18 7h2" />
+                <circle cx="16" cy="7" r="2" />
+                <path d="M4 17h2" />
+                <path d="M10 17h10" />
+                <circle cx="8" cy="17" r="2" />
+              </svg>
+            </span>
+          </div>
           <div class="pipeline__body">
             <h3>Refinement</h3>
             <p>Scope, decisions, constraints. Context compiled from the ideation and Q&amp;A.</p>
           </div>
         </li>
         <li class="pipeline__step" style="--step-i:3">
-          <span class="pipeline__num">03</span>
+          <div class="card-meta">
+            <span class="pipeline__num">03</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M6 3h9l3 3v15H6z" />
+                <path d="M14 3v4h4" />
+                <path d="M9 12h6" />
+                <path d="M9 16h4" />
+              </svg>
+            </span>
+          </div>
           <div class="pipeline__body">
             <h3>Spec</h3>
             <p>Requirements, acceptance criteria, test scenarios, business rules, contracts.</p>
           </div>
         </li>
         <li class="pipeline__step" style="--step-i:4">
-          <span class="pipeline__num">04</span>
+          <div class="card-meta">
+            <span class="pipeline__num">04</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M7 7h10" />
+                <path d="M7 12h7" />
+                <path d="M7 17h5" />
+                <path d="M17 14l2 2-2 2" />
+                <path d="M19 16h-5" />
+              </svg>
+            </span>
+          </div>
           <div class="pipeline__body">
             <h3>Sprint</h3>
             <p>A spec sliced into a shippable iteration. Objective, tasks, validation gate.</p>
           </div>
         </li>
         <li class="pipeline__step" style="--step-i:5">
-          <span class="pipeline__num">05</span>
+          <div class="card-meta">
+            <span class="pipeline__num">05</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <rect x="4" y="5" width="16" height="14" rx="2" />
+                <path d="M8 9h8" />
+                <path d="M8 13h5" />
+                <path d="m14 16 1.5 1.5L19 14" />
+              </svg>
+            </span>
+          </div>
           <div class="pipeline__body">
             <h3>Task</h3>
             <p>A kanban card linked to its spec. Moves through the board until validated.</p>
@@ -731,7 +830,14 @@
 
       <div class="analytics__highlights">
         <article class="highlight">
-          <span class="highlight__label">A &middot; 01</span>
+          <div class="highlight__top">
+            <span class="highlight__label">A &middot; 01</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M4 5h16l-6 7v5l-4 2v-7z" />
+              </svg>
+            </span>
+          </div>
           <h3>Conversion funnel</h3>
           <p>
             Ideations → Refinements → Specs → Tasks → Done. Track what you started versus what
@@ -740,7 +846,15 @@
         </article>
 
         <article class="highlight">
-          <span class="highlight__label">A &middot; 02</span>
+          <div class="highlight__top">
+            <span class="highlight__label">A &middot; 02</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M12 3 19 6v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" />
+                <path d="m9 12 2 2 4-5" />
+              </svg>
+            </span>
+          </div>
           <h3>Validation gates</h3>
           <p>
             Four tracked gates — spec, task, spec evaluation, sprint evaluation — each with its
@@ -749,7 +863,16 @@
         </article>
 
         <article class="highlight">
-          <span class="highlight__label">A &middot; 03</span>
+          <div class="highlight__top">
+            <span class="highlight__label">A &middot; 03</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M4 18h16" />
+                <path d="M6 15l4-4 3 3 5-7" />
+                <path d="M18 7v5h-5" />
+              </svg>
+            </span>
+          </div>
           <h3>Velocity &amp; drift</h3>
           <p>
             Weekly throughput split by implementation, tests, and bugs. Average drift surfaces
@@ -758,7 +881,17 @@
         </article>
 
         <article class="highlight">
-          <span class="highlight__label">A &middot; 04</span>
+          <div class="highlight__top">
+            <span class="highlight__label">A &middot; 04</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <circle cx="10" cy="10" r="5" />
+                <path d="m14 14 5 5" />
+                <path d="M10 7v6" />
+                <path d="M7 10h6" />
+              </svg>
+            </span>
+          </div>
           <h3>Export &amp; drill-down</h3>
           <p>
             Every KPI card is clickable. Drill into a spec or sprint for a deeper view, or export
@@ -867,7 +1000,7 @@
     <section id="install" class="section section--install">
       <header class="section__head">
         <span class="section__eyebrow">08 &nbsp;·&nbsp; GETTING STARTED</span>
-        <h2 class="section__title">Four commands to a running board.</h2>
+        <h2 class="section__title">Four commands to a <em>running board</em>.</h2>
       </header>
 
       <ol class="install">
