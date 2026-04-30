@@ -2181,6 +2181,21 @@ ol {
   transform: translateY(-2px);
 }
 
+.knowledge__node-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.15rem;
+}
+
+.knowledge__node:hover .context-icon {
+  color: var(--pulse-cyan);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 20px 56px -30px rgba(59, 130, 246, 0.8);
+}
+
 .knowledge__node-label {
   display: block;
   font-family: var(--font-mono);
@@ -2188,6 +2203,10 @@ ol {
   letter-spacing: 0.12em;
   color: var(--ink-faint);
   margin-bottom: 1.15rem;
+}
+
+.knowledge__node-top .knowledge__node-label {
+  margin-bottom: 0;
 }
 
 .knowledge__node h3 {
