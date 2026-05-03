@@ -226,8 +226,9 @@ ol {
 }
 
 .nav__inner {
-  max-width: var(--max);
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   padding: 14px var(--gutter);
   display: flex;
   align-items: center;
@@ -524,16 +525,18 @@ ol {
 .hero {
   position: relative;
   box-sizing: border-box;
-  max-width: var(--max);
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   padding: clamp(3rem, 6vw, 5.5rem) var(--gutter) clamp(3rem, 5vw, 4.5rem);
 }
 
 .hero__inner {
   position: relative;
   box-sizing: border-box;
+  width: 100%;
   max-width: none;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   border: 0;
   border-radius: 0;
@@ -584,6 +587,7 @@ ol {
 
 .hero__title .line {
   display: block;
+  white-space: nowrap;
   opacity: 0;
   transform: translateY(14px);
   animation: lift 900ms var(--ease) forwards;
@@ -797,8 +801,9 @@ ol {
 .showcase {
   position: relative;
   padding: clamp(2rem, 5vw, 4rem) var(--gutter) clamp(4rem, 8vw, 7rem);
-  max-width: calc(var(--max) + 40px);
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
 }
 
 .showcase__frame {
@@ -822,17 +827,17 @@ ol {
   box-shadow: none;
   animation:
     hero-frame-in 520ms var(--ease) 180ms forwards,
-    hero-screen-frame-cycle 18s var(--ease) infinite;
+    hero-screen-frame-cycle 24s var(--ease) infinite;
 }
 
 @keyframes hero-screen-frame-cycle {
   0%,
-  30% {
+  25% {
     border-color: transparent;
     background: transparent;
     box-shadow: none;
   }
-  36%,
+  30%,
   94% {
     border-color: var(--hair-strong);
     background: var(--surface);
@@ -900,15 +905,15 @@ ol {
 
 .showcase__frame--hero::before {
   opacity: 0;
-  animation: hero-screen-overlay-cycle 18s var(--ease) infinite;
+  animation: hero-screen-overlay-cycle 24s var(--ease) infinite;
 }
 
 @keyframes hero-screen-overlay-cycle {
   0%,
-  30% {
+  25% {
     opacity: 0;
   }
-  36%,
+  30%,
   94% {
     opacity: 1;
   }
@@ -934,16 +939,16 @@ ol {
   z-index: 4;
   opacity: 0;
   transform: translateY(-8px);
-  animation: hero-screen-bar-cycle 18s var(--ease) infinite;
+  animation: hero-screen-bar-cycle 24s var(--ease) infinite;
 }
 
 @keyframes hero-screen-bar-cycle {
   0%,
-  30% {
+  25% {
     opacity: 0;
     transform: translateY(-8px);
   }
-  36%,
+  30%,
   94% {
     opacity: 1;
     transform: translateY(0);
@@ -964,15 +969,15 @@ ol {
 }
 
 .hero-slider__viewport {
-  animation: hero-viewport-cycle 18s var(--ease) infinite;
+  animation: hero-viewport-cycle 24s var(--ease) infinite;
 }
 
 @keyframes hero-viewport-cycle {
   0%,
-  30% {
+  25% {
     background: transparent;
   }
-  36%,
+  30%,
   94% {
     background:
       radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.08), transparent 58%),
@@ -992,7 +997,7 @@ ol {
   opacity: 0;
   transform: translateX(12px) scale(0.995);
   pointer-events: none;
-  animation-duration: 18s;
+  animation-duration: 24s;
   animation-timing-function: var(--ease);
   animation-iteration-count: infinite;
 }
@@ -1010,18 +1015,23 @@ ol {
   animation-name: hero-slide-analytics;
 }
 
+.hero-slide--architecture {
+  animation-name: hero-slide-architecture;
+}
+
 .hero-slide--cards,
-.hero-slide--analytics {
+.hero-slide--analytics,
+.hero-slide--architecture {
   padding-top: 44px;
 }
 
 @keyframes hero-slide-pulse {
   0%,
-  29% {
+  25% {
     opacity: 1;
     transform: translateX(0) scale(1);
   }
-  35%,
+  30%,
   100% {
     opacity: 0;
     transform: translateX(-12px) scale(0.995);
@@ -1030,16 +1040,16 @@ ol {
 
 @keyframes hero-slide-cards {
   0%,
-  31% {
+  28% {
     opacity: 0;
     transform: translateX(12px) scale(0.995);
   }
-  36%,
-  62% {
+  32%,
+  48% {
     opacity: 1;
     transform: translateX(0) scale(1);
   }
-  68%,
+  52%,
   100% {
     opacity: 0;
     transform: translateX(-12px) scale(0.995);
@@ -1048,11 +1058,29 @@ ol {
 
 @keyframes hero-slide-analytics {
   0%,
-  64% {
+  50% {
     opacity: 0;
     transform: translateX(12px) scale(0.995);
   }
-  69%,
+  54%,
+  70% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  74%,
+  100% {
+    opacity: 0;
+    transform: translateX(-12px) scale(0.995);
+  }
+}
+
+@keyframes hero-slide-architecture {
+  0%,
+  72% {
+    opacity: 0;
+    transform: translateX(12px) scale(0.995);
+  }
+  76%,
   94% {
     opacity: 1;
     transform: translateX(0) scale(1);
@@ -1214,8 +1242,9 @@ ol {
 /* ---------- section scaffolding ---------- */
 .section {
   padding: var(--section-y) var(--gutter);
-  max-width: var(--max);
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   position: relative;
 }
 
@@ -3985,8 +4014,9 @@ ol {
 /* ---------- footer ---------- */
 .foot {
   padding: clamp(4rem, 7vw, 6rem) var(--gutter) 3rem;
-  max-width: var(--max);
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   border-top: 1px solid var(--hair);
 }
 
