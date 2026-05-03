@@ -27,8 +27,8 @@
 
 (() => {
   // -- control-loss console text composition -----------------------------
-  const targets = document.querySelectorAll("[data-scramble]");
-  if (!targets.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const consoles = document.querySelectorAll("[data-scramble-console]");
+  if (!consoles.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-\"";
 
@@ -66,16 +66,33 @@
     tick();
   };
 
+  const composeConsole = (consoleEl) => {
+    consoleEl.querySelectorAll("[data-scramble]").forEach((el) => {
+      const lineIndex = Number(el.closest(".loss-console__line")?.style.getPropertyValue("--line-i") || 0);
+      window.setTimeout(() => compose(el), lineIndex * 70);
+    });
+  };
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      observer.unobserve(el);
-      window.setTimeout(() => compose(el), Number(el.closest(".loss-console__line")?.style.getPropertyValue("--line-i") || 0) * 70);
+      const consoleEl = entry.target;
+      const existingTimer = Number(consoleEl.dataset.scrambleTimer);
+
+      if (!entry.isIntersecting) {
+        if (existingTimer) {
+          window.clearInterval(existingTimer);
+          delete consoleEl.dataset.scrambleTimer;
+        }
+        return;
+      }
+
+      if (existingTimer) return;
+      composeConsole(consoleEl);
+      consoleEl.dataset.scrambleTimer = String(window.setInterval(() => composeConsole(consoleEl), 5000));
     });
   }, { threshold: 0.55 });
 
-  targets.forEach((el) => observer.observe(el));
+  consoles.forEach((consoleEl) => observer.observe(consoleEl));
 })();
 
 (() => {
