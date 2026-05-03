@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Okto Pulse — The spec-driven ADLC platform</title>
-  <meta name="description" content="Okto Pulse is the first spec-driven platform for the Agentic Development Life Cycle (ADLC). Local-first, MCP-native — humans and agents ship together." />
+  <title>Okto Pulse — Ship with AI. Stay in control.</title>
+  <meta name="description" content="Okto Pulse is the control plane for AI-assisted software development. Structure work, guide agents, validate delivery, and preserve project knowledge." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://pulse.oktolabs.ai/" />
-  <meta property="og:title" content="Okto Pulse — The spec-driven ADLC platform" />
-  <meta property="og:description" content="First spec-driven platform for the Agentic Development Life Cycle. Spec-driven, MCP-native, local-first. Humans and AI agents on the same board, distinct roles, zero collisions." />
+  <meta property="og:title" content="Okto Pulse — Ship with AI. Stay in control." />
+  <meta property="og:description" content="The control plane for AI-assisted development: specs, tasks, validation, analytics, and knowledge for humans and agents." />
   <meta property="og:image" content="https://pulse.oktolabs.ai/assets/social/okto-pulse-share.png" />
   <meta property="og:image:secure_url" content="https://pulse.oktolabs.ai/assets/social/okto-pulse-share.png" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Okto Pulse — The spec-driven ADLC platform" />
-  <meta name="twitter:description" content="Spec-driven, MCP-native, local-first. Humans and AI agents on the same board, distinct roles, zero collisions." />
+  <meta name="twitter:title" content="Okto Pulse — Ship with AI. Stay in control." />
+  <meta name="twitter:description" content="Specs, tasks, validation, analytics, and knowledge for AI-assisted software development." />
   <meta name="twitter:image" content="https://pulse.oktolabs.ai/assets/social/okto-pulse-share.png" />
   <meta name="theme-color" content="#070709" />
 
@@ -55,10 +55,10 @@
         <span class="nav__wordmark">Okto Pulse</span>
       </a>
       <nav class="nav__links" aria-label="Primary">
-        <a href="#adlc">ADLC</a>
-        <a href="#pipeline">Pipeline</a>
-        <a href="#features">Features</a>
-        <a href="#agents">Agents</a>
+        <a href="#problem">Problem</a>
+        <a href="#adlc">System</a>
+        <a href="#pipeline">Flow</a>
+        <a href="#evidence">Evidence</a>
         <a href="#mcp">MCP</a>
         <a href="#install">Install</a>
       </nav>
@@ -84,15 +84,14 @@
           </div>
 
           <h1 class="hero__title">
-            <span class="line">Spec-driven</span>
-            <span class="line">project management</span>
-            <span class="line">for <em class="accent">AI agents</em>.</span>
+            <span class="line">Ship with AI.</span>
+            <span class="line">Stay in <em class="accent">control.</em></span>
           </h1>
 
           <p class="hero__lead">
-            A local-first kanban board with native MCP support. Okto Pulse is where humans and AI
-            agents plan, refine, and ship together — on the same board, with distinct roles and zero
-            collisions.
+            From idea to production — with specs, validation, and evidence. Okto Pulse is the
+            control plane for AI-assisted software development: structure the work, guide your
+            agents, and prove what was actually delivered.
           </p>
 
           <div class="hero__actions">
@@ -105,9 +104,12 @@
                 <span class="terminal__copy-label">Copy</span>
               </button>
             </div>
-            <a class="btn btn--primary" href="#install">
-              <span>Install in one command</span>
+            <a class="btn btn--primary" href="#problem">
+              <span>See how it works</span>
               <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn--quiet" href="mailto:dev@oktolabs.ai?subject=Okto%20Pulse%20demo">
+              <span>Request demo</span>
             </a>
           </div>
 
@@ -184,28 +186,24 @@
               </figure>
             </div>
           </div>
-          <p class="showcase__caption hero__caption">
-            <span class="bracket">[</span> The Pulse signal leads the loop — cards carry the work,
-            analytics shows the signal. <span class="bracket">]</span>
-          </p>
         </aside>
 
         <ul class="hero__stats" aria-label="At a glance">
           <li>
-            <span class="stat__value">150<span class="stat__unit">+</span></span>
+            <span class="stat__value">190<span class="stat__unit">+</span></span>
             <span class="stat__label">MCP tools</span>
           </li>
           <li>
-            <span class="stat__value">5</span>
-            <span class="stat__label">Agent roles</span>
+            <span class="stat__value">6</span>
+            <span class="stat__label">Controlled stages</span>
           </li>
           <li>
-            <span class="stat__value">1</span>
-            <span class="stat__label">Command setup</span>
+            <span class="stat__value">4</span>
+            <span class="stat__label">Validation gates</span>
           </li>
           <li>
-            <span class="stat__value">Ø</span>
-            <span class="stat__label">Cloud required</span>
+            <span class="stat__value">KG</span>
+            <span class="stat__label">Project memory</span>
           </li>
         </ul>
       </div>
@@ -217,59 +215,282 @@
       <span class="crosshair crosshair--br" aria-hidden="true"></span>
     </section>
 
-    <!-- ──────────────────── ADLC ──────────────────── -->
-    <section id="adlc" class="section section--adlc">
-      <header class="section__head">
-        <span class="section__eyebrow">00 &nbsp;·&nbsp; PHILOSOPHY</span>
-        <h2 class="section__title">
-          Built for the <em>Agentic Development Life Cycle</em>.
-        </h2>
-        <p class="section__lede">
-          ADLC is what the SDLC becomes once AI agents are first-class
-          participants, not helpers on the side. Humans set intent, agents execute against
-          spec, validators gate the result — and every artefact is traceable end to end. Okto
-          Pulse is the first spec-driven platform built from the ground up for this cycle.
+    <!-- ──────────────────── PROBLEM ──────────────────── -->
+    <section id="problem" class="section section--problem">
+      <header class="section__head section__head--split">
+        <div>
+          <h2 class="section__title">
+            AI coding is fast. <br />
+            <em>Losing control is faster.</em>
+          </h2>
+        </div>
+        <p class="section__lede section__lede--right">
+          AI assistants can generate code. They do not guarantee that requirements were implemented,
+          decisions were preserved, tests covered what matters, or the system behaves as intended.
         </p>
       </header>
 
-      <div class="pipeline">
-        <article class="pipeline__step" style="--step-i:1">
+      <div class="problem__grid">
+        <article class="risk-card" style="--risk-i:1">
+          <div class="risk-card__top">
+            <span class="context-icon risk-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M4 7h16" />
+                <path d="M4 12h10" />
+                <path d="M4 17h6" />
+                <path d="m16 15 4 4" />
+                <path d="m20 15-4 4" />
+              </svg>
+            </span>
+          </div>
+          <h3>Context gets lost</h3>
+          <p>Long-running work turns into disconnected prompts, partial memory, and repeated explanations.</p>
+        </article>
+        <article class="risk-card" style="--risk-i:2">
+          <div class="risk-card__top">
+            <span class="context-icon risk-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M5 5h14v12H7l-2 2z" />
+                <path d="M8 9h8" />
+                <path d="M8 13h4" />
+                <path d="m15 15 4 4" />
+              </svg>
+            </span>
+          </div>
+          <h3>Decisions disappear</h3>
+          <p>Architecture, trade-offs, and constraints live in chat history instead of the project system.</p>
+        </article>
+        <article class="risk-card" style="--risk-i:3">
+          <div class="risk-card__top">
+            <span class="context-icon risk-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M6 3h9l3 3v15H6z" />
+                <path d="M14 3v4h4" />
+                <path d="M9 12h4" />
+                <path d="M9 16h3" />
+                <path d="m15 14 4 4" />
+                <path d="m19 14-4 4" />
+              </svg>
+            </span>
+          </div>
+          <h3>Specs are ignored</h3>
+          <p>Agents can move quickly while drifting away from the original requirement and acceptance criteria.</p>
+        </article>
+        <article class="risk-card" style="--risk-i:4">
+          <div class="risk-card__top">
+            <span class="context-icon risk-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M12 3 19 6v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" />
+                <path d="M12 8v5" />
+                <path d="M12 17h.01" />
+              </svg>
+            </span>
+          </div>
+          <h3>Validation becomes subjective</h3>
+          <p>Done means “it seems to work” instead of evidence tied to requirements, tests, and delivery.</p>
+        </article>
+      </div>
+
+      <p class="problem__close">
+        You ship faster. <span>But you stop knowing what you shipped.</span>
+      </p>
+
+      <div class="problem__bottom">
+        <div class="loss-console" aria-label="AI delivery risk signals" data-scramble-console>
+          <div class="loss-console__chrome" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <strong>control-loss.trace</strong>
+          </div>
+<pre><code><span class="loss-console__line" style="--line-i:1"><span class="loss-console__key" data-scramble="intent.status">intent.status</span><span class="loss-console__op">=</span><span class="loss-console__value" data-scramble="&quot;unclear&quot;">"unclear"</span></span>
+<span class="loss-console__line" style="--line-i:2"><span class="loss-console__key" data-scramble="spec.coverage">spec.coverage</span><span class="loss-console__op">=</span><span class="loss-console__value" data-scramble="&quot;unknown&quot;">"unknown"</span></span>
+<span class="loss-console__line" style="--line-i:3"><span class="loss-console__key" data-scramble="task.drift">task.drift</span><span class="loss-console__op">=</span><span class="loss-console__value" data-scramble="&quot;rising&quot;">"rising"</span></span>
+<span class="loss-console__line" style="--line-i:4"><span class="loss-console__key" data-scramble="delivery.evidence">delivery.evidence</span><span class="loss-console__op">=</span><span class="loss-console__value" data-scramble="&quot;missing&quot;">"missing"</span></span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ──────────────────── SYSTEM ──────────────────── -->
+    <section id="adlc" class="section section--system">
+      <header class="section__head">
+        <h2 class="section__title">
+          Not another board. <br />
+          <em>Not another AI tool.</em>
+        </h2>
+        <p class="section__lede">
+          Okto Pulse sits between your idea and your code, bringing structure, traceability, and
+          validation to every step. It turns AI from a coding assistant into an engineering
+          participant.
+        </p>
+      </header>
+
+      <div class="system-map">
+        <div class="system-map__copy">
+          <article class="system-map__card system-map__card--not">
+            <span class="system-map__tag">This is not</span>
+            <ul>
+              <li>another Kanban</li>
+              <li>another code generator</li>
+              <li>another loose workflow tool</li>
+            </ul>
+          </article>
+          <article class="system-map__card system-map__card--is system-map__answer">
+            <span class="system-map__tag">This is</span>
+            <p>A reliability layer for AI-assisted development: specs, tasks, validation, analytics, and project memory in one controlled system.</p>
+            <div class="system-map__evidence" aria-label="Control plane evidence path">
+              <span>Intent</span>
+              <span>Spec</span>
+              <span>Task</span>
+              <span>Evidence</span>
+              <span>Knowledge</span>
+            </div>
+          </article>
+        </div>
+
+        <figure class="control-plane solution-map" aria-label="Okto Pulse control plane diagram">
+          <svg class="solution-map__links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="pulse-line" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%" stop-color="#22d3ee" stop-opacity="0" />
+                <stop offset="48%" stop-color="#22d3ee" stop-opacity="0.92" />
+                <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.24" />
+              </linearGradient>
+            </defs>
+            <path d="M21 30 C32 28 36 41 46 43" />
+            <path d="M22 64 C34 66 36 56 46 53" />
+            <path d="M54 43 C64 39 66 28 78 28" />
+            <path d="M54 53 C66 56 66 70 78 71" />
+            <path d="M50 60 C49 69 43 77 37 81" />
+          </svg>
+
+          <div class="solution-map__cluster solution-map__cluster--intent">
+            <span class="solution-map__label">Intent</span>
+            <span>Ideas</span>
+            <span>Requirements</span>
+            <span>Architecture</span>
+            <span>Mockups</span>
+          </div>
+
+          <div class="solution-map__hub">
+            <span class="solution-map__mark">Okto Pulse</span>
+            <strong>Control plane</strong>
+            <div class="solution-map__board" aria-hidden="true">
+              <span></span><span></span><span></span>
+              <i></i><i></i><i></i><i></i>
+            </div>
+            <div class="solution-map__surfaces">
+              <span>Specs</span>
+              <span>Tasks</span>
+              <span>Validation</span>
+              <span>Analytics</span>
+              <span>Knowledge</span>
+            </div>
+          </div>
+
+          <div class="solution-map__cluster solution-map__cluster--agents">
+            <span class="solution-map__label">Agents</span>
+            <span>Claude Code</span>
+            <span>Cursor</span>
+            <span>Cline</span>
+            <span>190+ MCP tools</span>
+          </div>
+
+          <div class="solution-map__cluster solution-map__cluster--evidence">
+            <span class="solution-map__label">Evidence</span>
+            <span>Tests</span>
+            <span>Rules</span>
+            <span>Contracts</span>
+            <span>Cycle signals</span>
+          </div>
+
+          <div class="solution-map__graph" aria-hidden="true">
+            <span class="solution-map__label">Project memory</span>
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ──────────────────── FLOW ──────────────────── -->
+    <section id="pipeline" class="section section--pipeline">
+      <header class="section__head">
+        <h2 class="section__title">
+          From idea to production — <br />
+          <em>with control at every step.</em>
+        </h2>
+        <p class="section__lede">
+          Define before building. Structure before coding. Validate before shipping. Learn after
+          delivery.
+        </p>
+      </header>
+
+      <ol class="pipeline">
+        <li class="pipeline__step" style="--step-i:1">
           <div class="card-meta">
-            <span class="pipeline__num">01</span>
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M9 18h6" />
+                <path d="M10 21h4" />
+                <path d="M8 14a6 6 0 1 1 8 0c-1.2.9-1.5 1.6-1.7 2H9.7c-.2-.4-.5-1.1-1.7-2z" />
+              </svg>
+            </span>
+          </div>
+          <div class="pipeline__body">
+            <h3>Ideation</h3>
+            <p>Capture ideas and evaluate complexity, ambiguity, risk, and dependencies.</p>
+          </div>
+        </li>
+        <li class="pipeline__step" style="--step-i:2">
+          <div class="card-meta">
+            <span class="context-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M4 7h10" />
+                <path d="M18 7h2" />
+                <circle cx="16" cy="7" r="2" />
+                <path d="M4 17h2" />
+                <path d="M10 17h10" />
+                <circle cx="8" cy="17" r="2" />
+              </svg>
+            </span>
+          </div>
+          <div class="pipeline__body">
+            <h3>Refinement</h3>
+            <p>Turn vague intent into technically grounded, actionable concepts.</p>
+          </div>
+        </li>
+        <li class="pipeline__step" style="--step-i:3">
+          <div class="card-meta">
             <span class="context-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" role="img">
                 <path d="M6 3h9l3 3v15H6z" />
                 <path d="M14 3v4h4" />
-                <path d="M9 13l2 2 4-5" />
+                <path d="M9 12h6" />
+                <path d="M9 16h4" />
               </svg>
             </span>
           </div>
           <div class="pipeline__body">
-            <h3>Intent is specified</h3>
-            <p>Humans (and agents in upstream roles) define problem, scope, acceptance criteria. No code without spec.</p>
+            <h3>Spec</h3>
+            <p>Define requirements, rules, contracts, architecture, mockups, and acceptance criteria.</p>
           </div>
-        </article>
-        <article class="pipeline__step" style="--step-i:2">
+        </li>
+        <li class="pipeline__step" style="--step-i:4">
           <div class="card-meta">
-            <span class="pipeline__num">02</span>
             <span class="context-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" role="img">
-                <rect x="5" y="7" width="14" height="11" rx="3" />
-                <path d="M12 7V4" />
-                <path d="M9 12h.01" />
-                <path d="M15 12h.01" />
-                <path d="M9 16h6" />
+                <rect x="4" y="5" width="16" height="14" rx="2" />
+                <path d="M8 9h8" />
+                <path d="M8 13h5" />
+                <path d="m14 16 1.5 1.5L19 14" />
               </svg>
             </span>
           </div>
           <div class="pipeline__body">
-            <h3>Agents execute</h3>
-            <p>Executor agents pick tasks linked to specs. MCP exposes the board so any agent can act — with its role permissions enforced.</p>
+            <h3>Tasks</h3>
+            <p>Break work into structured, traceable execution units for humans and agents.</p>
           </div>
-        </article>
-        <article class="pipeline__step" style="--step-i:3">
+        </li>
+        <li class="pipeline__step" style="--step-i:5">
           <div class="card-meta">
-            <span class="pipeline__num">03</span>
             <span class="context-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" role="img">
                 <path d="M12 3 19 6v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" />
@@ -278,13 +499,12 @@
             </span>
           </div>
           <div class="pipeline__body">
-            <h3>Gates validate</h3>
-            <p>Validator agents (or humans) gate the output against the original spec. Nothing ships without passing its gate.</p>
+            <h3>Validation</h3>
+            <p>Ensure coverage, test evidence, completion integrity, and drift control.</p>
           </div>
-        </article>
-        <article class="pipeline__step" style="--step-i:4">
+        </li>
+        <li class="pipeline__step" style="--step-i:6">
           <div class="card-meta">
-            <span class="pipeline__num">04</span>
             <span class="context-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" role="img">
                 <circle cx="6" cy="6" r="2" />
@@ -299,130 +519,187 @@
             </span>
           </div>
           <div class="pipeline__body">
-            <h3>Everything is traceable</h3>
-            <p>Task → sprint → spec → refinement → ideation. Every artefact linked, every decision auditable.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ──────────────────── PIPELINE ──────────────────── -->
-    <section id="pipeline" class="section section--pipeline">
-      <header class="section__head">
-        <span class="section__eyebrow">01 &nbsp;·&nbsp; PIPELINE</span>
-        <h2 class="section__title">
-          From <em>idea</em> to shipped task <br />
-          in five disciplined stages.
-        </h2>
-        <p class="section__lede">
-          Okto Pulse enforces a deliberate flow. Each stage has its own artefacts, its own review
-          gate, and its own agent permissions — so nothing jumps from whim to production without
-          passing through refinement and spec.
-        </p>
-      </header>
-
-      <ol class="pipeline">
-        <li class="pipeline__step" style="--step-i:1">
-          <div class="card-meta">
-            <span class="pipeline__num">01</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <path d="M9 18h6" />
-                <path d="M10 21h4" />
-                <path d="M8 14a6 6 0 1 1 8 0c-1.2.9-1.5 1.6-1.7 2H9.7c-.2-.4-.5-1.1-1.7-2z" />
-              </svg>
-            </span>
-          </div>
-          <div class="pipeline__body">
-            <h3>Ideation</h3>
-            <p>Raw ideas, problem statements, proposed approaches. Evaluated before promotion.</p>
-          </div>
-        </li>
-        <li class="pipeline__step" style="--step-i:2">
-          <div class="card-meta">
-            <span class="pipeline__num">02</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <path d="M4 7h10" />
-                <path d="M18 7h2" />
-                <circle cx="16" cy="7" r="2" />
-                <path d="M4 17h2" />
-                <path d="M10 17h10" />
-                <circle cx="8" cy="17" r="2" />
-              </svg>
-            </span>
-          </div>
-          <div class="pipeline__body">
-            <h3>Refinement</h3>
-            <p>Scope, decisions, constraints. Context compiled from the ideation and Q&amp;A.</p>
-          </div>
-        </li>
-        <li class="pipeline__step" style="--step-i:3">
-          <div class="card-meta">
-            <span class="pipeline__num">03</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <path d="M6 3h9l3 3v15H6z" />
-                <path d="M14 3v4h4" />
-                <path d="M9 12h6" />
-                <path d="M9 16h4" />
-              </svg>
-            </span>
-          </div>
-          <div class="pipeline__body">
-            <h3>Spec</h3>
-            <p>Requirements, acceptance criteria, test scenarios, business rules, contracts.</p>
-          </div>
-        </li>
-        <li class="pipeline__step" style="--step-i:4">
-          <div class="card-meta">
-            <span class="pipeline__num">04</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <path d="M7 7h10" />
-                <path d="M7 12h7" />
-                <path d="M7 17h5" />
-                <path d="M17 14l2 2-2 2" />
-                <path d="M19 16h-5" />
-              </svg>
-            </span>
-          </div>
-          <div class="pipeline__body">
-            <h3>Sprint</h3>
-            <p>A spec sliced into a shippable iteration. Objective, tasks, validation gate.</p>
-          </div>
-        </li>
-        <li class="pipeline__step" style="--step-i:5">
-          <div class="card-meta">
-            <span class="pipeline__num">05</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <rect x="4" y="5" width="16" height="14" rx="2" />
-                <path d="M8 9h8" />
-                <path d="M8 13h5" />
-                <path d="m14 16 1.5 1.5L19 14" />
-              </svg>
-            </span>
-          </div>
-          <div class="pipeline__body">
-            <h3>Task</h3>
-            <p>A kanban card linked to its spec. Moves through the board until validated.</p>
+            <h3>Knowledge</h3>
+            <p>Persist decisions, learnings, constraints, and context for future initiatives.</p>
           </div>
         </li>
       </ol>
     </section>
 
-    <!-- ──────────────────── FEATURES ──────────────────── -->
+    <!-- ──────────────────── VALUE ──────────────────── -->
+    <section id="value" class="section section--value">
+      <header class="section__head section__head--split">
+        <div>
+          <h2 class="section__title">
+            From prompt-driven coding <br />
+            <em>to spec-driven execution.</em>
+          </h2>
+        </div>
+        <p class="section__lede section__lede--right">
+          The goal is not to slow AI down. The goal is to let it move fast inside a system that
+          preserves intent, evidence, and accountability.
+        </p>
+      </header>
+
+      <div class="value-compare value-compare--control">
+        <article class="value-card value-card--before">
+          <span class="value-card__label">Before</span>
+          <h3>AI moves quickly, but the project loses its shape.</h3>
+          <ul>
+            <li>Requirements live in prompts</li>
+            <li>Architecture is separated from execution</li>
+            <li>Screen intent gets lost before implementation</li>
+            <li>Validation is reconstructed after the fact</li>
+          </ul>
+        </article>
+
+        <article class="value-card value-card--after">
+          <span class="value-card__label">After</span>
+          <h3>Okto Pulse lets AI move fast without losing control.</h3>
+          <ul>
+            <li>Intent becomes structured work with clear ownership</li>
+            <li>Architecture and mockups travel with the spec</li>
+            <li>Tasks stay linked to requirements, rules, and contracts</li>
+            <li>Validation produces evidence before delivery is trusted</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ──────────────────── EVIDENCE ──────────────────── -->
+    <section id="evidence" class="section section--evidence">
+      <header class="section__head section__head--split">
+        <div>
+          <h2 class="section__title">
+            The proof is in the <em>work surface.</em>
+          </h2>
+        </div>
+        <p class="section__lede section__lede--right">
+          The board is only one surface. Okto Pulse also models architecture, screen mockups,
+          acceptance criteria, tests, analytics, and the knowledge graph that survives delivery.
+        </p>
+      </header>
+
+      <div class="surface-story">
+        <article class="surface-panel">
+          <div class="surface-panel__copy">
+            <span class="surface-panel__label">Architecture design</span>
+            <h3>Design before code.</h3>
+            <p>Architecture diagrams are captured inside the ideation flow, so agents inherit system structure, integration points, and component boundaries before implementation begins.</p>
+          </div>
+          <figure class="evidence-shot">
+            <div class="analytics__bar" aria-hidden="true">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Ideation &nbsp;·&nbsp; Architecture</span>
+            </div>
+            <picture>
+              <source srcset="./assets/screenshots/12-ideation-architecture-expanded.webp" type="image/webp" />
+              <img src="./assets/screenshots/12-ideation-architecture-expanded.png" alt="Okto Pulse expanded ideation modal on the Architecture tab with a complex architecture diagram" width="1920" height="1080" loading="lazy" />
+            </picture>
+          </figure>
+        </article>
+
+        <article class="surface-panel surface-panel--reverse">
+          <div class="surface-panel__copy">
+            <span class="surface-panel__label">Interface intent</span>
+            <h3>Mock the product surface.</h3>
+            <p>Mockups keep interaction behavior, visual structure, and user-facing intent attached to the same workflow that produces specs and tasks.</p>
+          </div>
+          <figure class="evidence-shot">
+            <div class="analytics__bar" aria-hidden="true">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Ideation &nbsp;·&nbsp; Mockups</span>
+            </div>
+            <picture>
+              <source srcset="./assets/screenshots/13-ideation-mockup-expanded.webp" type="image/webp" />
+              <img src="./assets/screenshots/13-ideation-mockup-expanded.png" alt="Okto Pulse expanded ideation modal on the Mockups tab with a lineage visualization mockup" width="1920" height="1080" loading="lazy" />
+            </picture>
+          </figure>
+        </article>
+
+        <article class="surface-panel">
+          <div class="surface-panel__copy">
+            <span class="surface-panel__label">Validation evidence</span>
+            <h3>Validate what matters.</h3>
+            <p>Spec detail connects acceptance criteria, tests, rules, contracts, drift, and cycle time so done work can be inspected instead of assumed.</p>
+          </div>
+          <figure class="evidence-shot">
+            <div class="analytics__bar" aria-hidden="true">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Spec detail</span>
+            </div>
+            <picture>
+              <source srcset="./assets/screenshots/10-analytics-spec-detail.webp" type="image/webp" />
+              <img src="./assets/screenshots/10-analytics-spec-detail.png" alt="Okto Pulse spec detail analytics with acceptance criteria, test scenario status, and task validation" width="1919" height="906" loading="lazy" />
+            </picture>
+          </figure>
+        </article>
+
+        <article class="surface-panel surface-panel--reverse">
+          <div class="surface-panel__copy">
+            <span class="surface-panel__label">Structured execution</span>
+            <h3>The board is the operating surface.</h3>
+            <p>Tasks are not loose cards. They carry ownership, status, priority, spec linkage, validation state, and the provenance needed for humans and agents to work on the same execution surface.</p>
+          </div>
+          <figure class="evidence-shot">
+            <div class="analytics__bar" aria-hidden="true">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Board &nbsp;·&nbsp; Structured execution</span>
+            </div>
+            <picture>
+              <source srcset="./assets/screenshots/04-tasks-kanban.webp" type="image/webp" />
+              <img src="./assets/screenshots/04-tasks-kanban.png" alt="Okto Pulse kanban board with traceable task cards" width="1680" height="1000" loading="lazy" />
+            </picture>
+          </figure>
+        </article>
+
+        <article class="surface-panel">
+          <div class="surface-panel__copy">
+            <span class="surface-panel__label">Requirement coverage</span>
+            <h3>Analytics turn delivery into evidence.</h3>
+            <p>Coverage, drift, tests, rules, contracts, and agent contribution stay visible after implementation starts. The system makes the cost of drift explicit instead of invisible.</p>
+          </div>
+          <figure class="evidence-shot">
+            <div class="analytics__bar" aria-hidden="true">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Coverage</span>
+            </div>
+            <picture>
+              <source srcset="./assets/screenshots/09-analytics-coverage.webp" type="image/webp" />
+              <img src="./assets/screenshots/09-analytics-coverage.png" alt="Okto Pulse analytics coverage by spec" width="1919" height="912" loading="lazy" />
+            </picture>
+          </figure>
+        </article>
+
+        <article class="surface-panel surface-panel--reverse">
+          <div class="surface-panel__copy">
+            <span class="surface-panel__label">Operational memory</span>
+            <h3>The knowledge graph makes future work smarter.</h3>
+            <p>Decisions, constraints, requirements, tests, bugs, and learnings remain connected. Each initiative leaves a better base of knowledge for the next one.</p>
+          </div>
+          <figure class="evidence-shot">
+            <div class="analytics__bar" aria-hidden="true">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Knowledge Graph</span>
+            </div>
+            <picture>
+              <source srcset="./assets/screenshots/11-knowledge-graph.webp" type="image/webp" />
+              <img src="./assets/screenshots/11-knowledge-graph.png" alt="Okto Pulse knowledge graph showing linked decisions, requirements, tests, and learnings" width="1919" height="911" loading="lazy" />
+            </picture>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <!-- ──────────────────── DIFFERENTIATORS ──────────────────── -->
     <section id="features" class="section section--features">
       <header class="section__head section__head--split">
         <div>
-          <span class="section__eyebrow">02 &nbsp;·&nbsp; CAPABILITIES</span>
-          <h2 class="section__title">Everything a team&nbsp;—&nbsp;<br />human <em>or otherwise</em>&nbsp;—&nbsp;needs to ship.</h2>
+          <h2 class="section__title">Built for how AI <em>actually works.</em></h2>
         </div>
         <p class="section__lede section__lede--right">
-          Opinionated where opinion matters, flexible where it doesn't. Okto Pulse ships with the
-          primitives you'd build anyway — pipeline gates, role-based permissions, MCP tools,
-          analytics — so you can focus on the work.
+          Okto Pulse is the layer that makes AI development reliable: not by replacing your tools,
+          but by giving them a system to follow.
         </p>
       </header>
 
@@ -437,575 +714,92 @@
           </defs>
         </svg>
 
-        <article class="feature">
-          <div class="feature__top">
-            <span class="feature__label">F&middot;01</span>
-            <span class="feature__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <g stroke="url(#feature-icon-gradient)" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 6h4" />
-                  <path d="M4 12h4" />
-                  <path d="M4 18h4" />
-                  <path d="M12 6h8" />
-                  <path d="M12 12h8" />
-                  <path d="M12 18h8" />
-                  <path d="m3.4 5.4 1 1 2-2" />
-                </g>
-              </svg>
-            </span>
-          </div>
-          <h3>Spec-driven pipeline</h3>
-          <p>Every task is traceable back to a spec. Specs derive from refinements. Refinements from ideations. No orphan work.</p>
-        </article>
-
         <article class="feature feature--highlight">
           <div class="feature__top">
-            <span class="feature__label">F&middot;02</span>
             <span class="feature__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <g stroke="url(#feature-icon-gradient)" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" />
-                  <circle cx="9.5" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </g>
-              </svg>
+              <svg viewBox="0 0 24 24" role="img"><g stroke="url(#feature-icon-gradient)" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z" /><path d="M14 3v4h4" /><path d="M9 12h6" /><path d="M9 16h4" /></g></svg>
             </span>
           </div>
-          <h3>Role-based multi-agent</h3>
-          <p>Five built-in agent presets — Executor, Validator, QA, Spec, Full Control — with surgical permission grids.</p>
+          <h3>Spec-driven execution</h3>
+          <p>Your system is defined before it is built. Tasks inherit requirements, rules, contracts, and acceptance criteria.</p>
         </article>
 
         <article class="feature">
           <div class="feature__top">
-            <span class="feature__label">F&middot;03</span>
             <span class="feature__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <g stroke="url(#feature-icon-gradient)" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2v6" />
-                  <path d="M12 16v6" />
-                  <path d="M4.93 4.93 9.17 9.17" />
-                  <path d="m14.83 14.83 4.24 4.24" />
-                  <path d="M2 12h6" />
-                  <path d="M16 12h6" />
-                  <rect x="8" y="8" width="8" height="8" rx="2" />
-                </g>
-              </svg>
+              <svg viewBox="0 0 24 24" role="img"><g stroke="url(#feature-icon-gradient)" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="11" rx="3" /><path d="M12 7V4" /><path d="M9 12h.01" /><path d="M15 12h.01" /><path d="M9 16h6" /></g></svg>
             </span>
           </div>
-          <h3>Native MCP server</h3>
-          <p>150+ tools over Model Context Protocol. Plug Claude, Cursor, Windsurf, or any MCP-aware agent directly into your board.</p>
+          <h3>Agent-aware workflows</h3>
+          <p>AI assistants operate inside structured roles and permissions, not free-form prompts with unlimited surface area.</p>
         </article>
 
         <article class="feature">
           <div class="feature__top">
-            <span class="feature__label">F&middot;04</span>
             <span class="feature__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <g stroke="url(#feature-icon-gradient)" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="5" rx="8" ry="3" />
-                  <path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5" />
-                  <path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" />
-                </g>
-              </svg>
-            </span>
-          </div>
-          <h3>Local-first by design</h3>
-          <p>SQLite under the hood. Your data is a file on your machine. Cloud sync is optional, never required.</p>
-        </article>
-
-        <article class="feature">
-          <div class="feature__top">
-            <span class="feature__label">F&middot;05</span>
-            <span class="feature__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <g stroke="url(#feature-icon-gradient)" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="5" height="16" rx="1.5" />
-                  <rect x="10" y="4" width="5" height="16" rx="1.5" />
-                  <rect x="17" y="4" width="4" height="16" rx="1.5" />
-                  <path d="M4.5 8h2" />
-                  <path d="M11.5 13h2" />
-                  <path d="M18.5 10h1" />
-                </g>
-              </svg>
-            </span>
-          </div>
-          <h3>Kanban + flow, unified</h3>
-          <p>Tasks in a board, specs in a list, sprints in a queue. Everything cross-links so context is never more than one click away.</p>
-        </article>
-
-        <article class="feature">
-          <div class="feature__top">
-            <span class="feature__label">F&middot;06</span>
-            <span class="feature__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <g stroke="url(#feature-icon-gradient)" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2" />
-                  <path d="m7 9 3 3-3 3" />
-                  <path d="M13 15h4" />
-                </g>
-              </svg>
-            </span>
-          </div>
-          <h3>Single-command install</h3>
-          <p><code>pip install okto-pulse</code>. One port for the app, one for MCP. No Docker, no accounts, no friction.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ──────────────────── MULTI-AGENT ──────────────────── -->
-    <section id="agents" class="section section--agents">
-      <header class="section__head">
-        <span class="section__eyebrow">03 &nbsp;·&nbsp; DIFFERENTIATION</span>
-        <h2 class="section__title">
-          Five agents. One board.<br />
-          <em>Zero collisions.</em>
-        </h2>
-        <p class="section__lede">
-          Okto Pulse ships with five built-in permission presets that give each agent on a board a
-          distinct area of responsibility. They work in parallel without stepping on each other — and
-          they are built-in, not something you configure yourself.
-        </p>
-      </header>
-
-      <div class="agents">
-        <div class="agents__grid">
-          <article class="agent" style="--agent-i:1">
-            <header class="agent__head">
-              <span class="agent__num">01</span>
-              <h3 class="agent__name">Executor</h3>
-              <span class="agent__tag">built-in</span>
-            </header>
-            <p class="agent__desc">
-              Implements normal cards. Moves tickets <span class="mono">not_started</span> →
-              <span class="mono">validation</span>. Cannot submit validations or promote to
-              <span class="mono">done</span>.
-            </p>
-            <dl class="agent__perms">
-              <div><dt>Cards</dt><dd class="dd-y">Write</dd></div>
-              <div><dt>Specs</dt><dd class="dd-n">Read-only</dd></div>
-              <div><dt>Sprints</dt><dd class="dd-n">Read-only</dd></div>
-              <div><dt>Gate</dt><dd class="dd-n">No</dd></div>
-            </dl>
-          </article>
-
-          <article class="agent" style="--agent-i:2">
-            <header class="agent__head">
-              <span class="agent__num">02</span>
-              <h3 class="agent__name">Spec</h3>
-              <span class="agent__tag">built-in</span>
-            </header>
-            <p class="agent__desc">
-              Defines the pipeline upstream. Owns ideation, refinement, and spec content.
-              Composes sprint plans and opens the specification.
-            </p>
-            <dl class="agent__perms">
-              <div><dt>Ideations</dt><dd class="dd-y">Write</dd></div>
-              <div><dt>Specs</dt><dd class="dd-y">Write</dd></div>
-              <div><dt>Cards</dt><dd class="dd-n">Read-only</dd></div>
-              <div><dt>Gate</dt><dd class="dd-n">No</dd></div>
-            </dl>
-          </article>
-
-          <article class="agent agent--centerpiece" style="--agent-i:3">
-            <header class="agent__head">
-              <span class="agent__num">03</span>
-              <h3 class="agent__name">Validator</h3>
-              <span class="agent__tag agent__tag--accent">gate holder</span>
-            </header>
-            <p class="agent__desc">
-              Exclusive gate holder. Submits spec, task, and sprint validations and evaluations.
-              Touches cards only to attach validation results.
-            </p>
-            <dl class="agent__perms">
-              <div><dt>Validations</dt><dd class="dd-y">Exclusive</dd></div>
-              <div><dt>Evaluations</dt><dd class="dd-y">Exclusive</dd></div>
-              <div><dt>Cards</dt><dd class="dd-p">Validate only</dd></div>
-              <div><dt>Gate</dt><dd class="dd-y">Yes</dd></div>
-            </dl>
-          </article>
-
-          <article class="agent" style="--agent-i:4">
-            <header class="agent__head">
-              <span class="agent__num">04</span>
-              <h3 class="agent__name">QA</h3>
-              <span class="agent__tag">built-in</span>
-            </header>
-            <p class="agent__desc">
-              Owns test scenarios and the test-card lifecycle. Writes regressions, runs them, and
-              reports. Does not submit validation gates itself.
-            </p>
-            <dl class="agent__perms">
-              <div><dt>Scenarios</dt><dd class="dd-y">Write</dd></div>
-              <div><dt>Test cards</dt><dd class="dd-y">Write</dd></div>
-              <div><dt>Specs</dt><dd class="dd-n">Read-only</dd></div>
-              <div><dt>Gate</dt><dd class="dd-n">No</dd></div>
-            </dl>
-          </article>
-
-          <article class="agent" style="--agent-i:5">
-            <header class="agent__head">
-              <span class="agent__num">05</span>
-              <h3 class="agent__name">Full Control</h3>
-              <span class="agent__tag">built-in</span>
-            </header>
-            <p class="agent__desc">
-              Unrestricted access. Intended for a trusted orchestrator agent or for the human
-              owner who bootstraps the board before delegating.
-            </p>
-            <dl class="agent__perms">
-              <div><dt>Everything</dt><dd class="dd-y">Unrestricted</dd></div>
-              <div><dt>Cards</dt><dd class="dd-y">Write</dd></div>
-              <div><dt>Specs</dt><dd class="dd-y">Write</dd></div>
-              <div><dt>Gate</dt><dd class="dd-y">Yes</dd></div>
-            </dl>
-          </article>
-
-          <article class="agent agent--custom" style="--agent-i:6">
-            <header class="agent__head">
-              <span class="agent__num">06</span>
-              <h3 class="agent__name">Custom</h3>
-              <span class="agent__tag">bring your own</span>
-            </header>
-            <p class="agent__desc">
-              Clone any built-in preset as a starting point — or compose your own permission
-              grid across boards, specs, sprints, cards, validations, and analytics.
-            </p>
-            <dl class="agent__perms agent__perms--single">
-              <div><dt>Surface</dt><dd class="dd-p">8 resources</dd></div>
-              <div><dt>Verbs</dt><dd class="dd-p">read · write · gate</dd></div>
-            </dl>
-          </article>
-        </div>
-
-        <aside class="agents__proof">
-          <div class="agents__frame">
-            <picture>
-              <source srcset="./assets/screenshots/06-modal.webp" type="image/webp" />
-              <img
-                src="./assets/screenshots/06-modal.png"
-                alt="Permission Presets panel inside Okto Pulse showing the five built-in roles and their permissions"
-                width="1680"
-                height="1000"
-                loading="lazy"
-              />
-            </picture>
-          </div>
-          <p class="agents__caption">
-            <span class="bracket">[</span> Permission Presets panel — each preset enumerates what
-            an agent may read, write, or gate on boards, profiles, guidelines, ideations,
-            refinements, specs, sprints, and cards. <span class="bracket">]</span>
-          </p>
-        </aside>
-      </div>
-    </section>
-
-    <!-- ──────────────────── TABS SHOWCASE ──────────────────── -->
-    <section class="section section--tabs">
-      <header class="section__head section__head--split">
-        <div>
-          <span class="section__eyebrow">04 &nbsp;·&nbsp; THE BOARD</span>
-          <h2 class="section__title">Every stage has its&nbsp;<em>own view.</em></h2>
-        </div>
-        <p class="section__lede section__lede--right">
-          The pipeline lives in the same application as the kanban board. You switch tabs, not
-          tools.
-        </p>
-      </header>
-
-      <div class="tabs">
-        <figure class="tab-frame">
-          <div class="tab-frame__meta">
-            <span class="tab-frame__num">01 / 05</span>
-            <h3>Ideations</h3>
-            <p>Raw ideas with problem statements, proposed approaches, and evaluation state.</p>
-          </div>
-          <picture>
-            <source srcset="./assets/screenshots/01-ideations.webp" type="image/webp" />
-            <img src="./assets/screenshots/01-ideations.png" alt="Ideations tab with five draft items" width="1680" height="1000" loading="lazy" />
-          </picture>
-        </figure>
-
-        <figure class="tab-frame">
-          <div class="tab-frame__meta">
-            <span class="tab-frame__num">03 / 05</span>
-            <h3>Specs</h3>
-            <p>Versioned specifications in Draft, Review, Approved, Validated, or Done.</p>
-          </div>
-          <picture>
-            <source srcset="./assets/screenshots/02-specs.webp" type="image/webp" />
-            <img src="./assets/screenshots/02-specs.png" alt="Specs tab with three done specifications" width="1680" height="1000" loading="lazy" />
-          </picture>
-        </figure>
-
-        <figure class="tab-frame">
-          <div class="tab-frame__meta">
-            <span class="tab-frame__num">04 / 05</span>
-            <h3>Sprints</h3>
-            <p>A spec broken into shippable iterations. Each sprint owns a set of cards and a validation gate.</p>
-          </div>
-          <picture>
-            <source srcset="./assets/screenshots/03-sprints.webp" type="image/webp" />
-            <img src="./assets/screenshots/03-sprints.png" alt="Sprints tab with two draft sprints" width="1680" height="1000" loading="lazy" />
-          </picture>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ──────────────────── ANALYTICS ──────────────────── -->
-    <section id="analytics" class="section section--analytics">
-      <header class="section__head">
-        <span class="section__eyebrow">05 &nbsp;·&nbsp; INSIGHT</span>
-        <h2 class="section__title">
-          Analytics that tell you <br />
-          <em>what the board is actually doing.</em>
-        </h2>
-        <p class="section__lede">
-          Every artefact in the pipeline is instrumented. Okto Pulse surfaces a conversion funnel,
-          weekly velocity, validation gate throughput, sprint evaluations, and drift against the
-          original spec — on the same screen, for every board.
-        </p>
-      </header>
-
-      <figure class="analytics__frame">
-        <div class="analytics__bar" aria-hidden="true">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; 30d window</span>
-        </div>
-        <picture>
-          <source srcset="./assets/screenshots/08-analytics-overview.webp" type="image/webp" />
-          <img
-            src="./assets/screenshots/08-analytics-overview.png"
-            alt="Okto Pulse analytics dashboard showing KPI tiles, validation gates, conversion funnel, velocity chart, and per-board breakdown"
-            width="1680"
-            height="1000"
-            loading="lazy"
-          />
-        </picture>
-      </figure>
-
-      <div class="analytics__screens" aria-label="Additional analytics views">
-        <figure class="analytics__screen">
-          <div class="analytics__bar" aria-hidden="true">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Coverage</span>
-          </div>
-          <picture>
-            <source srcset="./assets/screenshots/09-analytics-coverage.webp" type="image/webp" />
-            <img
-              src="./assets/screenshots/09-analytics-coverage.png"
-              alt="Okto Pulse analytics coverage screen showing completeness versus drift, coverage by spec, agent ranking, and searchable spec table"
-              width="1919"
-              height="912"
-              loading="lazy"
-            />
-          </picture>
-          <figcaption>
-            <span>Coverage by spec</span>
-            Completeness, drift, tests, rules, contracts, and agent contribution in one view.
-          </figcaption>
-        </figure>
-
-        <figure class="analytics__screen">
-          <div class="analytics__bar" aria-hidden="true">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Spec detail</span>
-          </div>
-          <picture>
-            <source srcset="./assets/screenshots/10-analytics-spec-detail.webp" type="image/webp" />
-            <img
-              src="./assets/screenshots/10-analytics-spec-detail.png"
-              alt="Okto Pulse analytics detail screen for a spec with acceptance criteria coverage, functional requirements, test scenario status, and task metrics"
-              width="1919"
-              height="906"
-              loading="lazy"
-            />
-          </picture>
-          <figcaption>
-            <span>Spec drill-down</span>
-            Trace a single spec through acceptance criteria, requirements, tests, tasks, and cycle time.
-          </figcaption>
-        </figure>
-      </div>
-
-      <div class="analytics__highlights">
-        <article class="highlight">
-          <div class="highlight__top">
-            <span class="highlight__label">A &middot; 01</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <path d="M4 5h16l-6 7v5l-4 2v-7z" />
-              </svg>
-            </span>
-          </div>
-          <h3>Conversion funnel</h3>
-          <p>
-            Ideations → Refinements → Specs → Tasks → Done. Track what you started versus what
-            you shipped, with overall completion percentage.
-          </p>
-        </article>
-
-        <article class="highlight">
-          <div class="highlight__top">
-            <span class="highlight__label">A &middot; 02</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <path d="M12 3 19 6v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" />
-                <path d="m9 12 2 2 4-5" />
-              </svg>
+              <svg viewBox="0 0 24 24" role="img"><g stroke="url(#feature-icon-gradient)" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" /><path d="m9 12 2 2 4-5" /></g></svg>
             </span>
           </div>
           <h3>Validation gates</h3>
-          <p>
-            Four tracked gates — spec, task, spec evaluation, sprint evaluation — each with its
-            own submission count and pass/fail trend.
-          </p>
+          <p>No task is done without evidence. Validation becomes a workflow, not a subjective status.</p>
         </article>
 
-        <article class="highlight">
-          <div class="highlight__top">
-            <span class="highlight__label">A &middot; 03</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <path d="M4 18h16" />
-                <path d="M6 15l4-4 3 3 5-7" />
-                <path d="M18 7v5h-5" />
-              </svg>
+        <article class="feature">
+          <div class="feature__top">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><g stroke="url(#feature-icon-gradient)" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="2.5" /><circle cx="18" cy="8" r="2.5" /><circle cx="9" cy="18" r="2.5" /><circle cx="18" cy="17" r="2.5" /><path d="M8.4 7.2 15.6 7.8" /><path d="M7.1 9.2 8.3 15.5" /><path d="m11.4 17.8 4.2-.5" /></g></svg>
             </span>
           </div>
-          <h3>Velocity &amp; drift</h3>
-          <p>
-            Weekly throughput split by implementation, tests, and bugs. Average drift surfaces
-            when specs start to deviate from their original shape.
-          </p>
+          <h3>Knowledge Graph</h3>
+          <p>Decisions, constraints, requirements, tests, bugs, and learnings are never lost after delivery.</p>
         </article>
 
-        <article class="highlight">
-          <div class="highlight__top">
-            <span class="highlight__label">A &middot; 04</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <circle cx="10" cy="10" r="5" />
-                <path d="m14 14 5 5" />
-                <path d="M10 7v6" />
-                <path d="M7 10h6" />
-              </svg>
+        <article class="feature">
+          <div class="feature__top">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><g stroke="url(#feature-icon-gradient)" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="8" height="7" rx="1.5" /><rect x="13" y="5" width="8" height="7" rx="1.5" /><rect x="8" y="15" width="8" height="5" rx="1.5" /><path d="M11 8h2" /><path d="M12 12v3" /></g></svg>
             </span>
           </div>
-          <h3>Export &amp; drill-down</h3>
-          <p>
-            Every KPI card is clickable. Drill into a spec or sprint for a deeper view, or export
-            the raw numbers as CSV for your own tooling.
-          </p>
+          <h3>Architecture and mockups</h3>
+          <p>Specs can carry system diagrams and screen mockups so implementation starts from shared visual context.</p>
+        </article>
+
+        <article class="feature">
+          <div class="feature__top">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><g stroke="url(#feature-icon-gradient)" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h5v5H4z" /><path d="M15 5h5v5h-5z" /><path d="M4 15h5v5H4z" /><path d="M15 15h5v5h-5z" /><path d="M9 7.5h6" /><path d="M6.5 10v5" /><path d="M17.5 10v5" /><path d="M9 17.5h6" /></g></svg>
+            </span>
+          </div>
+          <h3>End-to-end traceability</h3>
+          <p>From requirement to code to test to delivery, every artifact has a path back to intent.</p>
         </article>
       </div>
     </section>
 
-    <!-- ──────────────────── KNOWLEDGE GRAPH ──────────────────── -->
-    <section id="knowledge" class="section section--knowledge">
-      <header class="section__head section__head--split">
-        <div>
-          <span class="section__eyebrow">06 &nbsp;·&nbsp; KNOWLEDGE</span>
-          <h2 class="section__title">
-            Evolves with you, <br />
-            <em>one initiative at a time.</em>
-          </h2>
-        </div>
-        <p class="section__lede section__lede--right">
-          As projects move through the ADLC, Okto Pulse consolidates ideations, refinements,
-          specs, tasks, and bugs into a living knowledge graph. Every shipped decision becomes
-          reusable context for future dashboards, discovery, and the next round of ideation.
-        </p>
+    <!-- ──────────────────── AUDIENCE ──────────────────── -->
+    <section id="agents" class="section section--audience">
+      <header class="section__head">
+        <h2 class="section__title">
+          <span class="title-line title-line--keep">Built for teams that want AI speed</span>
+          <em class="title-line">without operational chaos.</em>
+        </h2>
       </header>
 
-      <figure class="knowledge__frame">
-        <div class="knowledge__bar" aria-hidden="true">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="knowledge__path">okto-pulse &nbsp;·&nbsp; Knowledge Graph &nbsp;·&nbsp; Evolution</span>
-        </div>
-        <picture>
-          <source srcset="./assets/screenshots/11-knowledge-graph.webp" type="image/webp" />
-          <img
-            src="./assets/screenshots/11-knowledge-graph.png"
-            alt="Okto Pulse knowledge graph view showing connected decisions, requirements, constraints, bugs, test scenarios, and learnings"
-            width="1919"
-            height="911"
-            loading="lazy"
-          />
-        </picture>
-        <figcaption class="knowledge__caption">
-          <span>Project memory becomes operational knowledge.</span>
-          The graph connects delivery evidence back to the ideas that started it, so the next
-          initiative begins with sharper context instead of an empty board.
-        </figcaption>
-      </figure>
-
-      <div class="knowledge__flow" aria-label="Knowledge graph flow">
-        <article class="knowledge__node">
-          <div class="knowledge__node-top">
-            <span class="knowledge__node-label">K &middot; 01</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <path d="M5 5h14v14H5z" />
-                <path d="M8 9h8" />
-                <path d="M8 13h5" />
-                <path d="M15 16l2 2 3-4" />
-              </svg>
-            </span>
-          </div>
-          <h3>Capture the work</h3>
-          <p>Ideations, refinements, specs, tasks, and bugs become typed nodes with provenance.</p>
+      <div class="audience">
+        <article class="audience-card">
+          <span class="audience-card__label">Developers</span>
+          <h3>Build with AI without losing context.</h3>
+          <p>Turn your assistant into a structured engineering partner with specs, tasks, and validation gates.</p>
         </article>
-        <article class="knowledge__node">
-          <div class="knowledge__node-top">
-            <span class="knowledge__node-label">K &middot; 02</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <circle cx="6" cy="7" r="2.5" />
-                <circle cx="18" cy="8" r="2.5" />
-                <circle cx="9" cy="18" r="2.5" />
-                <circle cx="18" cy="17" r="2.5" />
-                <path d="M8.4 7.2 15.6 7.8" />
-                <path d="M7.1 9.2 8.3 15.5" />
-                <path d="m11.4 17.8 4.2-.5" />
-                <path d="m17.8 10.5.2 4" />
-              </svg>
-            </span>
-          </div>
-          <h3>Connect the evidence</h3>
-          <p>Decisions, requirements, constraints, tests, and implementation signals stay linked.</p>
+        <article class="audience-card audience-card--lead">
+          <span class="audience-card__label">Engineering &amp; Product Leaders</span>
+          <h3>Know what was built, why, and with what evidence.</h3>
+          <p>Ship faster while preserving traceability, coverage, and decision history across initiatives.</p>
         </article>
-        <article class="knowledge__node">
-          <div class="knowledge__node-top">
-            <span class="knowledge__node-label">K &middot; 03</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <path d="M4 19h16" />
-                <path d="M7 16V9" />
-                <path d="M12 16V5" />
-                <path d="M17 16v-4" />
-                <path d="m6 8 6-4 6 7" />
-              </svg>
-            </span>
-          </div>
-          <h3>Grow the dashboard</h3>
-          <p>Analytics gains a reusable knowledge base for discovery, drift, and future planning.</p>
-        </article>
-        <article class="knowledge__node">
-          <div class="knowledge__node-top">
-            <span class="knowledge__node-label">K &middot; 04</span>
-            <span class="context-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <path d="M4 12a8 8 0 1 1 2.35 5.65" />
-                <path d="M4 18v-6h6" />
-                <path d="M10 12h4" />
-                <path d="M14 12l-2-2" />
-                <path d="M14 12l-2 2" />
-              </svg>
-            </span>
-          </div>
-          <h3>Start smarter</h3>
-          <p>New initiatives inherit what the project already learned, reducing repeated context work.</p>
+        <article class="audience-card">
+          <span class="audience-card__label">Vibe coders &amp; indie builders</span>
+          <h3>Move fast without creating chaos.</h3>
+          <p>Start structured even when building solo, then scale the same system as the product grows.</p>
         </article>
       </div>
     </section>
@@ -1013,15 +807,13 @@
     <!-- ──────────────────── MCP ──────────────────── -->
     <section id="mcp" class="section section--mcp">
       <header class="section__head">
-        <span class="section__eyebrow">07 &nbsp;·&nbsp; PROTOCOL</span>
         <h2 class="section__title">
-          Plug any MCP-aware agent <br />
-          <em>directly into your board</em>.
+          Works with your existing <br />
+          <em>AI development tools</em>.
         </h2>
         <p class="section__lede">
-          Okto Pulse ships its own MCP server. Point Claude Code, Cursor, Windsurf, or a custom
-          orchestrator at it, and the agent gets the full board API — 150+ tools spanning ideations,
-          refinements, specs, sprints, cards, validations, analytics, and agents themselves.
+          Use Okto Pulse alongside Claude Code, Cursor, Windsurf, Cline, or any MCP-compatible
+          agent. With 190+ MCP tools, your AI does not just generate code. It follows a system.
         </p>
       </header>
 
@@ -1039,14 +831,25 @@
   <span class="tk-p">}</span>
 <span class="tk-p">}</span></code></pre>
         </div>
+        <div class="mcp__tools" aria-label="Supported AI tooling">
+          <span>Claude Code</span>
+          <span>Cursor</span>
+          <span>Windsurf</span>
+          <span>Cline</span>
+          <span>Custom agents</span>
+          <span>MCP-compatible</span>
+        </div>
       </div>
     </section>
 
     <!-- ──────────────────── INSTALL ──────────────────── -->
     <section id="install" class="section section--install">
       <header class="section__head">
-        <span class="section__eyebrow">08 &nbsp;·&nbsp; GETTING STARTED</span>
-        <h2 class="section__title">Four commands to a <em>running board</em>.</h2>
+        <h2 class="section__title">Get started in <em>seconds</em>.</h2>
+        <p class="section__lede">
+          No account. No cloud dependency. Install locally, initialize the board, and connect your
+          agent when you are ready.
+        </p>
       </header>
 
       <ol class="install">
@@ -1087,7 +890,7 @@
             <div class="terminal" data-copy>
               <div class="terminal__prompt">
                 <span class="terminal__sigil">$</span>
-                <code>okto-pulse --api-port 8100 --mcp-port 8101 serve</code>
+                <code>okto-pulse serve</code>
               </div>
               <button class="terminal__copy" type="button" aria-label="Copy command">
                 <span class="terminal__copy-label">Copy</span>
@@ -1098,10 +901,10 @@
         <li class="install__step">
           <span class="install__num">04</span>
           <div class="install__body">
-            <h3>Point your agent at <span class="mono">.mcp.json</span></h3>
+            <h3>Open the local board</h3>
             <p class="install__hint">
-              Okto Pulse generates the config on first init. Drop it next to your agent and the
-              board is wired up.
+              Open the URL printed by the server and start structuring your workflow. Add the
+              generated <span class="mono">.mcp.json</span> when your agent should join.
             </p>
           </div>
         </li>
@@ -1121,6 +924,49 @@
           <span>Source on GitHub</span>
           <span class="btn__arrow" aria-hidden="true">↗</span>
         </a>
+        <a class="btn btn--quiet btn--large" href="mailto:dev@oktolabs.ai?subject=Okto%20Pulse%20demo">
+          <span>Request demo</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ──────────────────── CLAIMS / CATEGORY ──────────────────── -->
+    <section class="section section--claims">
+      <header class="section__head section__head--split">
+        <div>
+          <h2 class="section__title">
+            AI changed how code is written. <br />
+            <em>Okto Pulse changes how software is built.</em>
+          </h2>
+        </div>
+        <p class="section__lede section__lede--right">
+          This is a new layer in the development stack: a control plane for AI-assisted
+          development.
+        </p>
+      </header>
+
+      <div class="claims-grid">
+        <span>Prevent context loss in long-running projects</span>
+        <span>Ensure requirement-to-code traceability</span>
+        <span>Enforce test coverage and validation gates</span>
+        <span>Reduce drift between intent and implementation</span>
+        <span>Turn AI-generated code into auditable delivery</span>
+      </div>
+
+      <div class="final-cta">
+        <div>
+          <h2>Build fast. <em>Stay in control.</em></h2>
+          <p>Start structuring your AI-assisted development today.</p>
+        </div>
+        <div class="final-cta__actions">
+          <a class="btn btn--primary btn--large" href="#install">
+            <span>Get started</span>
+            <span class="btn__arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="btn btn--quiet btn--large" href="#evidence">
+            <span>View demo</span>
+          </a>
+        </div>
       </div>
     </section>
   </main>
@@ -1130,17 +976,18 @@
     <div class="foot__inner">
       <div class="foot__brand">
         <img src="./assets/logos/pulse-wordmark.svg" alt="Okto Pulse" class="foot__logo" width="240" height="48" />
-        <p class="foot__tag">The spec-driven ADLC platform. Source-available, local-first, MCP-native.</p>
+        <p class="foot__tag">The control plane for AI-assisted development. Source-available, local-first, MCP-native.</p>
       </div>
 
       <div class="foot__cols">
         <div>
           <h4>Product</h4>
           <ul>
-            <li><a href="#adlc">ADLC</a></li>
-            <li><a href="#pipeline">Pipeline</a></li>
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#adlc">System</a></li>
+            <li><a href="#pipeline">Flow</a></li>
+            <li><a href="#evidence">Evidence</a></li>
             <li><a href="#features">Features</a></li>
-            <li><a href="#agents">Agents</a></li>
             <li><a href="#mcp">MCP</a></li>
           </ul>
         </div>
