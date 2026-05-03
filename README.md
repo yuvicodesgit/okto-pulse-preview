@@ -32,6 +32,15 @@ python -m http.server 8765
 
 Then open http://127.0.0.1:8765.
 
+## Deploy
+
+Automatic deployment to Cloudflare Pages runs on push to `main` via GitHub
+Actions. Pull requests targeting `main` create Cloudflare Pages preview
+deployments.
+
+The workflow deploys to the `okto-pulse-landing-page` Pages project and
+requires the `CLOUDFLARE_API_TOKEN` repository secret.
+
 ## License
 
 Copyright (c) 2024–2026 OktoLabs. All rights reserved.

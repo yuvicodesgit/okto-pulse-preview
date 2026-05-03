@@ -1,0 +1,59 @@
+name: Deploy Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-pages-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  deployments: write
+  pull-requests: write
+
+env:
+  CLOUDFLARE_ACCOUNT_ID: ac6ddb9c81e14c3663dfa7fcc216e011
+  CLOUDFLARE_PROJECT_NAME: okto-pulse-landing-page
+  DEPLOY_BRANCH: ${{ github.head_ref || github.ref_name }}
+
+jobs:
+  deploy:
+    name: Package and deploy
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Package static site
+        run: |
+          rm -rf dist
+          mkdir -p dist
+          cp index.html styles.css script.js dist/
+          cp -R assets dist/assets
+          cp _headers dist/_headers
+
+      - name: Check Cloudflare token
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::Set the CLOUDFLARE_API_TOKEN repository secret before deploying."
+            exit 1
+          fi
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./dist --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }} --branch=${{ env.DEPLOY_BRANCH }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
