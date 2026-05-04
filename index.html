@@ -326,7 +326,76 @@
       </div>
 
       <p class="problem__close">
-        You ship faster. <span>But you stop knowing what you shipped.</span>
+        This does not break immediately.
+        <span>It breaks when it matters.</span>
+      </p>
+    </section>
+
+    <!-- ──────────────────── WHEN ──────────────────── -->
+    <section class="section section--when">
+      <header class="section__head section__head--split">
+        <div>
+          <h2 class="section__title">
+            When this becomes <em>unavoidable</em>
+          </h2>
+        </div>
+        <p class="section__lede section__lede--right">
+          Okto Pulse matters most when AI speed starts to outpace the team's ability to explain,
+          trace, and validate the system.
+        </p>
+      </header>
+
+      <div class="when">
+        <ul class="when__list">
+          <li>
+            <span class="context-icon when__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <circle cx="12" cy="12" r="8" />
+                <path d="M12 8v5l3 2" />
+              </svg>
+            </span>
+            <span>Your project runs longer than a few days</span>
+          </li>
+          <li>
+            <span class="context-icon when__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <rect x="5" y="7" width="14" height="10" rx="2" />
+                <path d="M9 7V5" />
+                <path d="M15 7V5" />
+                <path d="M8 12h.01" />
+                <path d="M16 12h.01" />
+                <path d="M10 16h4" />
+              </svg>
+            </span>
+            <span>You rely on AI for implementation</span>
+          </li>
+          <li>
+            <span class="context-icon when__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M12 3 19 6v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" />
+                <path d="m9 12 2 2 4-5" />
+              </svg>
+            </span>
+            <span>You stop trusting what was built</span>
+          </li>
+          <li>
+            <span class="context-icon when__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <circle cx="6" cy="7" r="2" />
+                <circle cx="18" cy="7" r="2" />
+                <circle cx="12" cy="17" r="2" />
+                <path d="M8 7h8" />
+                <path d="m7 9 4 6" />
+                <path d="m17 9-4 6" />
+              </svg>
+            </span>
+            <span>You can't trace behavior back to intent</span>
+          </li>
+        </ul>
+      </div>
+
+      <p class="when__impact">
+        If you're building with AI, <span>you will hit this point.</span>
       </p>
     </section>
 
@@ -356,7 +425,7 @@
           </article>
           <article class="system-map__card system-map__card--is system-map__answer">
             <span class="system-map__tag">This is</span>
-            <p>The layer that makes AI development reliable. Specs, tasks, validation, analytics, and project memory — unified into a single controlled system.</p>
+            <p>The control plane that makes AI development reliable. It enforces structure, tracks intent, and proves delivery.</p>
             <div class="system-map__evidence" aria-label="Control plane evidence path">
               <span>Intent</span>
               <span>Spec</span>
@@ -566,7 +635,7 @@
       </header>
 
       <div class="value-compare value-compare--control">
-        <article class="value-card value-card--before">
+        <article class="value-card value-card--before value-card--compact">
           <span class="value-card__label">Before</span>
           <h3>AI moves fast. The system breaks.</h3>
           <ul>
@@ -577,7 +646,7 @@
           </ul>
         </article>
 
-        <article class="value-card value-card--after">
+        <article class="value-card value-card--after value-card--compact">
           <span class="value-card__label">After</span>
           <h3>AI moves fast. The system holds.</h3>
           <ul>
@@ -585,6 +654,30 @@
             <li>Architecture and mockups travel with the spec</li>
             <li>Tasks stay linked to requirements, rules, and contracts</li>
             <li>Validation produces evidence before delivery is trusted</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="value-compare value-compare--control value-compare--secondary">
+        <article class="value-card value-card--before value-card--compact">
+          <span class="value-card__label">Before</span>
+          <h3>What this actually costs</h3>
+          <ul>
+            <li>Rewriting features you already built</li>
+            <li>Debugging behavior you can’t explain</li>
+            <li>Losing weeks to missing context</li>
+            <li>Shipping systems you don’t trust</li>
+          </ul>
+        </article>
+
+        <article class="value-card value-card--after value-card--compact">
+          <span class="value-card__label">After</span>
+          <h3>What stays under control.</h3>
+          <ul>
+            <li>Features stay tied to specs, decisions, and acceptance criteria</li>
+            <li>Behavior can be traced back to intent and evidence</li>
+            <li>Context remains available across long-running work</li>
+            <li>Delivery ships with proof the team can trust</li>
           </ul>
         </article>
       </div>
@@ -871,11 +964,8 @@
       <header class="section__head">
         <h2 class="section__title">Get started in <em>seconds</em>.</h2>
         <p class="section__lede">
-          No account. No cloud dependency. Install locally, initialize the board, and connect your
-          agent when you are ready.
-        </p>
-        <p class="install__note">
-          Runs entirely local-first. No cloud dependency required.
+          No account. Runs entirely local-first, with no cloud dependency. Install locally,
+          initialize the board, and connect your agent when you are ready.
         </p>
       </header>
 
@@ -982,7 +1072,7 @@
       <div class="final-cta">
         <div>
           <h2>Build fast. <em>Stay in control.</em></h2>
-          <p>Start structuring your AI-assisted development today.</p>
+          <p>Start locally if you're building. Request a demo if you're scaling.</p>
         </div>
         <div class="final-cta__actions">
           <a class="btn btn--primary btn--large" href="#install">

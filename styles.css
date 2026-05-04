@@ -3244,6 +3244,109 @@ ol {
   grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
+.when {
+  position: relative;
+}
+
+.when__list {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.when__list li {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(150px, 13vw, 190px);
+  padding: clamp(1.05rem, 2vw, 1.45rem);
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(34, 211, 238, 0.12), transparent 54%),
+    radial-gradient(ellipse at 100% 100%, rgba(59, 130, 246, 0.07), transparent 50%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 48%),
+    var(--surface);
+  color: var(--ink-dim);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.55;
+}
+
+.when__list li > span:last-child {
+  display: block;
+  max-width: 22ch;
+}
+
+.when__icon {
+  width: 42px;
+  height: 42px;
+  margin-bottom: clamp(1.15rem, 3vw, 2.5rem);
+}
+
+.when__list li:hover .when__icon {
+  color: var(--pulse-cyan);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 20px 56px -30px rgba(59, 130, 246, 0.8);
+}
+
+.when__list li::after {
+  content: "";
+  position: absolute;
+  left: clamp(1.25rem, 2.5vw, 2rem);
+  right: clamp(1.25rem, 2.5vw, 2rem);
+  bottom: 0;
+  height: 1px;
+  background: var(--gradient-pulse);
+  opacity: 0.52;
+  transform-origin: left;
+  animation: when-signal 4.8s var(--ease) infinite;
+  animation-delay: calc(var(--when-i, 0) * 0.36s);
+}
+
+.when__list li:nth-child(1) { --when-i: 0; }
+.when__list li:nth-child(2) { --when-i: 1; }
+.when__list li:nth-child(3) { --when-i: 2; }
+.when__list li:nth-child(4) { --when-i: 3; }
+
+.when__impact {
+  position: relative;
+  max-width: 900px;
+  margin: clamp(2rem, 4vw, 3.4rem) auto 0;
+  padding: 0;
+  color: var(--ink);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.4vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.12;
+}
+
+.when__impact span {
+  background: var(--gradient-pulse);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes when-signal {
+  0%, 18% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  42%, 78% {
+    transform: scaleX(1);
+    opacity: 0.72;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
 .value-compare {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3254,6 +3357,10 @@ ol {
   align-items: stretch;
 }
 
+.value-compare--secondary {
+  margin-top: 1rem;
+}
+
 .value-card {
   position: relative;
   overflow: hidden;
@@ -3262,6 +3369,10 @@ ol {
   border-radius: var(--radius-lg);
   padding: clamp(1.25rem, 3vw, 2rem);
   background: var(--surface);
+}
+
+.value-card--compact {
+  min-height: clamp(320px, 24vw, 420px);
 }
 
 .value-card::before {
@@ -3960,7 +4071,8 @@ ol {
 
 @media (max-width: 1320px) {
   .problem__grid,
-  .claims-grid {
+  .claims-grid,
+  .when__list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -4007,14 +4119,20 @@ ol {
 @media (max-width: 680px) {
   .problem__grid,
   .claims-grid,
+  .when__list,
   .section--pipeline .pipeline {
     grid-template-columns: 1fr;
   }
 
   .risk-card,
+  .when__list li,
   .audience-card,
   .claims-grid span {
     min-height: auto;
+  }
+
+  .when::after {
+    display: none;
   }
 
   .risk-card__label,
