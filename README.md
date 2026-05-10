@@ -1,6 +1,6 @@
 # Okto Pulse — Landing Page
 
-Static marketing site for [Okto Pulse](https://pypi.org/project/okto-pulse/), the spec-driven project management board with native MCP support from [OktoLabs](https://oktolabs.ai).
+Static marketing site for [Okto Pulse](https://pypi.org/project/okto-pulse/), the spec-driven project management board with 216 MCP tools, 15 governance gates, and native MCP support from [OktoLabs](https://oktolabs.ai).
 
 ## Stack
 
@@ -16,7 +16,7 @@ Plain HTML, CSS, and a sliver of JavaScript. No build step.
 
 1. Hero
 2. Product showcase (kanban)
-3. Pipeline — ideation to validation in six controlled stages
+3. Pipeline — stories to validation in six controlled stages
 4. Capabilities — six feature cards
 5. Differentiation — six agent roles with permission grids
 6. The board — tab-by-tab product tour
