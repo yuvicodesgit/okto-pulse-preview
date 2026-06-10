@@ -808,41 +808,56 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
 })();
 
 (() => {
-  // -- Act 3a: pinned horizontal pipeline rail -------------------------------
-  const stage = document.querySelector(".hflow__stage");
-  const track = document.querySelector(".hflow__track");
-  const row = document.querySelector(".section--pipeline .pipeline");
-  if (!stage || !track || !row || PREFERS_REDUCED_MOTION) return;
+  // -- Act 3a: [data-live] cascades — fire once when scrolled into view ------
+  if (PREFERS_REDUCED_MOTION) return;
+  const targets = Array.from(document.querySelectorAll("[data-live]"));
+  if (!targets.length) return;
 
-  const steps = Array.from(row.children);
+  let pending = targets.slice();
   let raf = null;
 
-  const update = () => {
+  const sweep = () => {
     raf = null;
-    if (!document.documentElement.classList.contains("js-pin")) {
-      row.style.removeProperty("--hp");
-      return;
-    }
-    const span = track.offsetHeight - window.innerHeight;
-    if (span <= 0) return;
-    const v = Math.min(1, Math.max(0, -track.getBoundingClientRect().top / span));
-    const max = Math.max(0, row.scrollWidth - stage.clientWidth);
-    row.style.setProperty("--hp", String(v * max));
-    const center = window.innerWidth * 0.55;
-    steps.forEach((step) => {
-      const r = step.getBoundingClientRect();
-      step.classList.toggle("is-passed", r.left + r.width / 2 < center);
+    const line = window.scrollY + window.innerHeight * 0.78;
+    pending = pending.filter((el) => {
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      if (top > line) return true;
+      el.classList.add("is-live");
+      return false;
     });
+    if (!pending.length) window.removeEventListener("scroll", onScroll);
   };
 
-  const kick = () => {
-    if (raf === null) raf = requestAnimationFrame(update);
+  const onScroll = () => {
+    if (raf === null) raf = requestAnimationFrame(sweep);
   };
 
-  window.addEventListener("scroll", kick, { passive: true });
-  window.addEventListener("resize", kick);
-  window.addEventListener("load", kick);
-  kick();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("load", onScroll);
+  sweep();
+})();
+
+(() => {
+  // -- audience cards: 3D tilt on hover (fine pointers only) -----------------
+  if (PREFERS_REDUCED_MOTION) return;
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  document.querySelectorAll(".audience-card").forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width - 0.5;
+      const py = (event.clientY - rect.top) / rect.height - 0.5;
+      // inline transition overrides the slow reveal transition while tilting
+      card.style.transition = "transform 160ms ease-out";
+      card.style.transform =
+        `perspective(900px) rotateX(${(-py * 5).toFixed(2)}deg) ` +
+        `rotateY(${(px * 7).toFixed(2)}deg) translateY(-3px)`;
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.transform = "";
+      card.style.transition = "";
+    });
+  });
 })();
 
 (() => {

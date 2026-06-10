@@ -5097,67 +5097,137 @@ html.js-reveal .resus.is-alive .resus__flat {
   }
 }
 
-/* ---------- Act 3: pipeline — pinned horizontal rail (desktop + JS) ---------- */
-@media (min-width: 1024px) {
-  html.js-pin .section--pipeline {
-    padding: 0;
-  }
+/* ---------- Act 3: pipeline — the full rail lights up in sequence ---------- */
+.pipeline {
+  position: relative;
+}
 
-  html.js-pin .hflow__track {
-    height: 300vh;
-  }
+html.js-reveal .pipeline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent) no-repeat -25% 0 / 22% 100%,
+    var(--gradient-pulse);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1600ms var(--ease) 150ms;
+}
 
-  html.js-pin .hflow__stage {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: clamp(2rem, 5vh, 4rem);
-    overflow: hidden;
-    padding: 100px 0 48px;
-  }
+html.js-reveal .pipeline.is-live::after {
+  transform: scaleX(1);
+  animation: pipeline-shimmer 5.5s linear 2s infinite;
+}
 
-  html.js-pin .hflow__head {
-    margin: 0;
-    padding-inline: var(--gutter);
+@keyframes pipeline-shimmer {
+  0% {
+    background-position: -25% 0, 0 0;
   }
-
-  html.js-pin .section--pipeline .pipeline {
-    display: flex;
-    width: max-content;
-    gap: 1rem;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    padding-inline: var(--gutter);
-    transform: translateX(calc(var(--hp, 0) * -1px));
-    will-change: transform;
+  45%,
+  100% {
+    background-position: 125% 0, 0 0;
   }
+}
 
-  html.js-pin .section--pipeline .pipeline__step {
-    flex: 0 0 clamp(340px, 26vw, 440px);
-    border: 1px solid var(--hair);
-    border-radius: var(--radius-lg);
-    background: var(--surface);
-    transition:
-      border-color 360ms var(--ease),
-      transform 360ms var(--ease),
-      background 360ms var(--ease);
+html.js-reveal .pipeline .context-icon {
+  transition: color 420ms var(--ease), box-shadow 420ms var(--ease);
+}
+
+html.js-reveal .pipeline.is-live .pipeline__step .context-icon {
+  color: var(--pulse-cyan);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 20px 56px -30px rgba(59, 130, 246, 0.8);
+  transition-delay: calc(var(--step-i, 0) * 220ms);
+}
+
+/* ---------- audience — aurora cards with a conic-border lead ---------- */
+@property --aud-spin {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.audience {
+  counter-reset: aud;
+  perspective: 1200px;
+}
+
+.audience-card {
+  position: relative;
+  overflow: hidden;
+  counter-increment: aud;
+}
+
+.audience-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.audience-card::before {
+  content: "0" counter(aud);
+  position: absolute;
+  z-index: 1;
+  top: 1.15rem;
+  right: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+}
+
+.audience-card::after {
+  content: "";
+  position: absolute;
+  inset: -45%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 28% 30%, rgba(34, 211, 238, 0.15), transparent 42%),
+    radial-gradient(circle at 72% 72%, rgba(123, 78, 255, 0.13), transparent 46%);
+  filter: blur(34px);
+  opacity: 0;
+  transition: opacity 640ms var(--ease);
+  animation: aud-drift 9s ease-in-out infinite alternate;
+}
+
+.audience-card:hover::after {
+  opacity: 1;
+}
+
+@keyframes aud-drift {
+  from {
+    transform: rotate(0deg) translate3d(-3%, -2%, 0);
   }
-
-  html.js-pin .section--pipeline .pipeline__step.is-passed {
-    border-color: rgba(34, 211, 238, 0.32);
-    transform: translateY(-5px);
-    background:
-      radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.07), transparent 58%),
-      var(--surface);
+  to {
+    transform: rotate(9deg) translate3d(3%, 2.5%, 0);
   }
+}
 
-  html.js-pin .section--pipeline .pipeline__step.is-passed::before {
-    transform: scaleX(1);
+.audience-card--lead {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    conic-gradient(
+      from var(--aud-spin),
+      rgba(34, 211, 238, 0) 0deg,
+      rgba(34, 211, 238, 0.85) 80deg,
+      rgba(59, 130, 246, 0.6) 160deg,
+      rgba(168, 85, 247, 0.55) 240deg,
+      rgba(236, 72, 153, 0.6) 300deg,
+      rgba(34, 211, 238, 0) 360deg
+    ) border-box;
+  animation: aud-spin 7s linear infinite;
+}
+
+@keyframes aud-spin {
+  to {
+    --aud-spin: 360deg;
   }
 }
 
