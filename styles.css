@@ -4461,6 +4461,356 @@ ol {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* =====================================================================
+   Modernization layer
+   Progressive enhancement only: every rule below is gated on JS-added
+   classes (`js-reveal`, `is-open`, `glow-track`…) or viewport size.
+   No-JS visitors and crawlers see the final layout untouched.
+   ===================================================================== */
+
+/* ---------- anchor offset under the sticky nav ---------- */
+html {
+  scroll-padding-top: 84px;
+}
+
+main section[id] {
+  scroll-margin-top: 84px;
+}
+
+/* ---------- nav: scroll progress + condensed state + scrollspy ---------- */
+.nav__progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--gradient-pulse);
+  transform-origin: left;
+  transform: scaleX(var(--scroll-progress, 0));
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.nav.is-scrolled {
+  background: linear-gradient(to bottom, rgba(6, 6, 8, 0.94), rgba(6, 6, 8, 0.78));
+  box-shadow: 0 18px 48px -32px rgba(0, 0, 0, 0.85);
+}
+
+.nav__links a.is-active {
+  color: var(--ink);
+}
+
+.nav__links a.is-active::after {
+  transform: scaleX(1);
+}
+
+/* ---------- nav: hamburger toggle ---------- */
+.nav__toggle {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  border: 1px solid var(--hair-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 180ms var(--ease), background 180ms var(--ease);
+}
+
+.nav__toggle:hover {
+  border-color: rgba(34, 211, 238, 0.35);
+}
+
+.nav__toggle-line {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 1.5px;
+  border-radius: 999px;
+  background: var(--ink);
+  transition: transform 280ms var(--ease), top 280ms var(--ease);
+}
+
+.nav__toggle-line:nth-child(1) { top: 15px; }
+.nav__toggle-line:nth-child(2) { top: 23px; }
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-line:nth-child(1) {
+  top: 19px;
+  transform: rotate(45deg);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-line:nth-child(2) {
+  top: 19px;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  .nav__toggle {
+    display: block;
+  }
+}
+
+/* ---------- mobile menu ---------- */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 39; /* below the sticky nav (40) so the brand bar stays on top */
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  padding: 84px var(--gutter) max(2rem, env(safe-area-inset-bottom));
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.07), transparent 55%),
+    rgba(6, 6, 8, 0.96);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.mobile-menu[hidden] {
+  display: none;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+.mobile-menu__links {
+  display: grid;
+  counter-reset: menu-i;
+}
+
+.mobile-menu__links a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--hair);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 6vw, 1.8rem);
+  font-weight: 600;
+  line-height: 1.1;
+  counter-increment: menu-i;
+  transition: color 180ms var(--ease), padding-left 220ms var(--ease);
+}
+
+.mobile-menu__links a::before {
+  content: "0" counter(menu-i);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+}
+
+.mobile-menu__links a:active,
+.mobile-menu__links a:hover {
+  color: var(--pulse-cyan);
+  padding-left: 0.4rem;
+}
+
+.mobile-menu__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.mobile-menu__meta a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 0.95rem;
+  border: 1px solid var(--hair-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  transition: color 180ms var(--ease), border-color 180ms var(--ease);
+}
+
+.mobile-menu__meta a:hover {
+  color: var(--ink);
+  border-color: rgba(34, 211, 238, 0.35);
+}
+
+.mobile-menu__cta {
+  justify-content: space-between;
+  padding-block: 14px;
+}
+
+.mobile-menu.is-open .mobile-menu__links a,
+.mobile-menu.is-open .mobile-menu__meta,
+.mobile-menu.is-open .mobile-menu__cta {
+  animation: menu-item-in 460ms var(--ease) backwards;
+  animation-delay: calc(var(--i, 0) * 45ms);
+}
+
+@keyframes menu-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- pulse spine: EKG line drawn by scroll (JS-generated) ---------- */
+.spine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* over the fixed ambient layer, under all content */
+  pointer-events: none;
+}
+
+.spine svg {
+  display: block;
+  overflow: visible;
+}
+
+.spine__guide {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.055);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.spine__trace {
+  fill: none;
+  stroke: url("#spineGradient");
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.5));
+}
+
+.spine__node {
+  fill: var(--surface-3);
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 1;
+  transition: fill 320ms var(--ease), stroke 320ms var(--ease);
+}
+
+.spine__node.is-lit {
+  fill: var(--pulse-cyan);
+  stroke: rgba(34, 211, 238, 0.55);
+  filter: drop-shadow(0 0 7px rgba(34, 211, 238, 0.85));
+}
+
+.spine__head {
+  fill: #e9fbff;
+  opacity: 0;
+  filter: drop-shadow(0 0 9px rgba(34, 211, 238, 0.95));
+  transition: opacity 240ms var(--ease);
+}
+
+/* ---------- scroll reveals (JS-gated, no-JS sees everything) ---------- */
+html.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+html.js-reveal [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 720ms var(--ease),
+    transform 720ms var(--ease);
+  transition-delay: calc(var(--reveal-i, 0) * 75ms);
+}
+
+/* ---------- pointer-tracking glow on cards (desktop only) ---------- */
+.glow-track {
+  position: relative;
+}
+
+.glow-spot {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    320px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(34, 211, 238, 0.12),
+    rgba(59, 130, 246, 0.06) 42%,
+    transparent 68%
+  );
+  mix-blend-mode: screen;
+  transition: opacity 320ms var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .glow-track:hover .glow-spot {
+    opacity: 1;
+  }
+}
+
+/* ---------- animated hero counters ---------- */
+.stat__value {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- back to top ---------- */
+.to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--hair-strong);
+  border-radius: 50%;
+  background: rgba(14, 15, 20, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--ink-dim);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition:
+    opacity 260ms var(--ease),
+    transform 260ms var(--ease),
+    color 180ms var(--ease),
+    border-color 180ms var(--ease);
+}
+
+.to-top svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.to-top:hover {
+  color: var(--ink);
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+/* Keep the floating button clear of the consent banner on small screens */
+@media (max-width: 520px) {
+  .to-top {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -4470,7 +4820,8 @@ ol {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .reveal {
+  .reveal,
+  html.js-reveal [data-reveal] {
     opacity: 1;
     transform: none;
   }

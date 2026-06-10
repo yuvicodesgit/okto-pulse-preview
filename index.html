@@ -72,9 +72,37 @@
           <span class="btn__mono">$</span>
           <span>Get started</span>
         </a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <span class="nav__toggle-line" aria-hidden="true"></span>
+          <span class="nav__toggle-line" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
+    <span class="nav__progress" aria-hidden="true"></span>
   </header>
+
+  <!-- Mobile menu lives outside the header: the nav's backdrop-filter would
+       otherwise become the containing block for this fixed panel -->
+  <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile" hidden>
+    <div class="mobile-menu__links">
+      <a href="#problem" style="--i:1">Problem</a>
+      <a href="#adlc" style="--i:2">System</a>
+      <a href="#pipeline" style="--i:3">Flow</a>
+      <a href="#evidence" style="--i:4">Evidence</a>
+      <a href="#mcp" style="--i:5">MCP</a>
+      <a href="#install" style="--i:6">Install</a>
+      <a href="https://docs.oktolabs.ai" rel="noopener" style="--i:7">Docs</a>
+    </div>
+    <div class="mobile-menu__meta" style="--i:8">
+      <a href="https://oktolabs.ai" rel="noopener">OktoLabs&nbsp;&#8599;</a>
+      <a href="https://pypi.org/project/okto-pulse/" rel="noopener">PyPI&nbsp;&#8599;</a>
+      <a href="https://github.com/OktoLabsAI/okto-pulse" rel="noopener">GitHub&nbsp;&#8599;</a>
+    </div>
+    <a class="btn btn--primary mobile-menu__cta" href="#install" style="--i:9">
+      <span>Get started</span>
+      <span class="btn__arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
 
   <main id="top">
     <!-- ───────────────────── HERO ───────────────────── -->
@@ -210,15 +238,15 @@
 
         <ul class="hero__stats" aria-label="At a glance">
           <li>
-            <span class="stat__value">216</span>
+            <span class="stat__value" data-count="216">216</span>
             <span class="stat__label">MCP tools</span>
           </li>
           <li>
-            <span class="stat__value">6</span>
+            <span class="stat__value" data-count="6">6</span>
             <span class="stat__label">Controlled stages</span>
           </li>
           <li>
-            <span class="stat__value">15</span>
+            <span class="stat__value" data-count="15">15</span>
             <span class="stat__label">Governance gates</span>
           </li>
           <li>
@@ -239,6 +267,7 @@
     <section id="problem" class="section section--problem">
       <header class="section__head section__head--split">
         <div>
+          <span class="section__eyebrow">01 · PROBLEM</span>
           <h2 class="section__title">
             AI coding is fast. <br />
             <em>Losing control is faster.</em>
@@ -338,6 +367,7 @@
     <section class="section section--when">
       <header class="section__head section__head--split">
         <div>
+          <span class="section__eyebrow">02 · INFLECTION</span>
           <h2 class="section__title">
             When this becomes <em>unavoidable</em>
           </h2>
@@ -405,6 +435,7 @@
     <!-- ──────────────────── SYSTEM ──────────────────── -->
     <section id="adlc" class="section section--system">
       <header class="section__head">
+        <span class="section__eyebrow">03 · SYSTEM</span>
         <h2 class="section__title">
           Not another board. <br />
           <em>Not another AI tool.</em>
@@ -509,6 +540,7 @@
     <!-- ──────────────────── FLOW ──────────────────── -->
     <section id="pipeline" class="section section--pipeline">
       <header class="section__head">
+        <span class="section__eyebrow">04 · PIPELINE</span>
         <h2 class="section__title">
           From story to production — <br />
           <em>with control at every step.</em>
@@ -626,6 +658,7 @@
     <section id="value" class="section section--value">
       <header class="section__head section__head--split">
         <div>
+          <span class="section__eyebrow">05 · VALUE</span>
           <h2 class="section__title">
             From prompt-driven coding <br />
             <em>to spec-driven execution.</em>
@@ -690,6 +723,7 @@
     <section id="evidence" class="section section--evidence">
       <header class="section__head section__head--split">
         <div>
+          <span class="section__eyebrow">06 · EVIDENCE</span>
           <h2 class="section__title">
             The proof is in the <em>work surface.</em>
           </h2>
@@ -815,6 +849,7 @@
     <section id="features" class="section section--features">
       <header class="section__head section__head--split">
         <div>
+          <span class="section__eyebrow">07 · CAPABILITIES</span>
           <h2 class="section__title">Built for how AI <em>actually works.</em></h2>
         </div>
         <p class="section__lede section__lede--right">
@@ -899,6 +934,7 @@
     <!-- ──────────────────── AUDIENCE ──────────────────── -->
     <section id="agents" class="section section--audience">
       <header class="section__head">
+        <span class="section__eyebrow">08 · AUDIENCE</span>
         <h2 class="section__title">
           <span class="title-line title-line--keep">Built for teams that want AI speed</span>
           <em class="title-line">without operational chaos.</em>
@@ -927,6 +963,7 @@
     <!-- ──────────────────── MCP ──────────────────── -->
     <section id="mcp" class="section section--mcp">
       <header class="section__head">
+        <span class="section__eyebrow">09 · MCP</span>
         <h2 class="section__title">
           Works with your existing <br />
           <em>AI development tools</em>.
@@ -965,6 +1002,7 @@
     <!-- ──────────────────── INSTALL ──────────────────── -->
     <section id="install" class="section section--install">
       <header class="section__head">
+        <span class="section__eyebrow">10 · INSTALL</span>
         <h2 class="section__title">Get started in <em>seconds</em>.</h2>
         <p class="section__lede">
           No account. Runs entirely local-first, with no cloud dependency. Install locally,
@@ -1057,6 +1095,7 @@
     <section class="section section--claims">
       <header class="section__head section__head--split">
         <div>
+          <span class="section__eyebrow">11 · CATEGORY</span>
           <h2 class="section__title">
             AI changed how code is written. <br />
             <em>Okto Pulse changes how software is built.</em>
@@ -1149,6 +1188,14 @@
       <span class="foot__copy">© 2026 OktoLabs &middot; Elastic&nbsp;License&nbsp;2.0</span>
     </div>
   </footer>
+
+  <!-- Back to top -->
+  <button id="toTop" class="to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+      <path d="M12 19V6" />
+      <path d="m6 12 6-6 6 6" />
+    </svg>
+  </button>
 
   <!-- Analytics consent banner — shown only until user decides -->
   <div id="consent" class="consent" role="dialog" aria-live="polite" aria-label="Analytics consent" hidden>
