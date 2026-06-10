@@ -249,11 +249,9 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
 
   const groupSelectors = [
     ".problem__grid > .risk-card",
-    ".when__list > li",
+    ".act1__when > li",
     ".system-map__copy > article",
     ".pipeline > .pipeline__step",
-    ".value-compare .value-card",
-    ".surface-story > .surface-panel",
     ".grid--features > .feature",
     ".audience > .audience-card",
     ".claims-grid > span",
@@ -267,6 +265,7 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
     ".problem__close",
     ".when__impact",
     ".control-plane",
+    ".compare",
     ".mcp__code",
     ".section__impact",
     ".install__cta",
@@ -585,4 +584,344 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
   button.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: PREFERS_REDUCED_MOTION ? "auto" : "smooth" });
   });
+})();
+
+(() => {
+  // -- narrative layer flags ------------------------------------------------
+  // js-pin: pinned scroll scenes (desktop only); js-stage / js-compare:
+  // layout modes that need JS to switch content, so no-JS keeps the
+  // plain stacked fallbacks defined in styles.css.
+  const docEl = document.documentElement;
+  docEl.classList.add("js-stage", "js-compare");
+  if (PREFERS_REDUCED_MOTION) return;
+
+  const mq = window.matchMedia("(min-width: 1024px) and (min-height: 600px)");
+  const apply = () => docEl.classList.toggle("js-pin", mq.matches);
+  apply();
+  mq.addEventListener("change", apply);
+})();
+
+(() => {
+  // -- kinetic type: split statements into per-word spans -------------------
+  if (PREFERS_REDUCED_MOTION) return;
+
+  document.querySelectorAll("[data-kinetic]").forEach((el) => {
+    let w = 0;
+    const wrap = (node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        if (!node.textContent.trim()) return;
+        const frag = document.createDocumentFragment();
+        node.textContent.split(/(\s+)/).forEach((part) => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) {
+            frag.appendChild(document.createTextNode(" "));
+            return;
+          }
+          // <i>, not <span>: legacy selectors like ".problem__close span"
+          // style direct spans and must not match these word wrappers
+          const word = document.createElement("i");
+          word.className = "kword";
+          word.style.setProperty("--w", String(w++));
+          word.textContent = part;
+          frag.appendChild(word);
+        });
+        node.replaceWith(frag);
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        // gradient text uses background-clip: text, which does not survive
+        // per-word inline-blocks — animate those elements as one unit
+        const cs = getComputedStyle(node);
+        const clip = cs.webkitBackgroundClip || cs.backgroundClip || "";
+        if (clip.includes("text")) {
+          node.classList.add("kword", "kword--unit");
+          node.style.setProperty("--w", String(w++));
+          if (cs.display === "inline") node.style.display = "inline-block";
+          return;
+        }
+        Array.from(node.childNodes).forEach(wrap);
+      }
+    };
+    Array.from(el.childNodes).forEach(wrap);
+  });
+})();
+
+(() => {
+  // -- Act 1: pinned problem scene with degrading EKG -----------------------
+  const stage = document.querySelector(".act1__stage");
+  const track = document.querySelector(".act1__track");
+  const canvas = document.querySelector(".act1__ekg");
+  if (!stage || !track || !canvas || PREFERS_REDUCED_MOTION) return;
+
+  const finaleKinetics = stage.querySelectorAll(".act1__scene--finale [data-kinetic]");
+  const ctx = canvas.getContext("2d");
+  let W = 0;
+  let H = 0;
+  let p = 0;
+  let raf = null;
+
+  const phaseFor = (v) => (v < 0.2 ? 0 : v < 0.52 ? 1 : v < 0.78 ? 2 : 3);
+
+  const sizeCanvas = () => {
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = stage.clientWidth;
+    H = stage.clientHeight;
+    canvas.width = Math.max(1, W * dpr);
+    canvas.height = Math.max(1, H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+
+  // Heartbeat trace: amplitude decays and color bleeds to red as p grows,
+  // with a band of glitch jitter in the middle, ending in a flatline.
+  const draw = () => {
+    if (!W || !H) return;
+    ctx.clearRect(0, 0, W, H);
+    const fade = Math.min(1, p * 1.25);
+    const amp = Math.max(0, 1 - p * 1.18);
+    const jitter = p > 0.4 && p < 0.82 ? (p - 0.4) * 30 : 0;
+    const base = H * 0.5;
+    const r = Math.round(34 + (248 - 34) * fade);
+    const g = Math.round(211 - (211 - 113) * fade);
+    const b = Math.round(238 - (238 - 113) * fade);
+    ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.5)`;
+    ctx.lineWidth = 1.8;
+    ctx.lineJoin = "round";
+    ctx.shadowColor = `rgba(${r}, ${g}, ${b}, 0.55)`;
+    ctx.shadowBlur = 14;
+    ctx.beginPath();
+    const beat = 240;
+    for (let x = 0; x <= W; x += 4) {
+      const t = (x % beat) / beat;
+      let y = 0;
+      if (t > 0.42 && t < 0.46) y = -34;
+      else if (t >= 0.46 && t < 0.52) y = 64;
+      else if (t >= 0.52 && t < 0.56) y = -18;
+      else if (t > 0.7 && t < 0.78) y = -10 * Math.sin(((t - 0.7) / 0.08) * Math.PI);
+      let py = base + y * amp;
+      if (jitter) py += (Math.random() - 0.5) * jitter;
+      if (x === 0) ctx.moveTo(x, py);
+      else ctx.lineTo(x, py);
+    }
+    ctx.stroke();
+  };
+
+  const update = () => {
+    raf = null;
+    if (!document.documentElement.classList.contains("js-pin")) return;
+    const rect = track.getBoundingClientRect();
+    const span = track.offsetHeight - window.innerHeight;
+    if (span <= 0) return;
+    p = Math.min(1, Math.max(0, -rect.top / span));
+    const phase = phaseFor(p);
+    if (String(phase) !== stage.dataset.phase) {
+      stage.dataset.phase = String(phase);
+      finaleKinetics.forEach((el) => el.classList.toggle("is-in", phase >= 3));
+    }
+    if (rect.top < window.innerHeight && rect.bottom > 0) draw();
+  };
+
+  const kick = () => {
+    if (raf === null) raf = requestAnimationFrame(update);
+  };
+
+  window.addEventListener("scroll", kick, { passive: true });
+  window.addEventListener("resize", () => {
+    sizeCanvas();
+    kick();
+  });
+  window.addEventListener("load", () => {
+    sizeCanvas();
+    kick();
+  });
+  sizeCanvas();
+  kick();
+})();
+
+(() => {
+  // -- Act 2: resuscitation spike + control plane assembly ------------------
+  if (PREFERS_REDUCED_MOTION) return;
+  const resus = document.querySelector(".resus");
+  const map = document.querySelector(".solution-map");
+
+  const links = map ? Array.from(map.querySelectorAll(".solution-map__links path")) : [];
+  const groups = map
+    ? [
+        map.querySelector(".solution-map__cluster--intent"),
+        map.querySelector(".solution-map__hub"),
+        map.querySelector(".solution-map__cluster--agents"),
+        map.querySelector(".solution-map__cluster--evidence"),
+        map.querySelector(".solution-map__graph"),
+      ].filter(Boolean)
+    : [];
+
+  if (map) {
+    map.classList.add("sys-armed");
+    links.forEach((path) => {
+      path.setAttribute("pathLength", "100");
+      path.style.strokeDasharray = "100";
+      path.style.strokeDashoffset = "100";
+      path.style.animation = "none";
+    });
+  }
+
+  let raf = null;
+  const update = () => {
+    raf = null;
+    const vh = window.innerHeight;
+
+    if (resus && !resus.classList.contains("is-alive")) {
+      const r = resus.getBoundingClientRect();
+      if (r.top < vh * 0.78 && r.bottom > 0) resus.classList.add("is-alive");
+    }
+
+    if (map) {
+      const r = map.getBoundingClientRect();
+      const pr = Math.min(1, Math.max(0, (vh * 0.86 - r.top) / Math.min(r.height, vh * 0.9)));
+      links.forEach((path, i) => {
+        if (path.dataset.done) return;
+        const local = Math.min(1, Math.max(0, pr * 1.6 - i * 0.14));
+        if (local >= 1) {
+          // restore the CSS marching-dash flow once fully drawn
+          path.style.animation = "";
+          path.style.strokeDasharray = "";
+          path.style.strokeDashoffset = "";
+          path.removeAttribute("pathLength");
+          path.dataset.done = "1";
+        } else {
+          path.style.strokeDashoffset = String(100 - local * 100);
+        }
+      });
+      groups.forEach((el, i) => {
+        el.classList.toggle("is-on", pr > 0.12 + i * 0.14);
+      });
+    }
+  };
+
+  const kick = () => {
+    if (raf === null) raf = requestAnimationFrame(update);
+  };
+
+  window.addEventListener("scroll", kick, { passive: true });
+  window.addEventListener("load", kick);
+  kick();
+})();
+
+(() => {
+  // -- Act 3a: pinned horizontal pipeline rail -------------------------------
+  const stage = document.querySelector(".hflow__stage");
+  const track = document.querySelector(".hflow__track");
+  const row = document.querySelector(".section--pipeline .pipeline");
+  if (!stage || !track || !row || PREFERS_REDUCED_MOTION) return;
+
+  const steps = Array.from(row.children);
+  let raf = null;
+
+  const update = () => {
+    raf = null;
+    if (!document.documentElement.classList.contains("js-pin")) {
+      row.style.removeProperty("--hp");
+      return;
+    }
+    const span = track.offsetHeight - window.innerHeight;
+    if (span <= 0) return;
+    const v = Math.min(1, Math.max(0, -track.getBoundingClientRect().top / span));
+    const max = Math.max(0, row.scrollWidth - stage.clientWidth);
+    row.style.setProperty("--hp", String(v * max));
+    const center = window.innerWidth * 0.55;
+    steps.forEach((step) => {
+      const r = step.getBoundingClientRect();
+      step.classList.toggle("is-passed", r.left + r.width / 2 < center);
+    });
+  };
+
+  const kick = () => {
+    if (raf === null) raf = requestAnimationFrame(update);
+  };
+
+  window.addEventListener("scroll", kick, { passive: true });
+  window.addEventListener("resize", kick);
+  window.addEventListener("load", kick);
+  kick();
+})();
+
+(() => {
+  // -- Act 3b: evidence stage — sticky frame with crossfading shots ----------
+  const shots = document.querySelector(".stage-ev__shots");
+  const pathLabel = document.querySelector("[data-stage-path]");
+  const chapters = Array.from(document.querySelectorAll(".stage-ev__chapter"));
+  if (!shots || !chapters.length) return;
+
+  let raf = null;
+  let active = -1;
+
+  const update = () => {
+    raf = null;
+    const line = window.innerHeight * 0.52;
+    let next = 0;
+    chapters.forEach((chapter, i) => {
+      if (chapter.getBoundingClientRect().top < line) next = i;
+    });
+    if (next === active) return;
+    active = next;
+    shots.dataset.active = String(next);
+    chapters.forEach((chapter, i) => chapter.classList.toggle("is-active", i === next));
+    if (pathLabel) pathLabel.textContent = chapters[next].dataset.path || "";
+  };
+
+  const kick = () => {
+    if (raf === null) raf = requestAnimationFrame(update);
+  };
+
+  window.addEventListener("scroll", kick, { passive: true });
+  window.addEventListener("resize", kick);
+  window.addEventListener("load", kick);
+  kick();
+})();
+
+(() => {
+  // -- compare slider (Value before/after) -----------------------------------
+  const compare = document.querySelector("[data-compare]");
+  if (!compare) return;
+  const range = compare.querySelector(".compare__range");
+  if (!range) return;
+
+  const set = (value) => compare.style.setProperty("--cut", `${value}%`);
+  range.addEventListener("input", () => set(range.value));
+  set(range.value);
+})();
+
+(() => {
+  // -- nav: current-section context label ------------------------------------
+  const label = document.querySelector(".nav__context");
+  if (!label || !("IntersectionObserver" in window)) return;
+
+  const sections = Array.from(document.querySelectorAll("main section")).filter((section) =>
+    section.querySelector(".section__eyebrow")
+  );
+  if (!sections.length) return;
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const eyebrow = entry.target.querySelector(".section__eyebrow");
+        if (!eyebrow) return;
+        label.textContent = eyebrow.textContent.trim();
+        label.classList.add("is-on");
+      });
+    },
+    { rootMargin: "-30% 0px -60% 0px" }
+  );
+  sections.forEach((section) => io.observe(section));
+
+  const hero = document.querySelector(".hero");
+  if (hero) {
+    const heroIo = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) label.classList.remove("is-on");
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px" }
+    );
+    heroIo.observe(hero);
+  }
 })();

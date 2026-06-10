@@ -55,6 +55,7 @@
         <img src="./assets/logos/pulse-icon.svg" alt="" class="nav__mark" width="32" height="32" />
         <span class="nav__wordmark">Okto Pulse</span>
       </a>
+      <span class="nav__context" aria-hidden="true"></span>
       <nav class="nav__links" aria-label="Primary">
         <a href="#problem">Problem</a>
         <a href="#adlc">System</a>
@@ -95,6 +96,7 @@
     </div>
     <div class="mobile-menu__meta" style="--i:8">
       <a href="https://oktolabs.ai" rel="noopener">OktoLabs&nbsp;&#8599;</a>
+      <a href="https://discord.gg/ShR48TXKd" rel="noopener">Discord&nbsp;&#8599;</a>
       <a href="https://pypi.org/project/okto-pulse/" rel="noopener">PyPI&nbsp;&#8599;</a>
       <a href="https://github.com/OktoLabsAI/okto-pulse" rel="noopener">GitHub&nbsp;&#8599;</a>
     </div>
@@ -263,23 +265,28 @@
       <span class="crosshair crosshair--br" aria-hidden="true"></span>
     </section>
 
-    <!-- ──────────────────── PROBLEM ──────────────────── -->
-    <section id="problem" class="section section--problem">
-      <header class="section__head section__head--split">
-        <div>
-          <span class="section__eyebrow">01 · PROBLEM</span>
-          <h2 class="section__title">
-            AI coding is fast. <br />
-            <em>Losing control is faster.</em>
-          </h2>
-        </div>
-        <p class="section__lede section__lede--right">
-          AI assistants can generate code. They do not guarantee that requirements were implemented,
-          decisions were preserved, tests covered what matters, or the system behaves as intended.
-        </p>
-      </header>
+    <!-- ──────────── ACT 1 · PROBLEM — the signal degrades (pinned scene) ──────────── -->
+    <section id="problem" class="section section--problem act1">
+      <div class="act1__track">
+        <div class="act1__stage" data-phase="0">
+          <canvas class="act1__ekg" aria-hidden="true"></canvas>
 
-      <div class="problem__grid">
+          <div class="act1__scene act1__scene--head">
+            <header class="section__head act1__head">
+              <span class="section__eyebrow">01 · PROBLEM</span>
+              <h2 class="section__title">
+                AI coding is fast. <br />
+                <em>Losing control is faster.</em>
+              </h2>
+              <p class="section__lede">
+                AI assistants can generate code. They do not guarantee that requirements were implemented,
+                decisions were preserved, tests covered what matters, or the system behaves as intended.
+              </p>
+            </header>
+          </div>
+
+          <div class="act1__scene act1__scene--cards">
+            <div class="problem__grid">
         <article class="risk-card" style="--risk-i:1">
           <div class="risk-card__top">
             <span class="context-icon risk-card__icon" aria-hidden="true">
@@ -338,13 +345,15 @@
           <h3>Validation becomes subjective</h3>
           <p>Done means “it seems to work” instead of evidence tied to requirements, tests, and delivery.</p>
         </article>
-      </div>
+            </div>
+          </div>
 
-      <p class="problem__mid">
-        The system keeps moving. <span>The understanding does not.</span>
-      </p>
+          <div class="act1__scene act1__scene--console">
+            <p class="problem__mid" data-kinetic>
+              The system keeps moving. <span>The understanding does not.</span>
+            </p>
 
-      <div class="problem__bottom">
+            <div class="problem__bottom">
         <div class="loss-console" aria-label="AI delivery risk signals" data-scramble-console>
           <div class="loss-console__chrome" aria-hidden="true">
             <span></span><span></span><span></span>
@@ -357,85 +366,49 @@
         </div>
       </div>
 
-      <p class="problem__close">
-        This does not break immediately.
-        <span>It breaks when it matters.</span>
-      </p>
-    </section>
+            <p class="act1__when-lede">
+              Okto Pulse matters most when AI speed starts to outpace the team's ability to explain,
+              trace, and validate the system.
+            </p>
+            <ul class="act1__when" aria-label="When this becomes unavoidable">
+              <li>Your project runs longer than a few days</li>
+              <li>You rely on AI for implementation</li>
+              <li>You stop trusting what was built</li>
+              <li>You can't trace behavior back to intent</li>
+            </ul>
+          </div>
 
-    <!-- ──────────────────── WHEN ──────────────────── -->
-    <section class="section section--when">
-      <header class="section__head section__head--split">
-        <div>
-          <span class="section__eyebrow">02 · INFLECTION</span>
-          <h2 class="section__title">
-            When this becomes <em>unavoidable</em>
-          </h2>
+          <div class="act1__scene act1__scene--finale">
+            <p class="problem__close" data-kinetic>
+              This does not break immediately.
+              <span>It breaks when it matters.</span>
+            </p>
+            <p class="when__impact" data-kinetic>
+              If you're building with AI, <span>you will hit this point.</span>
+            </p>
+          </div>
         </div>
-        <p class="section__lede section__lede--right">
-          Okto Pulse matters most when AI speed starts to outpace the team's ability to explain,
-          trace, and validate the system.
-        </p>
-      </header>
-
-      <div class="when">
-        <ul class="when__list">
-          <li>
-            <span class="context-icon when__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <circle cx="12" cy="12" r="8" />
-                <path d="M12 8v5l3 2" />
-              </svg>
-            </span>
-            <span>Your project runs longer than a few days</span>
-          </li>
-          <li>
-            <span class="context-icon when__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <rect x="5" y="7" width="14" height="10" rx="2" />
-                <path d="M9 7V5" />
-                <path d="M15 7V5" />
-                <path d="M8 12h.01" />
-                <path d="M16 12h.01" />
-                <path d="M10 16h4" />
-              </svg>
-            </span>
-            <span>You rely on AI for implementation</span>
-          </li>
-          <li>
-            <span class="context-icon when__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <path d="M12 3 19 6v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" />
-                <path d="m9 12 2 2 4-5" />
-              </svg>
-            </span>
-            <span>You stop trusting what was built</span>
-          </li>
-          <li>
-            <span class="context-icon when__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <circle cx="6" cy="7" r="2" />
-                <circle cx="18" cy="7" r="2" />
-                <circle cx="12" cy="17" r="2" />
-                <path d="M8 7h8" />
-                <path d="m7 9 4 6" />
-                <path d="m17 9-4 6" />
-              </svg>
-            </span>
-            <span>You can't trace behavior back to intent</span>
-          </li>
-        </ul>
       </div>
-
-      <p class="when__impact">
-        If you're building with AI, <span>you will hit this point.</span>
-      </p>
     </section>
 
-    <!-- ──────────────────── SYSTEM ──────────────────── -->
+    <!-- ──────────── ACT 2 · SYSTEM — the signal comes back ──────────── -->
     <section id="adlc" class="section section--system">
+      <div class="resus" aria-hidden="true">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" focusable="false">
+          <defs>
+            <linearGradient id="resusGradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#22d3ee" stop-opacity="0" />
+              <stop offset="40%" stop-color="#22d3ee" />
+              <stop offset="75%" stop-color="#3b82f6" />
+              <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.25" />
+            </linearGradient>
+          </defs>
+          <path class="resus__flat" d="M0 60 L1200 60" pathLength="100" />
+          <path class="resus__spike" d="M0 60 L470 60 L520 60 L548 14 L578 104 L606 38 L630 60 L1200 60" pathLength="100" />
+        </svg>
+      </div>
       <header class="section__head">
-        <span class="section__eyebrow">03 · SYSTEM</span>
+        <span class="section__eyebrow">02 · SYSTEM</span>
         <h2 class="section__title">
           Not another board. <br />
           <em>Not another AI tool.</em>
@@ -537,21 +510,23 @@
       </div>
     </section>
 
-    <!-- ──────────────────── FLOW ──────────────────── -->
+    <!-- ──────────── ACT 3 · FLOW — horizontal pinned rail ──────────── -->
     <section id="pipeline" class="section section--pipeline">
-      <header class="section__head">
-        <span class="section__eyebrow">04 · PIPELINE</span>
-        <h2 class="section__title">
-          From story to production — <br />
-          <em>with control at every step.</em>
-        </h2>
-        <p class="section__lede">
-          Define before building. Structure before coding. Validate before shipping. Learn after
-          delivery. <strong>Repeat.</strong>
-        </p>
-      </header>
+      <div class="hflow__track">
+        <div class="hflow__stage">
+          <header class="section__head hflow__head">
+            <span class="section__eyebrow">03 · PIPELINE</span>
+            <h2 class="section__title">
+              From story to production — <br />
+              <em>with control at every step.</em>
+            </h2>
+            <p class="section__lede">
+              Define before building. Structure before coding. Validate before shipping. Learn after
+              delivery. <strong>Repeat.</strong>
+            </p>
+          </header>
 
-      <ol class="pipeline">
+          <ol class="pipeline">
         <li class="pipeline__step" style="--step-i:1">
           <div class="card-meta">
             <span class="context-icon" aria-hidden="true">
@@ -652,13 +627,15 @@
           </div>
         </li>
       </ol>
+        </div>
+      </div>
     </section>
 
     <!-- ──────────────────── VALUE ──────────────────── -->
     <section id="value" class="section section--value">
       <header class="section__head section__head--split">
         <div>
-          <span class="section__eyebrow">05 · VALUE</span>
+          <span class="section__eyebrow">04 · VALUE</span>
           <h2 class="section__title">
             From prompt-driven coding <br />
             <em>to spec-driven execution.</em>
@@ -666,12 +643,13 @@
         </div>
         <p class="section__lede section__lede--right">
           The goal is not to slow AI down. The goal is to let it move fast inside a system that
-          preserves intent, evidence, and accountability.
+          preserves intent, evidence, and accountability. <span class="compare__hint">Drag the
+          divider to compare.</span>
         </p>
       </header>
 
-      <div class="value-compare value-compare--control">
-        <article class="value-card value-card--before value-card--compact">
+      <div class="compare" data-compare>
+        <article class="value-card value-card--before compare__panel compare__panel--before">
           <span class="value-card__label">Before</span>
           <h3>AI moves fast. The system breaks.</h3>
           <ul>
@@ -680,24 +658,7 @@
             <li>Screen intent gets lost before implementation</li>
             <li>Validation is reconstructed after the fact</li>
           </ul>
-        </article>
-
-        <article class="value-card value-card--after value-card--compact">
-          <span class="value-card__label">After</span>
-          <h3>AI moves fast. The system holds.</h3>
-          <ul>
-            <li>Intent becomes structured work with clear ownership</li>
-            <li>Architecture and mockups travel with the spec</li>
-            <li>Tasks stay linked to requirements, rules, and contracts</li>
-            <li>Validation produces evidence before delivery is trusted</li>
-          </ul>
-        </article>
-      </div>
-
-      <div class="value-compare value-compare--control value-compare--secondary">
-        <article class="value-card value-card--before value-card--compact">
-          <span class="value-card__label">Before</span>
-          <h3>What this actually costs</h3>
+          <h4 class="compare__sub">What this actually costs</h4>
           <ul>
             <li>Rewriting features you already built</li>
             <li>Debugging behavior you can’t explain</li>
@@ -706,9 +667,16 @@
           </ul>
         </article>
 
-        <article class="value-card value-card--after value-card--compact">
+        <article class="value-card value-card--after compare__panel compare__panel--after">
           <span class="value-card__label">After</span>
-          <h3>What stays under control.</h3>
+          <h3>AI moves fast. The system holds.</h3>
+          <ul>
+            <li>Intent becomes structured work with clear ownership</li>
+            <li>Architecture and mockups travel with the spec</li>
+            <li>Tasks stay linked to requirements, rules, and contracts</li>
+            <li>Validation produces evidence before delivery is trusted</li>
+          </ul>
+          <h4 class="compare__sub">What stays under control.</h4>
           <ul>
             <li>Features stay tied to specs, decisions, and acceptance criteria</li>
             <li>Behavior can be traced back to intent and evidence</li>
@@ -716,6 +684,18 @@
             <li>Delivery ships with proof the team can trust</li>
           </ul>
         </article>
+
+        <div class="compare__handle" aria-hidden="true"><span></span></div>
+        <input class="compare__range" type="range" min="0" max="100" value="50"
+          aria-label="Compare before and after Okto Pulse" />
+      </div>
+
+      <div class="claims-grid">
+        <span>No more lost context</span>
+        <span>No more unknown coverage</span>
+        <span>No more silent drift</span>
+        <span>No more unvalidated delivery</span>
+        <span>Only structured, provable execution</span>
       </div>
     </section>
 
@@ -723,7 +703,7 @@
     <section id="evidence" class="section section--evidence">
       <header class="section__head section__head--split">
         <div>
-          <span class="section__eyebrow">06 · EVIDENCE</span>
+          <span class="section__eyebrow">05 · EVIDENCE</span>
           <h2 class="section__title">
             The proof is in the <em>work surface.</em>
           </h2>
@@ -734,114 +714,72 @@
         </p>
       </header>
 
-      <div class="surface-story">
-        <article class="surface-panel">
-          <div class="surface-panel__copy">
-            <span class="surface-panel__label">Architecture design</span>
-            <h3>Design before code.</h3>
-            <p>Architecture diagrams are captured inside the ideation flow, so agents inherit system structure, integration points, and component boundaries before implementation begins.</p>
+      <div class="stage-ev">
+        <figure class="stage-ev__frame">
+          <div class="analytics__bar" aria-hidden="true">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="analytics__path" data-stage-path>okto-pulse &nbsp;·&nbsp; Ideation &nbsp;·&nbsp; Architecture</span>
           </div>
-          <figure class="evidence-shot">
-            <div class="analytics__bar" aria-hidden="true">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Ideation &nbsp;·&nbsp; Architecture</span>
-            </div>
-            <picture>
+          <div class="stage-ev__shots" data-active="0">
+            <picture data-shot="0">
               <source srcset="./assets/screenshots/12-ideation-architecture-expanded.webp" type="image/webp" />
               <img src="./assets/screenshots/12-ideation-architecture-expanded.png" alt="Okto Pulse expanded ideation modal on the Architecture tab with a complex architecture diagram" width="1920" height="1080" loading="lazy" />
             </picture>
-          </figure>
-        </article>
-
-        <article class="surface-panel surface-panel--reverse">
-          <div class="surface-panel__copy">
-            <span class="surface-panel__label">Interface intent</span>
-            <h3>Mock the product surface.</h3>
-            <p>Mockups keep interaction behavior, visual structure, and user-facing intent attached to the same workflow that produces specs and tasks.</p>
-          </div>
-          <figure class="evidence-shot">
-            <div class="analytics__bar" aria-hidden="true">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Ideation &nbsp;·&nbsp; Mockups</span>
-            </div>
-            <picture>
+            <picture data-shot="1">
               <source srcset="./assets/screenshots/13-ideation-mockup-expanded.webp" type="image/webp" />
               <img src="./assets/screenshots/13-ideation-mockup-expanded.png" alt="Okto Pulse expanded ideation modal on the Mockups tab with a lineage visualization mockup" width="1920" height="1080" loading="lazy" />
             </picture>
-          </figure>
-        </article>
-
-        <article class="surface-panel">
-          <div class="surface-panel__copy">
-            <span class="surface-panel__label">Validation evidence</span>
-            <h3>Validate what matters.</h3>
-            <p>Spec detail connects acceptance criteria, tests, rules, contracts, drift, and cycle time so done work can be inspected instead of assumed.</p>
-          </div>
-          <figure class="evidence-shot">
-            <div class="analytics__bar" aria-hidden="true">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Spec detail</span>
-            </div>
-            <picture>
+            <picture data-shot="2">
               <source srcset="./assets/screenshots/10-analytics-spec-detail.webp" type="image/webp" />
               <img src="./assets/screenshots/10-analytics-spec-detail.png" alt="Okto Pulse spec detail analytics with acceptance criteria, test scenario status, and task validation" width="1919" height="906" loading="lazy" />
             </picture>
-          </figure>
-        </article>
-
-        <article class="surface-panel surface-panel--reverse">
-          <div class="surface-panel__copy">
-            <span class="surface-panel__label">Structured execution</span>
-            <h3>The board is the operating surface.</h3>
-            <p>Tasks are not loose cards. They carry ownership, status, priority, spec linkage, validation state, and the provenance needed for humans and agents to work on the same execution surface.</p>
-          </div>
-          <figure class="evidence-shot">
-            <div class="analytics__bar" aria-hidden="true">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Board &nbsp;·&nbsp; Structured execution</span>
-            </div>
-            <picture>
+            <picture data-shot="3">
               <source srcset="./assets/screenshots/04-tasks-kanban.webp" type="image/webp" />
               <img src="./assets/screenshots/04-tasks-kanban.png" alt="Okto Pulse kanban board with traceable task cards" width="1680" height="1000" loading="lazy" />
             </picture>
-          </figure>
-        </article>
-
-        <article class="surface-panel">
-          <div class="surface-panel__copy">
-            <span class="surface-panel__label">Requirement coverage</span>
-            <h3>Analytics turn delivery into evidence.</h3>
-            <p>Coverage, drift, tests, rules, contracts, and agent contribution stay visible after implementation starts. The system makes the cost of drift explicit instead of invisible.</p>
-          </div>
-          <figure class="evidence-shot">
-            <div class="analytics__bar" aria-hidden="true">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Coverage</span>
-            </div>
-            <picture>
+            <picture data-shot="4">
               <source srcset="./assets/screenshots/09-analytics-coverage.webp" type="image/webp" />
               <img src="./assets/screenshots/09-analytics-coverage.png" alt="Okto Pulse analytics coverage by spec" width="1919" height="912" loading="lazy" />
             </picture>
-          </figure>
-        </article>
-
-        <article class="surface-panel surface-panel--reverse">
-          <div class="surface-panel__copy">
-            <span class="surface-panel__label">Operational memory</span>
-            <h3>The knowledge graph makes future work smarter.</h3>
-            <p>Decisions, constraints, requirements, tests, bugs, and learnings remain connected. Each initiative leaves a better base of knowledge for the next one.</p>
-          </div>
-          <figure class="evidence-shot">
-            <div class="analytics__bar" aria-hidden="true">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="analytics__path">okto-pulse &nbsp;·&nbsp; Knowledge Graph</span>
-            </div>
-            <picture>
+            <picture data-shot="5">
               <source srcset="./assets/screenshots/11-knowledge-graph.webp" type="image/webp" />
               <img src="./assets/screenshots/11-knowledge-graph.png" alt="Okto Pulse knowledge graph showing linked decisions, requirements, tests, and learnings" width="1919" height="911" loading="lazy" />
             </picture>
-          </figure>
-        </article>
+          </div>
+        </figure>
+
+        <div class="stage-ev__copy">
+          <article class="stage-ev__chapter" data-shot="0" data-path="okto-pulse &nbsp;·&nbsp; Ideation &nbsp;·&nbsp; Architecture">
+            <span class="surface-panel__label">Architecture design</span>
+            <h3>Design before code.</h3>
+            <p>Architecture diagrams are captured inside the ideation flow, so agents inherit system structure, integration points, and component boundaries before implementation begins.</p>
+          </article>
+          <article class="stage-ev__chapter" data-shot="1" data-path="okto-pulse &nbsp;·&nbsp; Ideation &nbsp;·&nbsp; Mockups">
+            <span class="surface-panel__label">Interface intent</span>
+            <h3>Mock the product surface.</h3>
+            <p>Mockups keep interaction behavior, visual structure, and user-facing intent attached to the same workflow that produces specs and tasks.</p>
+          </article>
+          <article class="stage-ev__chapter" data-shot="2" data-path="okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Spec detail">
+            <span class="surface-panel__label">Validation evidence</span>
+            <h3>Validate what matters.</h3>
+            <p>Spec detail connects acceptance criteria, tests, rules, contracts, drift, and cycle time so done work can be inspected instead of assumed.</p>
+          </article>
+          <article class="stage-ev__chapter" data-shot="3" data-path="okto-pulse &nbsp;·&nbsp; Board &nbsp;·&nbsp; Structured execution">
+            <span class="surface-panel__label">Structured execution</span>
+            <h3>The board is the operating surface.</h3>
+            <p>Tasks are not loose cards. They carry ownership, status, priority, spec linkage, validation state, and the provenance needed for humans and agents to work on the same execution surface.</p>
+          </article>
+          <article class="stage-ev__chapter" data-shot="4" data-path="okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Coverage">
+            <span class="surface-panel__label">Requirement coverage</span>
+            <h3>Analytics turn delivery into evidence.</h3>
+            <p>Coverage, drift, tests, rules, contracts, and agent contribution stay visible after implementation starts. The system makes the cost of drift explicit instead of invisible.</p>
+          </article>
+          <article class="stage-ev__chapter" data-shot="5" data-path="okto-pulse &nbsp;·&nbsp; Knowledge Graph">
+            <span class="surface-panel__label">Operational memory</span>
+            <h3>The knowledge graph makes future work smarter.</h3>
+            <p>Decisions, constraints, requirements, tests, bugs, and learnings remain connected. Each initiative leaves a better base of knowledge for the next one.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -849,7 +787,7 @@
     <section id="features" class="section section--features">
       <header class="section__head section__head--split">
         <div>
-          <span class="section__eyebrow">07 · CAPABILITIES</span>
+          <span class="section__eyebrow">06 · CAPABILITIES</span>
           <h2 class="section__title">Built for how AI <em>actually works.</em></h2>
         </div>
         <p class="section__lede section__lede--right">
@@ -934,7 +872,7 @@
     <!-- ──────────────────── AUDIENCE ──────────────────── -->
     <section id="agents" class="section section--audience">
       <header class="section__head">
-        <span class="section__eyebrow">08 · AUDIENCE</span>
+        <span class="section__eyebrow">07 · AUDIENCE</span>
         <h2 class="section__title">
           <span class="title-line title-line--keep">Built for teams that want AI speed</span>
           <em class="title-line">without operational chaos.</em>
@@ -963,7 +901,7 @@
     <!-- ──────────────────── MCP ──────────────────── -->
     <section id="mcp" class="section section--mcp">
       <header class="section__head">
-        <span class="section__eyebrow">09 · MCP</span>
+        <span class="section__eyebrow">08 · MCP</span>
         <h2 class="section__title">
           Works with your existing <br />
           <em>AI development tools</em>.
@@ -1002,7 +940,7 @@
     <!-- ──────────────────── INSTALL ──────────────────── -->
     <section id="install" class="section section--install">
       <header class="section__head">
-        <span class="section__eyebrow">10 · INSTALL</span>
+        <span class="section__eyebrow">09 · INSTALL</span>
         <h2 class="section__title">Get started in <em>seconds</em>.</h2>
         <p class="section__lede">
           No account. Runs entirely local-first, with no cloud dependency. Install locally,
@@ -1095,7 +1033,7 @@
     <section class="section section--claims">
       <header class="section__head section__head--split">
         <div>
-          <span class="section__eyebrow">11 · CATEGORY</span>
+          <span class="section__eyebrow">10 · CATEGORY</span>
           <h2 class="section__title">
             AI changed how code is written. <br />
             <em>Okto Pulse changes how software is built.</em>
@@ -1107,21 +1045,13 @@
         </p>
       </header>
 
-      <div class="claims-grid">
-        <span>No more lost context</span>
-        <span>No more unknown coverage</span>
-        <span>No more silent drift</span>
-        <span>No more unvalidated delivery</span>
-        <span>Only structured, provable execution</span>
-      </div>
-
-      <p class="section__impact">
+      <p class="section__impact" data-kinetic>
         This is not an optimization. <strong>This is what prevents breakdown.</strong>
       </p>
 
       <div class="final-cta">
         <div>
-          <h2>Build fast. <em>Stay in control.</em></h2>
+          <h2 data-kinetic>Build fast. <em>Stay in control.</em></h2>
           <p>Start locally if you're building. Request a demo if you're scaling.</p>
         </div>
         <div class="final-cta__actions">

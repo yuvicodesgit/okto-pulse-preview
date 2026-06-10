@@ -4811,6 +4811,643 @@ html.js-reveal [data-reveal].is-in {
   }
 }
 
+/* =====================================================================
+   Narrative layer — Act 1 (pinned problem scene), Act 2 (resuscitation),
+   Act 3 (horizontal flow + evidence stage), compare slider, kinetic type.
+   Defaults are static stacked layouts that work without JS; the
+   choreographed variants are gated on html.js-pin / js-stage / js-compare.
+   ===================================================================== */
+
+/* ---------- nav: current-section context ---------- */
+.nav__context {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 280ms var(--ease), transform 280ms var(--ease);
+}
+
+.nav__context.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 560px) {
+  .nav__context {
+    display: none;
+  }
+}
+
+/* ---------- Act 1: defaults (stacked flow, also the mobile layout) ---------- */
+.act1__stage {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+.act1__ekg {
+  display: none;
+}
+
+.act1__head .section__lede {
+  margin-top: 1.6rem;
+}
+
+.act1__when-lede {
+  max-width: 52ch;
+  margin: clamp(1.8rem, 3vw, 2.6rem) auto 1rem;
+  text-align: center;
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.act1__when {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.act1__when li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0.7rem 0.9rem;
+  text-align: center;
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.09), transparent 62%),
+    var(--surface);
+  color: var(--ink-dim);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 980px) {
+  .act1__when {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .act1__when {
+    grid-template-columns: 1fr;
+  }
+}
+
+.act1__scene--finale .when__impact {
+  margin-top: clamp(1.4rem, 2.5vw, 2.2rem);
+}
+
+/* ---------- Act 1: pinned choreography (desktop + JS only) ---------- */
+@media (min-width: 1024px) and (min-height: 600px) {
+  html.js-pin .section--problem {
+    padding: 0;
+  }
+
+  html.js-pin .act1__track {
+    height: 380vh;
+  }
+
+  html.js-pin .act1__stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    display: block;
+    overflow: hidden;
+  }
+
+  html.js-pin .act1__ekg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  html.js-pin .act1__scene {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    padding: 110px var(--gutter) 56px;
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 620ms var(--ease), transform 620ms var(--ease);
+    pointer-events: none;
+  }
+
+  html.js-pin .act1__stage[data-phase="0"] .act1__scene--head,
+  html.js-pin .act1__stage[data-phase="1"] .act1__scene--cards,
+  html.js-pin .act1__stage[data-phase="2"] .act1__scene--console,
+  html.js-pin .act1__stage[data-phase="3"] .act1__scene--finale {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  html.js-pin .act1__head {
+    margin: 0;
+    max-width: 900px;
+    text-align: center;
+  }
+
+  html.js-pin .act1__head .section__eyebrow {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  html.js-pin .act1__head .section__lede {
+    margin-inline: auto;
+  }
+
+  html.js-pin .act1__scene--cards .problem__grid {
+    max-width: 1320px;
+    width: 100%;
+  }
+
+  html.js-pin .act1__scene--console .problem__mid {
+    margin: 0 0 clamp(1.4rem, 3vh, 2.4rem);
+    font-size: clamp(1.5rem, 2.6vw, 2.6rem);
+  }
+
+  html.js-pin .act1__scene--console .problem__bottom {
+    width: min(860px, 100%);
+    margin: 0;
+  }
+
+  html.js-pin .act1__scene--console .act1__when-lede {
+    margin-top: clamp(1.4rem, 3vh, 2.2rem);
+  }
+
+  html.js-pin .act1__scene--finale {
+    text-align: center;
+  }
+
+  html.js-pin .act1__scene--finale .problem__close {
+    margin-top: 0;
+  }
+
+  html.js-pin .act1__scene--finale .when__impact {
+    margin-top: clamp(1.6rem, 3vh, 2.6rem);
+  }
+}
+
+/* ---------- Act 2: resuscitation divider ---------- */
+.resus {
+  margin: 0 0 clamp(1.5rem, 4vw, 3rem);
+}
+
+.resus svg {
+  display: block;
+  width: 100%;
+  height: clamp(64px, 9vw, 120px);
+  overflow: visible;
+}
+
+.resus__flat {
+  fill: none;
+  stroke: rgba(248, 113, 113, 0.45);
+  stroke-width: 1.5;
+  transition: opacity 900ms var(--ease);
+}
+
+.resus__spike {
+  fill: none;
+  stroke: url("#resusGradient");
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.55));
+}
+
+html.js-reveal .resus__spike {
+  stroke-dasharray: 100 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 1500ms var(--ease) 120ms;
+}
+
+html.js-reveal .resus.is-alive .resus__spike {
+  stroke-dashoffset: 0;
+}
+
+html.js-reveal .resus.is-alive .resus__flat {
+  opacity: 0.12;
+}
+
+/* ---------- Act 2: control plane assembles with scroll ---------- */
+.solution-map.sys-armed .solution-map__cluster,
+.solution-map.sys-armed .solution-map__hub,
+.solution-map.sys-armed .solution-map__graph {
+  opacity: 0.22;
+  transform: translateY(12px);
+  transition: opacity 640ms var(--ease), transform 640ms var(--ease);
+}
+
+.solution-map.sys-armed .solution-map__hub {
+  transform: translate(-50%, -50%) scale(0.97);
+}
+
+.solution-map.sys-armed .solution-map__cluster.is-on,
+.solution-map.sys-armed .solution-map__graph.is-on {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.solution-map.sys-armed .solution-map__hub.is-on {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ---------- Act 3: pipeline — snap carousel on small screens ---------- */
+@media (max-width: 1023px) {
+  .section--pipeline .pipeline {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0.8rem;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    margin: 0 calc(var(--gutter) * -1);
+    padding: 0.25rem var(--gutter) 0.85rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .section--pipeline .pipeline::-webkit-scrollbar {
+    display: none;
+  }
+
+  .section--pipeline .pipeline__step {
+    flex: 0 0 min(78vw, 340px);
+    scroll-snap-align: center;
+    border: 1px solid var(--hair);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+}
+
+/* ---------- Act 3: pipeline — pinned horizontal rail (desktop + JS) ---------- */
+@media (min-width: 1024px) {
+  html.js-pin .section--pipeline {
+    padding: 0;
+  }
+
+  html.js-pin .hflow__track {
+    height: 300vh;
+  }
+
+  html.js-pin .hflow__stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(2rem, 5vh, 4rem);
+    overflow: hidden;
+    padding: 100px 0 48px;
+  }
+
+  html.js-pin .hflow__head {
+    margin: 0;
+    padding-inline: var(--gutter);
+  }
+
+  html.js-pin .section--pipeline .pipeline {
+    display: flex;
+    width: max-content;
+    gap: 1rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding-inline: var(--gutter);
+    transform: translateX(calc(var(--hp, 0) * -1px));
+    will-change: transform;
+  }
+
+  html.js-pin .section--pipeline .pipeline__step {
+    flex: 0 0 clamp(340px, 26vw, 440px);
+    border: 1px solid var(--hair);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    transition:
+      border-color 360ms var(--ease),
+      transform 360ms var(--ease),
+      background 360ms var(--ease);
+  }
+
+  html.js-pin .section--pipeline .pipeline__step.is-passed {
+    border-color: rgba(34, 211, 238, 0.32);
+    transform: translateY(-5px);
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.07), transparent 58%),
+      var(--surface);
+  }
+
+  html.js-pin .section--pipeline .pipeline__step.is-passed::before {
+    transform: scaleX(1);
+  }
+}
+
+/* ---------- Act 3: evidence — sticky product stage ---------- */
+.stage-ev {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  align-items: start;
+}
+
+.stage-ev__copy {
+  display: grid;
+  gap: clamp(2.5rem, 9vh, 5rem);
+  padding-block: clamp(1rem, 5vh, 3rem);
+}
+
+.stage-ev__chapter {
+  max-width: 48ch;
+}
+
+html.js-stage .stage-ev__chapter {
+  min-height: clamp(220px, 42vh, 380px);
+  display: grid;
+  align-content: center;
+  opacity: 0.35;
+  transition: opacity 420ms var(--ease);
+}
+
+html.js-stage .stage-ev__chapter.is-active {
+  opacity: 1;
+}
+
+.stage-ev__chapter .surface-panel__label {
+  display: inline-flex;
+  margin-bottom: 1.1rem;
+  color: var(--pulse-cyan);
+}
+
+.stage-ev__chapter h3 {
+  margin-bottom: 1rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 2.5rem);
+  line-height: 1.05;
+}
+
+.stage-ev__chapter p {
+  color: var(--ink-dim);
+  line-height: 1.7;
+}
+
+.stage-ev__frame {
+  position: sticky;
+  top: 92px;
+  order: 2;
+  margin: 0;
+  border: 1px solid var(--hair-strong);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow:
+    0 70px 150px -60px rgba(6, 8, 14, 0.92),
+    0 36px 110px -44px rgba(34, 211, 238, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.stage-ev__shots {
+  position: relative;
+}
+
+.stage-ev__shots img {
+  width: 100%;
+  display: block;
+}
+
+html.js-stage .stage-ev__shots {
+  aspect-ratio: 16 / 10;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.07), transparent 58%),
+    var(--bg-alt);
+}
+
+html.js-stage .stage-ev__shots picture {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.015);
+  transition: opacity 520ms var(--ease), transform 700ms var(--ease);
+}
+
+html.js-stage .stage-ev__shots img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+}
+
+html.js-stage .stage-ev__shots[data-active="0"] picture[data-shot="0"],
+html.js-stage .stage-ev__shots[data-active="1"] picture[data-shot="1"],
+html.js-stage .stage-ev__shots[data-active="2"] picture[data-shot="2"],
+html.js-stage .stage-ev__shots[data-active="3"] picture[data-shot="3"],
+html.js-stage .stage-ev__shots[data-active="4"] picture[data-shot="4"],
+html.js-stage .stage-ev__shots[data-active="5"] picture[data-shot="5"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 1023px) {
+  .stage-ev {
+    grid-template-columns: 1fr;
+  }
+
+  .stage-ev__frame {
+    order: 0;
+    top: 64px;
+    z-index: 10;
+  }
+
+  .stage-ev__copy {
+    order: 1;
+  }
+
+  html.js-stage .stage-ev__chapter {
+    min-height: clamp(190px, 34vh, 300px);
+  }
+}
+
+/* ---------- compare slider (Value) ---------- */
+.compare {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.compare__sub {
+  margin: 1.7rem 0 0.95rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+
+.compare__panel h3 {
+  margin: clamp(1.2rem, 2vw, 2rem) 0 1.2rem;
+  font-size: clamp(1.5rem, 2.3vw, 2.5rem);
+}
+
+.compare__panel {
+  min-height: 0;
+}
+
+.compare__handle,
+.compare__range,
+.compare__hint {
+  display: none;
+}
+
+html.js-compare .compare {
+  grid-template-columns: 1fr;
+}
+
+html.js-compare .compare__panel {
+  grid-area: 1 / 1;
+}
+
+/* Each side keeps its copy in its own half, so the divider wipes the
+   opposing background over it instead of slicing lines of text. */
+html.js-compare .compare__panel--before {
+  padding-right: 52%;
+}
+
+html.js-compare .compare__panel--after {
+  clip-path: inset(0 0 0 var(--cut, 50%));
+  padding-left: 52%;
+}
+
+html.js-compare .compare__handle {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--cut, 50%);
+  width: 2px;
+  margin-left: -1px;
+  background: var(--gradient-pulse);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.5);
+  z-index: 3;
+  pointer-events: none;
+}
+
+html.js-compare .compare__handle span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(34, 211, 238, 0.5);
+  background: rgba(10, 12, 18, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+html.js-compare .compare__handle span::before {
+  content: "◂ ▸";
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--pulse-cyan);
+}
+
+html.js-compare .compare__range {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 4;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: pan-y;
+}
+
+html.js-compare .compare__hint {
+  display: inline;
+  color: var(--pulse-cyan);
+}
+
+/* On narrow screens the wipe has no room: fall back to stacked panels */
+@media (max-width: 860px) {
+  html.js-compare .compare {
+    grid-template-columns: 1fr;
+  }
+
+  html.js-compare .compare__panel {
+    grid-area: auto;
+  }
+
+  html.js-compare .compare__panel--before {
+    padding-right: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  html.js-compare .compare__panel--after {
+    clip-path: none;
+    padding-left: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  html.js-compare .compare__handle,
+  html.js-compare .compare__range,
+  html.js-compare .compare__hint {
+    display: none;
+  }
+}
+
+/* ---------- kinetic type (word-by-word statements) ---------- */
+html.js-reveal [data-reveal][data-kinetic] {
+  opacity: 1;
+  transform: none;
+}
+
+.kword {
+  font-style: normal;
+}
+
+html.js-reveal [data-kinetic] .kword:not(.kword--unit) {
+  display: inline-block;
+}
+
+html.js-reveal [data-kinetic] .kword {
+  opacity: 0;
+  transform: translateY(0.55em);
+  transition: opacity 560ms var(--ease), transform 560ms var(--ease);
+  transition-delay: calc(var(--w, 0) * 45ms);
+}
+
+html.js-reveal [data-kinetic].is-in .kword {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   *,
