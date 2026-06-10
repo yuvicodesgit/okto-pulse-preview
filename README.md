@@ -1,6 +1,6 @@
 # Okto Pulse — Landing Page
 
-Static marketing site for [Okto Pulse](https://pypi.org/project/okto-pulse/), the spec-driven project management board with 218 MCP tools, 15 governance gates, and native MCP support from [OktoLabs](https://oktolabs.ai).
+Static marketing site for [Okto Pulse](https://pypi.org/project/okto-pulse/), the spec-driven project management board with 218 MCP tools, 24 governance gates, and native MCP support from [OktoLabs](https://oktolabs.ai).
 
 ## Stack
 
