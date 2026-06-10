@@ -270,6 +270,9 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
     ".section__impact",
     ".install__cta",
     ".final-cta",
+    // kinetic statements hide their words until .is-in lands on the element
+    // itself, so every [data-kinetic] must be swept directly
+    "[data-kinetic]",
   ];
 
   const targets = [];
