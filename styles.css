@@ -5492,6 +5492,113 @@ html.js-compare .compare__hint {
   }
 }
 
+/* ---------- claims — outcome cards under the compare panel ---------- */
+.claims {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.claim {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+  min-height: 168px;
+  padding: clamp(1.1rem, 1.6vw, 1.4rem);
+  border: 1px solid var(--hair-strong);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 46%),
+    var(--surface);
+  transition:
+    transform 220ms var(--ease),
+    border-color 220ms var(--ease),
+    background 220ms var(--ease);
+}
+
+.claim::after {
+  content: "";
+  position: absolute;
+  left: 1.1rem;
+  right: 1.1rem;
+  bottom: 0;
+  height: 1px;
+  background: var(--gradient-pulse);
+  opacity: 0.5;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 620ms var(--ease);
+}
+
+.claim:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34, 211, 238, 0.3);
+}
+
+.claim:hover::after {
+  transform: scaleX(1);
+}
+
+.claim__icon {
+  width: 42px;
+  height: 42px;
+}
+
+.claim:hover .claim__icon {
+  color: var(--pulse-cyan);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 20px 56px -30px rgba(59, 130, 246, 0.8);
+}
+
+.claim p {
+  color: var(--ink);
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.claim__no {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(248, 113, 113, 0.85);
+}
+
+.claim__no--only {
+  color: var(--pulse-cyan);
+}
+
+.claim--lead {
+  border-color: rgba(34, 211, 238, 0.3);
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(34, 211, 238, 0.14), transparent 52%),
+    radial-gradient(ellipse at 0% 100%, rgba(59, 130, 246, 0.08), transparent 48%),
+    var(--surface);
+}
+
+@media (max-width: 1320px) {
+  .claims {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .claims {
+    grid-template-columns: 1fr;
+  }
+
+  .claim {
+    min-height: 0;
+  }
+}
+
 /* ---------- kinetic type (word-by-word statements) ---------- */
 html.js-reveal [data-reveal][data-kinetic] {
   opacity: 1;

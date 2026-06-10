@@ -254,7 +254,7 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
     ".pipeline > .pipeline__step",
     ".grid--features > .feature",
     ".audience > .audience-card",
-    ".claims-grid > span",
+    ".claims > .claim",
     ".install > .install__step",
     ".mcp__tools > span",
   ];
@@ -542,7 +542,7 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
     ".value-card",
     ".feature",
     ".audience-card",
-    ".claims-grid span",
+    ".claim",
     ".install__step",
     ".knowledge__node",
     ".highlight",
