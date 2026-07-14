@@ -37,7 +37,7 @@ jobs:
         run: |
           rm -rf dist
           mkdir -p dist
-          cp index.html styles.css script.js dist/
+          cp index.html styles.css script.js depth-scene.js dist/
           cp -R assets dist/assets
           cp _headers dist/_headers
 

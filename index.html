@@ -43,6 +43,7 @@
 <body>
   <!-- Ambient background: subtle dot grid + edge vignette -->
   <div class="ambient" aria-hidden="true">
+    <canvas id="pulseDepthCanvas" class="pulse-depth-canvas" role="presentation" tabindex="-1"></canvas>
     <div class="ambient__grid"></div>
     <div class="ambient__vignette"></div>
     <div class="ambient__aurora"></div>
@@ -108,7 +109,7 @@
 
   <main id="top">
     <!-- ───────────────────── HERO ───────────────────── -->
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-title" data-depth-scene="hero" data-depth-title="Signal" data-depth-number="00">
       <div class="hero__inner">
         <div class="hero__copy">
           <div class="hero__meta">
@@ -116,9 +117,10 @@
             <span class="tag tag--thin">OktoLabs &middot; Product no. 01 &middot; v0.2.0</span>
           </div>
 
-          <h1 class="hero__title">
-            <span class="line">Ship with AI.</span>
-            <span class="line">Stay in <em class="accent">control.</em></span>
+          <h1 id="hero-title" class="hero__title">
+            <span class="line line--brand">Okto Pulse.</span>
+            <span class="line line--promise">Ship with AI.</span>
+            <span class="line line--promise">Stay in control.</span>
           </h1>
 
           <p class="hero__lead">
@@ -152,102 +154,71 @@
 
         </div>
 
-        <aside class="hero__visual" aria-label="Okto Pulse product preview">
-          <div class="showcase__frame showcase__frame--hero hero-slider">
-            <div class="showcase__bar" aria-hidden="true">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="showcase__path">okto-pulse &nbsp;·&nbsp; Pulse + Board + Analytics + Architecture + Knowledge</span>
+        <aside class="hero__visual" aria-label="Interactive Okto Pulse delivery graph">
+          <div class="hero-system" data-hero-system data-active="0" role="group" aria-label="From product idea to durable project memory">
+            <div class="hero-system__mark" aria-hidden="true">
+              <span>SIGNAL 00</span>
+              <i></i>
+              <span>SDD / SDLC / KNOWLEDGE</span>
             </div>
-            <div class="hero-slider__viewport">
-              <figure class="hero-slide hero-slide--pulse" aria-label="Animated Okto Pulse signal">
-                <div class="pulse-stage" aria-hidden="true">
-                  <svg class="pulse-stage__svg" viewBox="0 0 900 220" role="presentation" focusable="false">
-                    <defs>
-                      <linearGradient id="heroPulseGradient" x1="268" y1="110" x2="404" y2="110" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#22d3ee" />
-                        <stop offset="55%" stop-color="#3b82f6" />
-                        <stop offset="100%" stop-color="#1e40af" />
-                      </linearGradient>
-                      <filter id="heroPulseGlow" x="-20%" y="-120%" width="140%" height="340%">
-                        <feGaussianBlur stdDeviation="7" result="blur" />
-                        <feColorMatrix
-                          in="blur"
-                          type="matrix"
-                          values="0 0 0 0 0.13 0 0 0 0 0.83 0 0 0 0 0.93 0 0 0 0.85 0"
-                        />
-                        <feMerge>
-                          <feMergeNode />
-                          <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                      </filter>
-                    </defs>
-                    <path
-                      class="pulse-stage__guide"
-                      d="M -180 110 L 900 110"
-                      pathLength="1260"
-                    />
-                    <path
-                      class="pulse-stage__trace"
-                      d="M -180 110 L 268 110 L 300 110 L 312 110 L 324 62 L 340 158 L 356 86 L 372 110 L 404 110 L 900 110"
-                      pathLength="1260"
-                    />
-                  </svg>
-                </div>
-              </figure>
-              <figure class="hero-slide hero-slide--cards" aria-hidden="false">
-                <picture>
-                  <source srcset="./assets/screenshots/04-tasks-kanban.webp" type="image/webp" />
-                  <img
-                    src="./assets/screenshots/04-tasks-kanban.png"
-                    alt="Okto Pulse kanban board with columns Not Started, Started, In Progress, Validation, and On Hold"
-                    class="showcase__img"
-                    width="1680"
-                    height="1000"
-                    loading="eager"
-                    fetchpriority="high"
-                  />
-                </picture>
-              </figure>
-              <figure class="hero-slide hero-slide--analytics" aria-hidden="false">
-                <picture>
-                  <source srcset="./assets/screenshots/08-analytics-overview.webp" type="image/webp" />
-                  <img
-                    src="./assets/screenshots/08-analytics-overview.png"
-                    alt="Okto Pulse analytics dashboard with KPI tiles, validation gates, conversion funnel, and velocity"
-                    class="showcase__img"
-                    width="1680"
-                    height="1000"
-                    loading="eager"
-                  />
-                </picture>
-              </figure>
-              <figure class="hero-slide hero-slide--architecture" aria-hidden="false">
-                <picture>
-                  <source srcset="./assets/screenshots/12-ideation-architecture-expanded.webp" type="image/webp" />
-                  <img
-                    src="./assets/screenshots/12-ideation-architecture-expanded.png"
-                    alt="Okto Pulse ideation modal on the Architecture tab with a component flow diagram"
-                    class="showcase__img"
-                    width="1920"
-                    height="1080"
-                    loading="eager"
-                  />
-                </picture>
-              </figure>
-              <figure class="hero-slide hero-slide--graph" aria-hidden="false">
-                <picture>
-                  <source srcset="./assets/screenshots/11-knowledge-graph.webp" type="image/webp" />
-                  <img
-                    src="./assets/screenshots/11-knowledge-graph.png"
-                    alt="Okto Pulse knowledge graph with hundreds of linked nodes and typed edges"
-                    class="showcase__img"
-                    width="1919"
-                    height="1003"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-              </figure>
+
+            <div class="hero-system__viewport" data-hero-viewport>
+              <canvas class="hero-system__canvas" data-hero-canvas aria-hidden="true"></canvas>
+
+              <div class="hero-system__core" aria-hidden="true">
+                <span>OKTO</span>
+                <strong>PULSE</strong>
+                <small>CONTROL PLANE</small>
+              </div>
+
+              <ol class="hero-system__nodes" aria-label="Delivery lifecycle stages">
+                <li class="hero-system__node hero-system__node--idea is-active">
+                  <button type="button" data-hero-stage="0" aria-pressed="true" aria-controls="heroSystemReadout" aria-label="Idea: intent enters the system">
+                    <span class="hero-system__beacon" aria-hidden="true"><i></i></span>
+                    <span class="hero-system__node-copy"><small>01 · INPUT</small><strong>IDEA</strong></span>
+                  </button>
+                </li>
+                <li class="hero-system__node hero-system__node--sdd">
+                  <button type="button" data-hero-stage="1" aria-pressed="false" aria-controls="heroSystemReadout" aria-label="SDD: specification-driven development writes the contract">
+                    <span class="hero-system__beacon" aria-hidden="true"><i></i></span>
+                    <span class="hero-system__node-copy"><small>02 · SPECIFY</small><strong>SDD</strong></span>
+                  </button>
+                </li>
+                <li class="hero-system__node hero-system__node--sdlc">
+                  <button type="button" data-hero-stage="2" aria-pressed="false" aria-controls="heroSystemReadout" aria-label="SDLC: the software development lifecycle runs the route">
+                    <span class="hero-system__beacon" aria-hidden="true"><i></i></span>
+                    <span class="hero-system__node-copy"><small>03 · EXECUTE</small><strong>SDLC</strong></span>
+                  </button>
+                </li>
+                <li class="hero-system__node hero-system__node--evidence">
+                  <button type="button" data-hero-stage="3" aria-pressed="false" aria-controls="heroSystemReadout" aria-label="Evidence: every gate leaves proof">
+                    <span class="hero-system__beacon" aria-hidden="true"><i></i></span>
+                    <span class="hero-system__node-copy"><small>04 · PROVE</small><strong>EVIDENCE</strong></span>
+                  </button>
+                </li>
+                <li class="hero-system__node hero-system__node--graph">
+                  <button type="button" data-hero-stage="4" aria-pressed="false" aria-controls="heroSystemReadout" aria-label="Knowledge Graph: the graph remembers the trip">
+                    <span class="hero-system__beacon" aria-hidden="true"><i></i></span>
+                    <span class="hero-system__node-copy"><small>05 · MEMORY</small><strong>KNOWLEDGE GRAPH</strong></span>
+                  </button>
+                </li>
+              </ol>
+
+              <div class="hero-system__readout" id="heroSystemReadout">
+                <span class="hero-system__readout-kicker" data-hero-kicker>01 · INTENT</span>
+                <strong data-hero-title>Intent enters the system.</strong>
+                <p data-hero-description>A product idea becomes traceable context.</p>
+                <span class="hero-system__readout-count" data-hero-count aria-hidden="true">01 / 05</span>
+              </div>
+              <p class="sr-only" data-hero-announcer aria-live="polite"></p>
+            </div>
+
+            <div class="hero-system__equation" aria-label="SDD writes the contract. The SDLC runs the route. The graph remembers the trip.">
+              <span><b>SDD</b><small>writes the contract</small></span>
+              <i aria-hidden="true">→</i>
+              <span><b>SDLC</b><small>runs the route</small></span>
+              <i aria-hidden="true">→</i>
+              <span><b>GRAPH</b><small>remembers the trip</small></span>
             </div>
           </div>
         </aside>
@@ -280,7 +251,7 @@
     </section>
 
     <!-- ──────────── ACT 1 · PROBLEM — the signal degrades (pinned scene) ──────────── -->
-    <section id="problem" class="section section--problem act1">
+    <section id="problem" class="section section--problem act1" data-depth-scene="problem" data-depth-title="Noise" data-depth-number="01">
       <div class="act1__track">
         <div class="act1__stage" data-phase="0">
           <canvas class="act1__ekg" aria-hidden="true"></canvas>
@@ -406,14 +377,15 @@
     </section>
 
     <!-- ──────────── ACT 2 · SYSTEM — the signal comes back ──────────── -->
-    <section id="adlc" class="section section--system">
+    <section id="adlc" class="section section--system" data-depth-scene="adlc" data-depth-title="Control plane" data-depth-number="02">
       <div class="resus" aria-hidden="true">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" focusable="false">
           <defs>
             <linearGradient id="resusGradient" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#22d3ee" stop-opacity="0" />
-              <stop offset="40%" stop-color="#22d3ee" />
-              <stop offset="75%" stop-color="#3b82f6" />
+              <stop class="resus__stop--chaos" offset="0%" stop-opacity="0.15" />
+              <stop class="resus__stop--chaos-hot" offset="28%" />
+              <stop offset="54%" stop-color="#22d3ee" />
+              <stop offset="78%" stop-color="#3b82f6" />
               <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.25" />
             </linearGradient>
           </defs>
@@ -457,75 +429,127 @@
           </article>
         </div>
 
-        <figure class="control-plane solution-map" aria-label="Okto Pulse control plane diagram">
-          <svg class="solution-map__links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="pulse-line" x1="0" x2="1" y1="0" y2="0">
-                <stop offset="0%" stop-color="#22d3ee" stop-opacity="0" />
-                <stop offset="48%" stop-color="#22d3ee" stop-opacity="0.92" />
-                <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.24" />
-              </linearGradient>
-            </defs>
-            <path d="M21 30 C32 28 36 41 46 43" />
-            <path d="M22 64 C34 66 36 56 46 53" />
-            <path d="M54 43 C64 39 66 28 78 28" />
-            <path d="M54 53 C66 56 66 70 78 71" />
-          </svg>
-
-          <div class="solution-map__cluster solution-map__cluster--intent">
-            <span class="solution-map__label">Intent</span>
-            <span>Ideas</span>
-            <span>Requirements</span>
-            <span>Architecture</span>
-            <span>Mockups</span>
-          </div>
-
-          <div class="solution-map__hub">
-            <span class="solution-map__mark">Okto Pulse</span>
-            <strong>Control plane</strong>
-            <div class="solution-map__board" aria-hidden="true">
-              <span></span><span></span><span></span>
-              <i></i><i></i><i></i><i></i>
+        <figure class="control-plane control-mesh" data-control-mesh data-active="0" role="group" aria-label="Interactive Okto Pulse control plane">
+          <div class="control-mesh__scene">
+            <div class="control-mesh__hud">
+              <span aria-hidden="true">CONTROL MESH 01</span>
+              <i aria-hidden="true"></i>
+              <span data-control-status aria-hidden="true">01 / INGEST</span>
+              <button class="control-mesh__toggle" type="button" data-control-toggle aria-label="Pause automatic control mesh sequence">Pause</button>
             </div>
-            <div class="solution-map__surfaces">
-              <span>Specs</span>
-              <span>Tasks</span>
-              <span>Validation</span>
-              <span>Analytics</span>
-              <span>Knowledge</span>
-              <span>218 MCP tools</span>
+
+            <div class="control-mesh__orbit" aria-hidden="true"><i></i><i></i></div>
+            <div class="control-mesh__edges" aria-hidden="true">
+              <span data-control-edge="0" style="--edge-angle: -168deg; --edge-length: 37%;"></span>
+              <span data-control-edge="1" style="--edge-angle: -132deg; --edge-length: 24%;"></span>
+              <span data-control-edge="2" style="--edge-angle: -25deg; --edge-length: 31%;"></span>
+              <span data-control-edge="3" style="--edge-angle: 11deg; --edge-length: 36%;"></span>
+              <span data-control-edge="4" style="--edge-angle: 47deg; --edge-length: 25%;"></span>
             </div>
+
+            <div class="control-mesh__hub" aria-hidden="true">
+              <span>Okto Pulse</span>
+              <strong>Control plane</strong>
+              <small data-control-core-state>Intent → context</small>
+              <div class="control-mesh__metrics">
+                <span><b>218</b> MCP tools</span>
+                <span><b>24</b> gates</span>
+              </div>
+            </div>
+
+            <ol class="control-mesh__nodes" aria-label="Control plane stages">
+              <li class="control-mesh__node is-active" style="--node-left: 14%; --node-top: 32%; --node-i: 0;">
+                <button type="button" data-control-stage="0" aria-pressed="true" aria-controls="controlPanel0">
+                  <span class="control-mesh__beacon" aria-hidden="true"><i></i></span>
+                  <span class="control-mesh__node-copy">
+                    <small>01 · INGEST</small>
+                    <strong>Intent</strong>
+                    <em>Ideas → context</em>
+                  </span>
+                </button>
+              </li>
+              <li class="control-mesh__node" style="--node-left: 34%; --node-top: 14%; --node-i: 1;">
+                <button type="button" data-control-stage="1" aria-pressed="false" aria-controls="controlPanel1">
+                  <span class="control-mesh__beacon" aria-hidden="true"><i></i></span>
+                  <span class="control-mesh__node-copy">
+                    <small>02 · GOVERN</small>
+                    <strong>Spec</strong>
+                    <em>Rules → contract</em>
+                  </span>
+                </button>
+              </li>
+              <li class="control-mesh__node" style="--node-left: 78%; --node-top: 23%; --node-i: 2;">
+                <button type="button" data-control-stage="2" aria-pressed="false" aria-controls="controlPanel2">
+                  <span class="control-mesh__beacon" aria-hidden="true"><i></i></span>
+                  <span class="control-mesh__node-copy">
+                    <small>03 · ORCHESTRATE</small>
+                    <strong>Task</strong>
+                    <em>Agents → execution</em>
+                  </span>
+                </button>
+              </li>
+              <li class="control-mesh__node" style="--node-left: 85%; --node-top: 58%; --node-i: 3;">
+                <button type="button" data-control-stage="3" aria-pressed="false" aria-controls="controlPanel3">
+                  <span class="control-mesh__beacon" aria-hidden="true"><i></i></span>
+                  <span class="control-mesh__node-copy">
+                    <small>04 · PROVE</small>
+                    <strong>Evidence</strong>
+                    <em>Delivery → proof</em>
+                  </span>
+                </button>
+              </li>
+              <li class="control-mesh__node" style="--node-left: 67%; --node-top: 78%; --node-i: 4;">
+                <button type="button" data-control-stage="4" aria-pressed="false" aria-controls="controlPanel4">
+                  <span class="control-mesh__beacon" aria-hidden="true"><i></i></span>
+                  <span class="control-mesh__node-copy">
+                    <small>05 · REMEMBER</small>
+                    <strong>Knowledge</strong>
+                    <em>Outcomes → memory</em>
+                  </span>
+                </button>
+              </li>
+            </ol>
           </div>
 
-          <div class="solution-map__cluster solution-map__cluster--agents">
-            <span class="solution-map__label">Agents</span>
-            <span>Claude Code</span>
-            <span>Cursor</span>
-            <span>Cline</span>
-            <span>Codex</span>
+          <div class="control-mesh__readouts">
+            <article class="control-mesh__readout is-active" id="controlPanel0" data-control-panel="0" aria-hidden="false">
+              <span>01 · INGEST</span>
+              <strong>Intent becomes shared context.</strong>
+              <p>Stories, requirements, architecture, and mockups enter one traceable model.</p>
+              <div class="control-mesh__facts"><span>Ideas</span><span>Requirements</span><span>Architecture</span><span>Mockups</span></div>
+            </article>
+            <article class="control-mesh__readout" id="controlPanel1" data-control-panel="1" aria-hidden="true">
+              <span>02 · GOVERN</span>
+              <strong>Rules become executable guardrails.</strong>
+              <p>Specs, constraints, contracts, and 24 gates define done before execution.</p>
+              <div class="control-mesh__facts"><span>Specs</span><span>Constraints</span><span>Contracts</span><span>24 gates</span></div>
+            </article>
+            <article class="control-mesh__readout" id="controlPanel2" data-control-panel="2" aria-hidden="true">
+              <span>03 · ORCHESTRATE</span>
+              <strong>Every agent runs through one bus.</strong>
+              <p>Claude Code, Cursor, Cline, and Codex use the same MCP control surface.</p>
+              <div class="control-mesh__facts"><span>Claude Code</span><span>Cursor</span><span>Cline</span><span>Codex</span><span>218 MCP tools</span></div>
+            </article>
+            <article class="control-mesh__readout" id="controlPanel3" data-control-panel="3" aria-hidden="true">
+              <span>04 · PROVE</span>
+              <strong>Every delivery leaves evidence.</strong>
+              <p>Tests, rules, analytics, and contracts stay tied to the intent they prove.</p>
+              <div class="control-mesh__facts"><span>Tests</span><span>Rules</span><span>Contracts</span><span>Cycle signals</span><span>Analytics</span></div>
+            </article>
+            <article class="control-mesh__readout" id="controlPanel4" data-control-panel="4" aria-hidden="true">
+              <span>05 · REMEMBER</span>
+              <strong>The next cycle starts informed.</strong>
+              <p>Decisions, artifacts, and outcomes enter project memory with provenance intact.</p>
+              <div class="control-mesh__facts"><span>Project memory</span><span>Knowledge Graph</span><span>Outcomes</span><span>Provenance</span></div>
+            </article>
           </div>
-
-          <div class="solution-map__cluster solution-map__cluster--evidence">
-            <span class="solution-map__label">Evidence</span>
-            <span>Tests</span>
-            <span>Rules</span>
-            <span>Contracts</span>
-            <span>Cycle signals</span>
-          </div>
-
-          <div class="solution-map__graph" aria-hidden="true">
-            <span class="solution-map__label">Project memory</span>
-            <svg class="solution-map__graph-links" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <path d="M25 52 L48 34 L79 46 L61 70 L37 80 L25 52 M48 34 L61 70 M37 80 L79 46" />
-            </svg>
-            <i></i><i></i><i></i><i></i><i></i>
-          </div>
+          <p class="sr-only" data-control-announcer aria-live="polite"></p>
         </figure>
       </div>
     </section>
 
     <!-- ──────────── ACT 3 · FLOW — the rail lights up in sequence ──────────── -->
-    <section id="pipeline" class="section section--pipeline">
+    <section id="pipeline" class="section section--pipeline" data-depth-scene="pipeline" data-depth-title="Flow" data-depth-number="03">
       <header class="section__head">
         <span class="section__eyebrow">03 · PIPELINE</span>
         <h2 class="section__title">
@@ -642,7 +666,7 @@
     </section>
 
     <!-- ──────────────────── VALUE ──────────────────── -->
-    <section id="value" class="section section--value">
+    <section id="value" class="section section--value" data-depth-scene="value" data-depth-title="Value" data-depth-number="04">
       <header class="section__head section__head--split">
         <div>
           <span class="section__eyebrow">04 · VALUE</span>
@@ -767,7 +791,7 @@
     </section>
 
     <!-- ──────────────────── EVIDENCE ──────────────────── -->
-    <section id="evidence" class="section section--evidence">
+    <section id="evidence" class="section section--evidence" data-depth-scene="evidence" data-depth-title="Evidence" data-depth-number="05">
       <header class="section__head section__head--split">
         <div>
           <span class="section__eyebrow">05 · EVIDENCE</span>
@@ -789,30 +813,33 @@
           </div>
           <div class="stage-ev__shots" data-active="0">
             <picture data-shot="0">
-              <source srcset="./assets/screenshots/12-ideation-architecture-expanded.webp" type="image/webp" />
-              <img src="./assets/screenshots/12-ideation-architecture-expanded.png" alt="Okto Pulse expanded ideation modal on the Architecture tab with a complex architecture diagram" width="1920" height="1080" loading="lazy" />
+              <source srcset="./assets/screenshots/12-ideation-architecture-expanded.webp?v=20260714-2" type="image/webp" />
+              <img src="./assets/screenshots/12-ideation-architecture-expanded.png?v=20260714-2" alt="Okto Pulse Architecture tab showing the runtime publishing flow for Okto Nexus metrics" width="1920" height="1080" loading="lazy" />
             </picture>
             <picture data-shot="1">
-              <source srcset="./assets/screenshots/13-ideation-mockup-expanded.webp" type="image/webp" />
-              <img src="./assets/screenshots/13-ideation-mockup-expanded.png" alt="Okto Pulse expanded ideation modal on the Mockups tab with a lineage visualization mockup" width="1920" height="1080" loading="lazy" />
+              <source srcset="./assets/screenshots/13-ideation-mockup-expanded.webp?v=20260714-2" type="image/webp" />
+              <img src="./assets/screenshots/13-ideation-mockup-expanded.png?v=20260714-2" alt="Okto Pulse Mockups tab showing a governance policies screen with quotas and denial events" width="1920" height="1080" loading="lazy" />
             </picture>
             <picture data-shot="2">
-              <source srcset="./assets/screenshots/10-analytics-spec-detail.webp" type="image/webp" />
-              <img src="./assets/screenshots/10-analytics-spec-detail.png" alt="Okto Pulse spec detail analytics with acceptance criteria, test scenario status, and task validation" width="1919" height="906" loading="lazy" />
+              <source srcset="./assets/screenshots/10-analytics-spec-detail.webp?v=20260714-3" type="image/webp" />
+              <img src="./assets/screenshots/10-analytics-spec-detail.png?v=20260714-3" alt="Okto Pulse project analytics with completeness, drift, coverage by spec, agent ranking, and traceability tables" width="1920" height="1080" loading="lazy" />
             </picture>
             <picture data-shot="3">
               <source srcset="./assets/screenshots/04-tasks-kanban.webp" type="image/webp" />
               <img src="./assets/screenshots/04-tasks-kanban.png" alt="Okto Pulse kanban board with traceable task cards" width="1680" height="1000" loading="lazy" />
             </picture>
             <picture data-shot="4">
-              <source srcset="./assets/screenshots/09-analytics-coverage.webp" type="image/webp" />
-              <img src="./assets/screenshots/09-analytics-coverage.png" alt="Okto Pulse analytics coverage by spec" width="1919" height="912" loading="lazy" />
+              <source srcset="./assets/screenshots/09-analytics-coverage.webp?v=20260714-2" type="image/webp" />
+              <img src="./assets/screenshots/09-analytics-coverage.png?v=20260714-2" alt="Okto Pulse global analytics dashboard with delivery metrics, validation gates, conversion funnel, and weekly velocity" width="1920" height="1080" loading="lazy" />
             </picture>
             <picture data-shot="5">
-              <source srcset="./assets/screenshots/11-knowledge-graph.webp" type="image/webp" />
-              <img src="./assets/screenshots/11-knowledge-graph.png" alt="Okto Pulse knowledge graph with hundreds of nodes — decisions, criteria, constraints, requirements, entities, API contracts, and test scenarios linked by typed edges" width="1919" height="1003" loading="lazy" />
+              <source srcset="./assets/screenshots/11-knowledge-graph.webp?v=20260714-3" type="image/webp" />
+              <img src="./assets/screenshots/11-knowledge-graph.png?v=20260714-3" alt="Okto Pulse canonical Knowledge Graph with thousands of decisions, criteria, constraints, requirements, entities, API contracts, and test scenarios linked by typed edges" width="1920" height="1080" loading="lazy" />
             </picture>
           </div>
+          <button class="stage-ev__zoom" type="button" data-evidence-zoom aria-haspopup="dialog" aria-controls="shotLightbox" aria-expanded="false" aria-label="Enlarge screenshot: Architecture design">
+            <span>View full size&nbsp; ↗</span>
+          </button>
         </figure>
 
         <div class="stage-ev__copy">
@@ -826,20 +853,20 @@
             <h3>Mock the product surface.</h3>
             <p>Mockups keep interaction behavior, visual structure, and user-facing intent attached to the same workflow that produces specs and tasks.</p>
           </article>
-          <article class="stage-ev__chapter" data-shot="2" data-path="okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Spec detail">
+          <article class="stage-ev__chapter" data-shot="2" data-path="okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Project view">
             <span class="surface-panel__label">Validation evidence</span>
             <h3>Validate what matters.</h3>
-            <p>Spec detail connects acceptance criteria, tests, rules, contracts, drift, and cycle time so done work can be inspected instead of assumed.</p>
+            <p>Project analytics connects completeness, drift, coverage by spec, agent performance, tasks, tests, rules, and contracts so done work can be inspected instead of assumed.</p>
           </article>
           <article class="stage-ev__chapter" data-shot="3" data-path="okto-pulse &nbsp;·&nbsp; Board &nbsp;·&nbsp; Structured execution">
             <span class="surface-panel__label">Structured execution</span>
             <h3>The board is the operating surface.</h3>
             <p>Tasks are not loose cards. They carry ownership, status, priority, spec linkage, validation state, and the provenance needed for humans and agents to work on the same execution surface.</p>
           </article>
-          <article class="stage-ev__chapter" data-shot="4" data-path="okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Coverage">
-            <span class="surface-panel__label">Requirement coverage</span>
+          <article class="stage-ev__chapter" data-shot="4" data-path="okto-pulse &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Global">
+            <span class="surface-panel__label">Delivery analytics</span>
             <h3>Analytics turn delivery into evidence.</h3>
-            <p>Coverage, drift, tests, rules, contracts, and agent contribution stay visible after implementation starts. The system makes the cost of drift explicit instead of invisible.</p>
+            <p>Ideations, specs, tasks, rules, contracts, validation gates, completeness, drift, cycle time, and velocity stay visible after implementation starts. The system makes the cost of drift explicit instead of invisible.</p>
           </article>
           <article class="stage-ev__chapter" data-shot="5" data-path="okto-pulse &nbsp;·&nbsp; Knowledge Graph">
             <span class="surface-panel__label">Operational memory</span>
@@ -851,7 +878,7 @@
     </section>
 
     <!-- ──────────────────── DIFFERENTIATORS ──────────────────── -->
-    <section id="features" class="section section--features">
+    <section id="features" class="section section--features" data-depth-scene="features" data-depth-title="Capabilities" data-depth-number="06">
       <header class="section__head section__head--split">
         <div>
           <span class="section__eyebrow">06 · CAPABILITIES</span>
@@ -937,7 +964,7 @@
     </section>
 
     <!-- ──────────────────── AUDIENCE ──────────────────── -->
-    <section id="agents" class="section section--audience">
+    <section id="agents" class="section section--audience" data-depth-scene="agents" data-depth-title="Teams" data-depth-number="07">
       <header class="section__head">
         <span class="section__eyebrow">07 · AUDIENCE</span>
         <h2 class="section__title">
@@ -966,7 +993,7 @@
     </section>
 
     <!-- ──────────────────── MCP ──────────────────── -->
-    <section id="mcp" class="section section--mcp">
+    <section id="mcp" class="section section--mcp" data-depth-scene="mcp" data-depth-title="MCP" data-depth-number="08">
       <header class="section__head">
         <span class="section__eyebrow">08 · MCP</span>
         <h2 class="section__title">
@@ -1005,7 +1032,7 @@
     </section>
 
     <!-- ──────────────────── INSTALL ──────────────────── -->
-    <section id="install" class="section section--install">
+    <section id="install" class="section section--install" data-depth-scene="install" data-depth-title="Activation" data-depth-number="09">
       <header class="section__head">
         <span class="section__eyebrow">09 · INSTALL</span>
         <h2 class="section__title">Get started in <em>seconds</em>.</h2>
@@ -1097,7 +1124,7 @@
     </section>
 
     <!-- ──────────────────── CLAIMS / CATEGORY ──────────────────── -->
-    <section class="section section--claims">
+    <section id="category" class="section section--claims" data-depth-scene="claims" data-depth-title="Control" data-depth-number="10">
       <header class="section__head section__head--split">
         <div>
           <span class="section__eyebrow">10 · CATEGORY</span>
@@ -1206,6 +1233,19 @@
     </div>
   </div>
 
+  <!-- Active Evidence screenshot preview -->
+  <div class="lightbox" id="shotLightbox" hidden>
+    <button class="lightbox__backdrop" type="button" tabindex="-1" data-lightbox-close aria-label="Close image preview"></button>
+    <figure class="lightbox__frame" role="dialog" aria-modal="true" aria-labelledby="shotLightboxTitle">
+      <div class="lightbox__bar">
+        <figcaption id="shotLightboxTitle">Okto Pulse screenshot</figcaption>
+        <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close image preview">Close</button>
+      </div>
+      <img class="lightbox__image" alt="" />
+    </figure>
+  </div>
+
   <script src="./script.js" defer></script>
+  <script src="./depth-scene.js" defer></script>
 </body>
 </html>
