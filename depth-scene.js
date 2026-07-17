@@ -33,13 +33,14 @@
   const SCENES = {
     hero: { label: "SIGNAL", accent: COLORS.cyan },
     problem: { label: "CONTROL LOSS", accent: COLORS.danger },
-    adlc: { label: "CONTROL PLANE", accent: COLORS.cyan },
+    adlc: { label: "FEATURE TRACE", accent: COLORS.cyan },
     pipeline: { label: "DELIVERY FLOW", accent: COLORS.cyan },
     value: { label: "SYSTEM VALUE", accent: COLORS.blue },
     evidence: { label: "EVIDENCE", accent: COLORS.violet },
+    knowledge: { label: "PROJECT MEMORY", accent: COLORS.violet },
     features: { label: "CAPABILITIES", accent: COLORS.cyan },
-    agents: { label: "HUMAN + AGENT", accent: COLORS.magenta },
-    mcp: { label: "MCP BUS", accent: COLORS.violet },
+    agents: { label: "USE CASES", accent: COLORS.magenta },
+    mcp: { label: "MCP SURFACE", accent: COLORS.violet },
     install: { label: "ACTIVATE", accent: COLORS.cyan },
     claims: { label: "CONTROL", accent: COLORS.magenta },
   };

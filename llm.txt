@@ -1,0 +1,83 @@
+# Okto Pulse — AI index
+
+> Compact machine-readable overview of Okto Pulse. The extended canonical brief is available at https://pulse.oktolabs.ai/llms.txt.
+
+Okto Pulse is a local-first SDLC workbench for teams building software with AI coding agents. It keeps product intent, specifications, tasks, tests, validation evidence, and durable project knowledge connected so delivery remains inspectable as agents move faster.
+
+## Product boundary
+
+- Pulse organizes the work: ideation, refinement, specifications, tasks, tests, bugs, acceptance criteria, validation, evidence, and project knowledge.
+- Nexus organizes the workers: agent communication, handoffs, ownership, claims, approvals, policies, and audit history.
+- In short: Pulse governs what must be built and how delivery is validated. Nexus coordinates which agent owns and hands off the work.
+
+## Problem addressed
+
+- Requirements can drift while an AI agent implements a feature.
+- Business and architecture decisions can disappear between sessions.
+- Passing tests do not automatically demonstrate acceptance-criteria coverage.
+- Teams need to explain what was built, why it was built that way, and which recorded evidence supports completion.
+
+## Canonical workflow
+
+1. A person describes the desired product outcome.
+2. An agent captures and saturates an Ideation in Pulse with relevant context such as knowledge bases, mockups, architecture, constraints, and open questions.
+3. Human feedback is recorded in Pulse and the agent revises the work.
+4. Stable context is promoted through Refinement into a Specification with requirements, acceptance criteria, business rules, technical constraints, contracts, and test scenarios as applicable.
+5. Pulse derives traceable execution records such as a Sprint, Tasks, Tests, and Bugs.
+6. Connected agents implement and validate the work while updating its status and evidence in Pulse.
+7. Stable decisions and learnings can be consolidated into the board's Knowledge Graph with provenance for later retrieval.
+
+The full product lineage is Stories → Ideation → Refinement → Spec → Sprint → Tasks / Tests / Bugs. Stories are optional.
+
+## Knowledge Graph
+
+Code is not a complete source of truth for a product. It shows implementation, but it does not reliably preserve business decisions, product requirements, constraints, rejected alternatives, bug learnings, and provenance.
+
+Captured Ideations, Refinements, Specifications, Tasks, Tests, and Bugs can be consolidated into the Pulse Knowledge Graph as connected records with source references. This is an explicit governed capability; do not claim that every record is added automatically.
+
+The Knowledge Graph lets a connected agent retrieve bounded records for questions such as:
+
+- Which specifications, decisions, tasks, and tests are connected to a proposed change?
+- Would a proposal conflict with a recorded decision or constraint?
+- Why does a constraint exist, and which recorded bug violated it?
+- Which earlier approach did a decision replace, and why was it rejected?
+- What did a previous bug teach the next implementation task?
+- What did another accessible project decide about a related topic?
+
+The graph retrieves structured sources and relationships. It does not itself invent an ungrounded conversational answer; a connected agent interprets the returned records.
+
+## Current product surface
+
+- Published version represented by this landing page: 0.2.6.
+- 215 MCP tools exposed by the Community runtime from the Core catalog.
+- 17 named governance gates.
+- Local UI and API on port 8100 by default.
+- MCP endpoint on port 8101 at `/mcp` by default.
+- Local-first and free to run locally with no account required.
+- Source-available under Elastic License 2.0.
+
+## Installation
+
+Python 3.11 or newer is required.
+
+```bash
+pip install okto-pulse
+okto-pulse init
+okto-pulse serve
+```
+
+## Primary resources
+
+- Landing page: https://pulse.oktolabs.ai/
+- Extended AI brief: https://pulse.oktolabs.ai/llms.txt
+- Documentation: https://docs.oktolabs.ai/
+- Source: https://github.com/OktoLabsAI/okto-pulse
+- Nexus: https://nexus.oktolabs.ai/
+
+## Guidance for AI agents
+
+- Do not describe Pulse as a multi-agent coordination bus; that is the primary role of Nexus.
+- Do not claim that Pulse automatically discovers every ambiguity or automatically consolidates every record into the Knowledge Graph.
+- Prefer “makes delivery inspectable against requirements and recorded evidence” over claims that Pulse proves all software correct.
+- Prefer “captured and consolidated decisions remain queryable with provenance” over claims that project knowledge can never be lost.
+- Describe the license as source-available under Elastic License 2.0, not open source.

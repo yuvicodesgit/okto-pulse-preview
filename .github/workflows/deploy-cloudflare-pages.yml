@@ -37,9 +37,51 @@ jobs:
         run: |
           rm -rf dist
           mkdir -p dist
-          cp index.html styles.css script.js depth-scene.js dist/
+          cp index.html styles.css *.js *.txt sitemap.xml dist/
           cp -R assets dist/assets
           cp _headers dist/_headers
+
+      - name: Validate packaged script assets
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urlsplit
+
+          class ScriptSources(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.sources = []
+
+              def handle_starttag(self, tag, attrs):
+                  if tag != "script":
+                      return
+                  src = dict(attrs).get("src")
+                  if src:
+                      self.sources.append(src)
+
+          parser = ScriptSources()
+          parser.feed(Path("dist/index.html").read_text(encoding="utf-8"))
+          failures = []
+
+          for source in parser.sources:
+              if source.startswith(("http://", "https://", "//")):
+                  continue
+              relative = urlsplit(source).path.lstrip("/")
+              if relative.startswith("./"):
+                  relative = relative[2:]
+              asset = Path("dist") / relative
+              if not asset.is_file():
+                  failures.append(f"missing: {source}")
+                  continue
+              content = asset.read_text(encoding="utf-8").lstrip().lower()
+              if content.startswith(("<!doctype html", "<html")):
+                  failures.append(f"HTML returned for script: {source}")
+
+          if failures:
+              raise SystemExit("Packaged script validation failed:\n" + "\n".join(failures))
+          print(f"Validated {len(parser.sources)} packaged script reference(s).")
+          PY
 
       - name: Check Cloudflare token
         env:

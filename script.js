@@ -30,7 +30,7 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
 })();
 
 (() => {
-  // -- hero: live delivery path through SDD, SDLC, evidence, and memory --
+  // -- hero: live path from request to build, evidence, and memory --------
   const root = document.querySelector("[data-hero-system]");
   const viewport = root?.querySelector("[data-hero-viewport]");
   const canvas = root?.querySelector("[data-hero-canvas]");
@@ -42,34 +42,34 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
 
   const stages = [
     {
-      kicker: "01 · INTENT",
-      label: "Idea",
-      title: "Intent enters the system.",
-      description: "A product idea becomes traceable context.",
+      kicker: "01 · REQUEST",
+      label: "Request",
+      title: "“Let customers sign in with Google.”",
+      description: "The desired outcome enters Pulse before an agent writes code.",
     },
     {
-      kicker: "02 · SPECIFICATION-DRIVEN DEVELOPMENT",
-      label: "SDD",
-      title: "SDD writes the contract.",
-      description: "Specs, architecture, criteria, and constraints align before code.",
+      kicker: "02 · SPECIFICATION",
+      label: "Spec",
+      title: "Ambiguities become decisions.",
+      description: "Account linking, PKCE, session rules, failure states, and criteria become explicit.",
     },
     {
-      kicker: "03 · SOFTWARE DEVELOPMENT LIFE CYCLE",
-      label: "SDLC",
-      title: "The SDLC runs the route.",
-      description: "Humans and agents move through governed delivery stages.",
+      kicker: "03 · BUILD",
+      label: "Build",
+      title: "The agent implements scoped work.",
+      description: "Each task carries its requirements, decisions, architecture, and acceptance criteria into implementation.",
     },
     {
       kicker: "04 · VALIDATION EVIDENCE",
       label: "Evidence",
-      title: "Every gate leaves proof.",
-      description: "Tests, acceptance, drift, and outcomes remain inspectable.",
+      title: "Delivery is checked against intent.",
+      description: "Tests and evidence map back to every criterion; uncovered behavior stays visible.",
     },
     {
-      kicker: "05 · OPERATIONAL MEMORY",
-      label: "Knowledge Graph",
-      title: "The graph remembers the trip.",
-      description: "Decisions, artifacts, and outcomes stay connected for what comes next.",
+      kicker: "05 · PROJECT MEMORY",
+      label: "Knowledge",
+      title: "The next feature starts informed.",
+      description: "OAuth decisions, discarded alternatives, bugs, and outcomes stay connected.",
     },
   ];
 
@@ -1838,11 +1838,12 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
   if (!mesh) return;
 
   const stages = [
-    { status: "01 / INGEST", core: "Intent → context", announcement: "Intent becomes shared context." },
-    { status: "02 / GOVERN", core: "Rules → contract", announcement: "Rules become executable guardrails." },
-    { status: "03 / ORCHESTRATE", core: "Agents → execution", announcement: "Every agent runs through one bus." },
-    { status: "04 / PROVE", core: "Delivery → proof", announcement: "Every delivery leaves evidence." },
-    { status: "05 / REMEMBER", core: "Outcomes → memory", announcement: "The next cycle starts informed." },
+    { status: "01 / REQUEST", core: "Need → shared context", announcement: "The desired outcome becomes explicit." },
+    { status: "02 / CLARIFY", core: "Ambiguity → decisions", announcement: "Ambiguities become decisions." },
+    { status: "03 / SPECIFY", core: "Criteria → agent-ready work", announcement: "Every task carries the work contract." },
+    { status: "04 / BUILD", core: "Tasks → implementation", announcement: "The agent implements against the work contract." },
+    { status: "05 / VERIFY", core: "Tests → evidence", announcement: "Delivery is checked against the original intent." },
+    { status: "06 / REMEMBER", core: "Outcomes → project memory", announcement: "The next feature starts informed." },
   ];
   const buttons = Array.from(mesh.querySelectorAll("[data-control-stage]"));
   const nodes = buttons.map((button) => button.closest(".control-mesh__node"));
@@ -1905,10 +1906,10 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
     demoToggle.setAttribute(
       "aria-label",
       demoComplete
-        ? "Replay automatic control mesh sequence"
+        ? "Replay automatic feature journey"
         : demoStopped
-          ? "Play automatic control mesh sequence"
-          : "Pause automatic control mesh sequence"
+          ? "Play automatic feature journey"
+          : "Pause automatic feature journey"
     );
   };
 

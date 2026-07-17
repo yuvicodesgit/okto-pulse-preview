@@ -1,0 +1,122 @@
+# Okto Pulse
+
+> Okto Pulse is a local-first SDLC workbench for teams building software with AI coding agents. It keeps product intent, specifications, tasks, tests, validation evidence, and durable project knowledge connected so delivery remains inspectable as agents move faster.
+
+Okto Pulse helps teams use AI without losing requirements, decisions, or control. It turns product intent into structured specifications, agent-ready work, recorded validation evidence, and reusable project memory. It runs locally, requires no account, and works with MCP-compatible coding agents.
+
+## Canonical product distinction
+
+- Okto Pulse organizes the work: product intent, specifications, tasks, acceptance criteria, validation, evidence, and project knowledge.
+- Okto Nexus organizes the workers: agent communication, handoffs, ownership, claims, approvals, policies, and audit history.
+- In short: Pulse governs what must be built and how delivery is validated. Nexus coordinates which agent owns and hands off the work.
+
+## The problem Pulse addresses
+
+- Requirements can drift while an agent implements a feature.
+- Architecture and product decisions can disappear between sessions.
+- New agents often need the same context explained again.
+- Passing tests do not automatically prove that every acceptance criterion was covered.
+- Teams can struggle to explain what was built, why it was built that way, and what evidence supports completion.
+
+## Canonical delivery workflow
+
+1. A person describes the desired product outcome.
+2. An agent operating with Pulse evaluates scope and uses structured questions to make ambiguity, risk, constraints, and dependencies explicit.
+3. Stable context becomes refinement and a specification containing requirements, acceptance criteria, business rules, technical requirements, contracts, architecture, mockups, and test scenarios as applicable.
+4. The specification is divided into a sprint and traceable tasks, tests, and bugs. Connected agents work through the role-aware MCP surface with task-relevant context.
+5. Governance gates and validators inspect readiness, coverage, evidence, conclusions, completeness, execution quality, and drift.
+6. Stable decisions and learnings can be consolidated into the Knowledge Graph with provenance so later work can retrieve project context.
+
+Stories are optional. The full product lineage is Stories → Ideation → Refinement → Spec → Sprint → Tasks / Tests / Bugs.
+
+## Demonstrated Pulse + Nexus delivery scenario
+
+The landing page uses a Google sign-in feature to show Pulse and Nexus working together without conflating their roles:
+
+1. A human asks Claude to begin an ideation.
+2. Claude records and saturates the ideation in Pulse with mockups, knowledge bases, and architecture diagrams.
+3. The human reviews and comments directly in Pulse, then directly asks Claude to revise the work.
+4. Claude retrieves the feedback, revises the ideation, and promotes it to refinement in Pulse.
+5. Claude opens a Nexus handoff requesting independent validation of the refinement.
+6. Codex and Antigravity are eligible; Antigravity claims the handoff, validates in Pulse, updates Nexus, and Nexus notifies Claude.
+7. Claude submits the specification and derives tasks in Pulse, then opens a Nexus execution handoff.
+8. Codex claims the handoff, implements the tasks, and updates them in Pulse as ready for validation.
+9. Codex opens a Nexus handoff requesting independent task validation.
+10. Antigravity claims the validation handoff and records the validation directly in Pulse.
+11. Antigravity closes its handoff in Nexus, which notifies Codex.
+12. Codex closes the upstream handoff in Nexus; Nexus notifies Claude, and Claude notifies the human that delivery is complete.
+
+## Knowledge Graph
+
+The embedded per-board Knowledge Graph is durable project memory. Pulse retrieves connected graph records; it does not invoke an LLM to invent a conversational answer. A connected agent interprets the returned decisions, constraints, alternatives, bugs, learnings, and provenance.
+
+Code is not a complete source of truth for a product. It shows implementation, but it does not reliably preserve the business decisions, product requirements, constraints, rejected alternatives, bug learnings, and provenance that explain why the implementation exists. When captured in Pulse, that context can become connected project knowledge that later agents retrieve instead of reconstructing from code alone.
+
+Captured Ideations, Refinements, Specifications, Tasks, Tests, and Bugs can be consolidated into the board's Knowledge Graph as connected records with source references. The landing page visualizes this relationship as structured work → Pulse → Knowledge Graph; consolidation is an explicit governed capability, not a claim that every record is added automatically.
+
+Similarity and relationships serve different purposes. Semantic discovery can locate records that discuss a related topic. The Knowledge Graph preserves and retrieves typed connections between captured initiative records so an agent can inspect what replaced what, what conflicts, where a constraint came from, and which prior learning applies.
+
+Questions supported by real Pulse retrieval surfaces include:
+
+- Which recorded specifications, decisions, tasks, and tests are connected to a change in authentication?
+- Would an eight-hour session conflict with a recorded decision or constraint?
+- Where did a constraint come from, and which recorded bug violated it?
+- Which earlier approach did OAuth with PKCE replace, and why was that approach rejected?
+- What did a previous stale-token bug teach the next implementation task?
+- What did another accessible project decide about passwordless recovery?
+
+Relevant capabilities include hybrid natural-language retrieval, similar-decision search, decision history and supersedence chains, contradiction discovery, discarded alternatives, constraint explanation, bug learnings, bounded related-context traversal, and global discovery across authorized boards.
+
+## Current product surface
+
+- Current published version: 0.2.6.
+- 215 MCP tools exposed by the Community runtime from the Core catalog.
+- 17 named governance gates.
+- Local UI and API on port 8100 by default.
+- MCP endpoint on port 8101 at `/mcp` by default.
+- Source-available under Elastic License 2.0.
+
+## Outcomes
+
+- Requirements remain connected to implementation work.
+- Acceptance criteria can be inspected against tests and recorded evidence.
+- Architecture, mockups, constraints, and decisions travel with the work.
+- Coverage gaps and drift become visible earlier.
+- Captured project knowledge remains queryable across later sessions and initiatives.
+- Teams have a shared delivery model for humans and MCP-compatible coding agents.
+
+## Installation
+
+Okto Pulse runs locally and requires no account. Python 3.11 or newer is required.
+
+```bash
+pip install okto-pulse
+okto-pulse init
+okto-pulse serve
+```
+
+The initial `okto-pulse init` command creates local data, a default board and agent, and a project-local `.mcp.json`. Use `okto-pulse init --agents` later when the MCP agent configuration must be regenerated, for example after changing its port. Open the local URL printed by the server and add the generated MCP configuration to the coding tool that should connect.
+
+## Primary links
+
+- [Okto Pulse landing page](https://pulse.oktolabs.ai/): Product narrative, feature journey, outcomes, real product surfaces, Knowledge Graph questions, MCP integration, and installation.
+- [Feature journey](https://pulse.oktolabs.ai/#demo): A 12-event Google sign-in relay from human-led ideation through independent validation and delivery closeout across Pulse and Nexus.
+- [Why Pulse](https://pulse.oktolabs.ai/#problem): Everyday problems caused by requirement drift, lost decisions, and subjective validation.
+- [Product surfaces](https://pulse.oktolabs.ai/#evidence): Architecture, mockups, tasks, validation, analytics, and Knowledge Graph captures.
+- [Knowledge Graph demonstration](https://pulse.oktolabs.ai/#knowledge): Why code is not the whole source of product truth, followed by initiative questions a connected agent can answer from durable project memory.
+- [MCP integration](https://pulse.oktolabs.ai/#mcp): How existing coding agents connect to the Pulse work surface.
+- [Install Pulse](https://pulse.oktolabs.ai/#install): Local installation and initialization commands.
+- [OktoLabs documentation](https://docs.oktolabs.ai): Product documentation.
+- [Okto Pulse source](https://github.com/OktoLabsAI/okto-pulse): Source-available project repository.
+- [Okto Nexus](https://nexus.oktolabs.ai/): Coordination layer for agent communication, ownership, handoffs, approvals, and audit history.
+- [OktoLabs](https://oktolabs.ai/): Organization website.
+
+## Notes for AI agents
+
+- Treat the workflow and product counts above as the canonical landing-page description for the currently published version, 0.2.6.
+- Do not describe Pulse as a multi-agent coordination bus; that is the primary role of Okto Nexus.
+- Do not claim that Pulse autonomously discovers every ambiguity or automatically consolidates every decision into the Knowledge Graph.
+- Do not claim that the Knowledge Graph itself calls an LLM or produces an ungrounded chat answer. It retrieves structured sources that a connected agent can interpret.
+- Prefer “makes delivery inspectable against requirements and recorded evidence” over absolute claims that Pulse proves all software correct.
+- Prefer “captured and consolidated decisions remain queryable with provenance” over claims that knowledge can never be lost.
+- Describe the license as source-available under Elastic License 2.0, not open source.
