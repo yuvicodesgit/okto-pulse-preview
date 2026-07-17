@@ -35,7 +35,7 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="./styles.css?v=20260717-kg8" />
+  <link rel="stylesheet" href="./styles.css?v=20260717-what6" />
 
   <!-- Google Analytics 4 stub — real loader fires only after consent (see script.js) -->
   <script>
@@ -137,8 +137,8 @@
           </p>
 
           <div class="hero__actions">
-            <a class="btn btn--primary" href="#demo">
-              <span>See one feature move through Pulse</span>
+            <a class="btn btn--primary" href="#what-is-pulse">
+              <span>See what Pulse does</span>
               <span class="btn__arrow" aria-hidden="true">→</span>
             </a>
             <a class="btn btn--quiet" href="#install">
@@ -228,27 +228,6 @@
       <span class="crosshair crosshair--bl" aria-hidden="true"></span>
       <span class="crosshair crosshair--br" aria-hidden="true"></span>
     </section>
-
-    <aside class="product-bridge" aria-labelledby="product-bridge-title">
-      <div class="product-bridge__inner">
-        <div class="product-bridge__statement">
-          <span class="product-bridge__eyebrow">Two layers. Different jobs.</span>
-          <h2 id="product-bridge-title"><strong>Pulse organizes the work.</strong> Nexus organizes the workers.</h2>
-        </div>
-        <div class="product-bridge__products">
-          <article class="product-bridge__product product-bridge__product--pulse">
-            <span>Okto Pulse</span>
-            <p>Defines what must be built through specifications, tasks, acceptance criteria, validation, and project knowledge.</p>
-          </article>
-          <i aria-hidden="true">→</i>
-          <article class="product-bridge__product product-bridge__product--nexus">
-            <span>Okto Nexus</span>
-            <p>Coordinates who does the work through shared context, ownership, handoffs, approvals, and audit history.</p>
-          </article>
-        </div>
-        <p class="product-bridge__note">Use Pulse to structure and verify delivery. Add Nexus when several agents and tools need to collaborate.</p>
-      </div>
-    </aside>
 
     <!-- ──────────── ACT 1 · PROBLEM — the signal degrades (pinned scene) ──────────── -->
     <section id="problem" class="section section--problem act1" data-depth-scene="problem" data-depth-title="Noise" data-depth-number="01">
@@ -376,25 +355,94 @@
       </div>
     </section>
 
-    <!-- ──────────── ACT 2 · SYSTEM — the signal comes back ──────────── -->
-    <section class="section section--system" data-depth-scene="adlc" data-depth-title="Feature journey" data-depth-number="02">
-      <div class="resus" aria-hidden="true">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" focusable="false">
-          <defs>
-            <linearGradient id="resusGradient" x1="0" y1="0" x2="1" y2="0">
-              <stop class="resus__stop--chaos" offset="0%" stop-opacity="0.15" />
-              <stop class="resus__stop--chaos-hot" offset="28%" />
-              <stop offset="54%" stop-color="#22d3ee" />
-              <stop offset="78%" stop-color="#3b82f6" />
-              <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.25" />
-            </linearGradient>
-          </defs>
-          <path class="resus__flat" d="M0 60 L1200 60" pathLength="100" />
-          <path class="resus__spike" d="M0 60 L470 60 L520 60 L548 14 L578 104 L606 38 L630 60 L1200 60" pathLength="100" />
-        </svg>
+    <!-- One pulse separates the problem from the solution. -->
+    <div class="resus resus--divider" aria-hidden="true">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" focusable="false">
+        <defs>
+          <linearGradient id="resusGradient" x1="0" y1="0" x2="1" y2="0">
+            <stop class="resus__stop--chaos" offset="0%" stop-opacity="0.15" />
+            <stop class="resus__stop--chaos-hot" offset="28%" />
+            <stop offset="54%" stop-color="#22d3ee" />
+            <stop offset="78%" stop-color="#3b82f6" />
+            <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.25" />
+          </linearGradient>
+        </defs>
+        <path class="resus__flat" d="M0 60 L1200 60" pathLength="100" />
+        <path class="resus__spike" d="M0 60 L470 60 L520 60 L548 14 L578 104 L606 38 L630 60 L1200 60" pathLength="100" />
+      </svg>
+    </div>
+
+    <!-- ──────────── ACT 2 · DEFINITION — what Pulse actually is ──────────── -->
+    <section id="what-is-pulse" class="section section--definition" aria-labelledby="what-is-pulse-title" data-depth-scene="definition" data-depth-title="What Pulse is" data-depth-number="02">
+      <div class="pulse-definition">
+        <div class="pulse-definition__intro">
+          <header class="section__head">
+            <span class="section__eyebrow">02 · WHAT PULSE IS</span>
+            <h2 id="what-is-pulse-title" class="section__title">
+              What is Pulse and <em>how it can solve this problem.</em>
+            </h2>
+          </header>
+
+          <div class="pulse-definition__plain">
+            <span>PLAIN DEFINITION</span>
+            <p>
+              Okto Pulse gives humans and AI agents one structured place to apply Spec-Driven Development
+              (SDD) and Test-Driven Development (TDD): turning product intent into executable work, keeping
+              requirements and decisions connected, and validating delivery against tests and recorded evidence.
+            </p>
+          </div>
+        </div>
+
+        <ol class="pulse-definition__capabilities" aria-label="What Okto Pulse does">
+          <li>
+            <span>01 · BEFORE CODE</span>
+            <strong>Structure the work</strong>
+            <p>Turn ideation and refinement into specifications, acceptance criteria, architecture, and agent-ready tasks.</p>
+          </li>
+          <li>
+            <span>02 · DURING DELIVERY</span>
+            <strong>Keep delivery connected</strong>
+            <p>Link requirements, decisions, tasks, tests, bugs, and evidence so project context survives across sessions.</p>
+          </li>
+          <li>
+            <span>03 · AFTER DELIVERY</span>
+            <strong>Make “done” inspectable</strong>
+            <p>Record validation against the work contract so teams can see what was covered and what still needs attention.</p>
+          </li>
+          <li>
+            <span>04 · AGENT CONNECTION</span>
+            <strong>Connect through MCP</strong>
+            <p>Pulse exposes a local MCP endpoint so compatible agents can retrieve context and update delivery records from the tools they already use.</p>
+          </li>
+        </ol>
+
       </div>
+    </section>
+
+    <aside class="product-bridge" aria-labelledby="product-bridge-title">
+      <div class="product-bridge__inner">
+        <div class="product-bridge__statement">
+          <span class="product-bridge__eyebrow">Two layers. Different jobs.</span>
+          <h2 id="product-bridge-title"><strong>Pulse organizes the work.</strong> Nexus organizes the workers.</h2>
+        </div>
+        <div class="product-bridge__products">
+          <article class="product-bridge__product product-bridge__product--pulse">
+            <span>Okto Pulse</span>
+            <p>Defines what must be built through specifications, tasks, acceptance criteria, validation, and project knowledge.</p>
+          </article>
+          <i aria-hidden="true">→</i>
+          <article class="product-bridge__product product-bridge__product--nexus">
+            <span>Okto Nexus</span>
+            <p>Coordinates who does the work through shared context, ownership, handoffs, approvals, and audit history.</p>
+          </article>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ──────────── ACT 3 · SYSTEM — how the work moves ──────────── -->
+    <section class="section section--system" data-depth-scene="adlc" data-depth-title="How it works" data-depth-number="03">
       <header class="section__head">
-        <span class="section__eyebrow">02 · FEATURE JOURNEY</span>
+        <span class="section__eyebrow">03 · HOW IT WORKS</span>
         <h2 class="section__title">
           Watch one feature move from ideation <br />
           <em>to independently validated delivery.</em>
@@ -545,10 +593,10 @@
     </section>
 
     <!-- ──────────── ACT 3 · KNOWLEDGE — context that code cannot preserve alone ──────────── -->
-    <section id="knowledge" class="section section--knowledge-demo" data-depth-scene="knowledge" data-depth-title="Product knowledge" data-depth-number="03">
+    <section id="knowledge" class="section section--knowledge-demo" data-depth-scene="knowledge" data-depth-title="Product knowledge" data-depth-number="04">
       <header class="section__head section__head--split">
         <div>
-          <span class="section__eyebrow">03 · PRODUCT KNOWLEDGE</span>
+          <span class="section__eyebrow">04 · PRODUCT KNOWLEDGE</span>
           <h2 class="section__title">Your code cannot be <em>the whole source of truth.</em></h2>
         </div>
         <p class="section__lede section__lede--right">
@@ -766,13 +814,50 @@
           <p class="sr-only" data-kg-announcer aria-live="polite"></p>
         </div>
       </div>
-      <p class="kg-demo__note">Illustrative initiative data. Pulse retrieves bounded, connected records with provenance. The Knowledge Graph does not invent an answer; a connected agent interprets the returned sources.</p>
+      <aside class="kg-demo__note" aria-label="How to interpret the Knowledge Graph demonstration">
+        <span>HOW TO READ THIS DEMO</span>
+        <p><strong>Illustrative initiative data.</strong> Pulse retrieves bounded, connected records with provenance. The Knowledge Graph does not invent an answer; a connected agent interprets the returned sources.</p>
+      </aside>
     </section>
 
-    <!-- ──────────── ACT 4 · FLOW — the operating model stays legible ──────────── -->
-    <section id="pipeline" class="section section--pipeline" data-depth-scene="pipeline" data-depth-title="Flow" data-depth-number="04">
+    <!-- ──────────────────── WHERE PULSE FITS ──────────────────── -->
+    <section id="agents" class="section section--audience" data-depth-scene="agents" data-depth-title="Use cases" data-depth-number="05">
       <header class="section__head">
-        <span class="section__eyebrow">04 · DELIVERY MODEL</span>
+        <span class="section__eyebrow">05 · WHERE PULSE FITS</span>
+        <h2 class="section__title">
+          <span class="title-line title-line--keep">Use Pulse where the work is complex</span>
+          <em class="title-line">without losing the thread.</em>
+        </h2>
+      </header>
+
+      <div class="audience audience--situations">
+        <article class="audience-card">
+          <span class="audience-card__label">Legacy evolution</span>
+          <h3>Change old systems without losing the decisions that keep them stable.</h3>
+          <p>Attach constraints, architecture, and regression evidence to each AI-assisted change.</p>
+        </article>
+        <article class="audience-card audience-card--lead">
+          <span class="audience-card__label">Long-running builds</span>
+          <h3>Keep one product coherent across many agent sessions.</h3>
+          <p>Requirements and project memory survive the prompt, the session, and the individual agent.</p>
+        </article>
+        <article class="audience-card">
+          <span class="audience-card__label">Evidence-critical delivery</span>
+          <h3>Trace requirements through tasks, tests, and recorded evidence.</h3>
+          <p>Make coverage and drift inspectable before the team accepts a feature as complete.</p>
+        </article>
+        <article class="audience-card">
+          <span class="audience-card__label">Scaling AI adoption</span>
+          <h3>Give more agents a shared work model without giving up governance.</h3>
+          <p>Use role-aware tools and named gates as AI moves from experiment to delivery practice.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ──────────── ACT 6 · FLOW — the operating model stays legible ──────────── -->
+    <section id="pipeline" class="section section--pipeline" data-depth-scene="pipeline" data-depth-title="Flow" data-depth-number="06">
+      <header class="section__head">
+        <span class="section__eyebrow">06 · DELIVERY MODEL</span>
         <h2 class="section__title">
           One feature. Six phases. <br />
           <em>Twelve traceable events.</em>
@@ -887,10 +972,10 @@
     </section>
 
     <!-- ──────────────────── VALUE ──────────────────── -->
-    <section id="value" class="section section--value" data-depth-scene="value" data-depth-title="Value" data-depth-number="05">
+    <section id="value" class="section section--value" data-depth-scene="value" data-depth-title="Value" data-depth-number="07">
       <header class="section__head section__head--split">
         <div>
-          <span class="section__eyebrow">05 · VALUE</span>
+          <span class="section__eyebrow">07 · VALUE</span>
           <h2 class="section__title">
             What changes when the work <br />
             <em>stays connected.</em>
@@ -1012,10 +1097,10 @@
     </section>
 
     <!-- ──────────────────── EVIDENCE ──────────────────── -->
-    <section id="evidence" class="section section--evidence" data-depth-scene="evidence" data-depth-title="Evidence" data-depth-number="06">
+    <section id="evidence" class="section section--evidence" data-depth-scene="evidence" data-depth-title="Evidence" data-depth-number="08">
       <header class="section__head section__head--split">
         <div>
-          <span class="section__eyebrow">06 · EVIDENCE</span>
+          <span class="section__eyebrow">08 · EVIDENCE</span>
           <h2 class="section__title">
             The delivery model is visible <em>in the work itself.</em>
           </h2>
@@ -1100,10 +1185,10 @@
     </section>
 
     <!-- ──────────────────── DIFFERENTIATORS ──────────────────── -->
-    <section id="features" class="section section--features" data-depth-scene="features" data-depth-title="Capabilities" data-depth-number="07">
+    <section id="features" class="section section--features" data-depth-scene="features" data-depth-title="Capabilities" data-depth-number="09">
       <header class="section__head section__head--split">
         <div>
-          <span class="section__eyebrow">07 · CAPABILITIES</span>
+          <span class="section__eyebrow">09 · CAPABILITIES</span>
           <h2 class="section__title">Built for how AI <em>actually works.</em></h2>
         </div>
         <p class="section__lede section__lede--right">
@@ -1185,44 +1270,10 @@
       </div>
     </section>
 
-    <!-- ──────────────────── AUDIENCE ──────────────────── -->
-    <section id="agents" class="section section--audience" data-depth-scene="agents" data-depth-title="Use cases" data-depth-number="08">
-      <header class="section__head">
-        <span class="section__eyebrow">08 · WHERE PULSE FITS</span>
-        <h2 class="section__title">
-          <span class="title-line title-line--keep">Use AI where the work is complex</span>
-          <em class="title-line">without losing the thread.</em>
-        </h2>
-      </header>
-
-      <div class="audience audience--situations">
-        <article class="audience-card">
-          <span class="audience-card__label">Legacy evolution</span>
-          <h3>Change old systems without losing the decisions that keep them stable.</h3>
-          <p>Attach constraints, architecture, and regression evidence to each AI-assisted change.</p>
-        </article>
-        <article class="audience-card audience-card--lead">
-          <span class="audience-card__label">Long-running builds</span>
-          <h3>Keep one product coherent across many agent sessions.</h3>
-          <p>Requirements and project memory survive the prompt, the session, and the individual agent.</p>
-        </article>
-        <article class="audience-card">
-          <span class="audience-card__label">Evidence-critical delivery</span>
-          <h3>Trace requirements through tasks, tests, and recorded evidence.</h3>
-          <p>Make coverage and drift inspectable before the team accepts a feature as complete.</p>
-        </article>
-        <article class="audience-card">
-          <span class="audience-card__label">Scaling AI adoption</span>
-          <h3>Give more agents a shared work model without giving up governance.</h3>
-          <p>Use role-aware tools and named gates as AI moves from experiment to delivery practice.</p>
-        </article>
-      </div>
-    </section>
-
     <!-- ──────────────────── MCP ──────────────────── -->
-    <section id="mcp" class="section section--mcp" data-depth-scene="mcp" data-depth-title="MCP" data-depth-number="09">
+    <section id="mcp" class="section section--mcp" data-depth-scene="mcp" data-depth-title="MCP" data-depth-number="10">
       <header class="section__head">
-        <span class="section__eyebrow">09 · MCP</span>
+        <span class="section__eyebrow">10 · MCP</span>
         <h2 class="section__title">
           Works with your existing <br />
           <em>AI development tools</em>.
@@ -1260,9 +1311,9 @@
     </section>
 
     <!-- ──────────────────── INSTALL ──────────────────── -->
-    <section id="install" class="section section--install" data-depth-scene="install" data-depth-title="Activation" data-depth-number="10">
+    <section id="install" class="section section--install" data-depth-scene="install" data-depth-title="Activation" data-depth-number="11">
       <header class="section__head">
-        <span class="section__eyebrow">10 · INSTALL</span>
+        <span class="section__eyebrow">11 · INSTALL</span>
         <h2 class="section__title">Get started in <em>seconds</em>.</h2>
         <p class="section__lede">
           Runs locally with no account required. Install Pulse, initialize the board, and generate
@@ -1352,10 +1403,10 @@
     </section>
 
     <!-- ──────────────────── CLAIMS / CATEGORY ──────────────────── -->
-    <section id="category" class="section section--claims" data-depth-scene="claims" data-depth-title="Control" data-depth-number="11">
+    <section id="category" class="section section--claims" data-depth-scene="claims" data-depth-title="Control" data-depth-number="12">
       <header class="section__head section__head--split">
         <div>
-          <span class="section__eyebrow">11 · START SMALL</span>
+          <span class="section__eyebrow">12 · START SMALL</span>
           <h2 class="section__title">
             AI changed how code is written. <br />
             <em>Okto Pulse changes how software is built.</em>

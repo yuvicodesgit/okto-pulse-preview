@@ -93,9 +93,93 @@ jobs:
           fi
 
       - name: Deploy to Cloudflare Pages
+        id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy ./dist --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }} --branch=${{ env.DEPLOY_BRANCH }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate deployed script assets
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          python - <<'PY'
+          import os
+          import time
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin, urlsplit
+          from urllib.request import Request, urlopen
+
+          class ScriptSources(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.sources = []
+
+              def handle_starttag(self, tag, attrs):
+                  if tag != "script":
+                      return
+                  src = dict(attrs).get("src")
+                  if src:
+                      self.sources.append(src)
+
+          base_url = os.environ["DEPLOYMENT_URL"].strip().rstrip("/") + "/"
+          if not base_url.startswith(("https://", "http://")):
+              raise SystemExit("The deploy action did not return a valid deployment URL.")
+
+          def fetch(url):
+              request = Request(
+                  url,
+                  headers={
+                      "Cache-Control": "no-cache",
+                      "User-Agent": "okto-pulse-deploy-validator/1.0",
+                  },
+              )
+              with urlopen(request, timeout=20) as response:
+                  return response.status, response.headers.get("Content-Type", ""), response.read()
+
+          last_error = None
+          validated = False
+          for attempt in range(12):
+              try:
+                  page_status, _, page_body = fetch(base_url)
+                  if page_status != 200:
+                      raise RuntimeError(f"landing page returned HTTP {page_status}")
+
+                  parser = ScriptSources()
+                  parser.feed(page_body.decode("utf-8"))
+                  local_sources = [
+                      source for source in parser.sources
+                      if not source.startswith(("http://", "https://", "//"))
+                  ]
+                  if not local_sources:
+                      raise RuntimeError("the deployed page has no local script references")
+
+                  failures = []
+                  for source in local_sources:
+                      script_url = urljoin(base_url, source)
+                      status, content_type, body = fetch(script_url)
+                      prefix = body.decode("utf-8", errors="replace").lstrip("\ufeff \t\r\n").lower()
+                      if status != 200:
+                          failures.append(f"{source}: HTTP {status}")
+                      if "javascript" not in content_type.lower():
+                          failures.append(f"{source}: unexpected Content-Type {content_type!r}")
+                      if prefix.startswith(("<!doctype html", "<html")):
+                          failures.append(f"{source}: received HTML instead of JavaScript")
+
+                  if failures:
+                      raise RuntimeError("; ".join(failures))
+
+                  print(f"Validated {len(local_sources)} deployed script reference(s) at {base_url}")
+                  validated = True
+                  break
+              except Exception as error:
+                  last_error = error
+                  if attempt == 11:
+                      break
+                  time.sleep(5)
+
+          if not validated:
+              raise SystemExit(f"Deployed script validation failed: {last_error}")
+          PY
