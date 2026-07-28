@@ -1,0 +1,3 @@
+/robots.txt https://oktolabs.ai/robots.txt 301
+/sitemap.xml https://oktolabs.ai/sitemap-index.xml 301
+/* https://oktolabs.ai/platform/pulse/:splat 301

@@ -1,6 +1,6 @@
 # Okto Pulse — AI index
 
-> Compact machine-readable overview of Okto Pulse. The extended canonical brief is available at https://pulse.oktolabs.ai/llms.txt.
+> Compact machine-readable overview of Okto Pulse. The extended canonical brief is available at https://oktolabs.ai/platform/pulse/llms.txt.
 
 Okto Pulse is a local-first SDLC workbench for teams building software with AI coding agents. It keeps product intent, specifications, tasks, tests, validation evidence, and durable project knowledge connected so delivery remains inspectable as agents move faster.
 
@@ -68,11 +68,11 @@ okto-pulse serve
 
 ## Primary resources
 
-- Landing page: https://pulse.oktolabs.ai/
-- Extended AI brief: https://pulse.oktolabs.ai/llms.txt
+- Landing page: https://oktolabs.ai/platform/pulse/
+- Extended AI brief: https://oktolabs.ai/platform/pulse/llms.txt
 - Documentation: https://docs.oktolabs.ai/
 - Source: https://github.com/OktoLabsAI/okto-pulse
-- Nexus: https://nexus.oktolabs.ai/
+- Nexus: https://oktolabs.ai/platform/nexus/
 
 ## Guidance for AI agents
 

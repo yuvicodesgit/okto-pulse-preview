@@ -99,16 +99,16 @@ The initial `okto-pulse init` command creates local data, a default board and ag
 
 ## Primary links
 
-- [Okto Pulse landing page](https://pulse.oktolabs.ai/): Product narrative, feature journey, outcomes, real product surfaces, Knowledge Graph questions, MCP integration, and installation.
-- [Feature journey](https://pulse.oktolabs.ai/#demo): A 12-event Google sign-in relay from human-led ideation through independent validation and delivery closeout across Pulse and Nexus.
-- [Why Pulse](https://pulse.oktolabs.ai/#problem): Everyday problems caused by requirement drift, lost decisions, and subjective validation.
-- [Product surfaces](https://pulse.oktolabs.ai/#evidence): Architecture, mockups, tasks, validation, analytics, and Knowledge Graph captures.
-- [Knowledge Graph demonstration](https://pulse.oktolabs.ai/#knowledge): Why code is not the whole source of product truth, followed by initiative questions a connected agent can answer from durable project memory.
-- [MCP integration](https://pulse.oktolabs.ai/#mcp): How existing coding agents connect to the Pulse work surface.
-- [Install Pulse](https://pulse.oktolabs.ai/#install): Local installation and initialization commands.
+- [Okto Pulse landing page](https://oktolabs.ai/platform/pulse/): Product narrative, feature journey, outcomes, real product surfaces, Knowledge Graph questions, MCP integration, and installation.
+- [Feature journey](https://oktolabs.ai/platform/pulse/#demo): A 12-event Google sign-in relay from human-led ideation through independent validation and delivery closeout across Pulse and Nexus.
+- [Why Pulse](https://oktolabs.ai/platform/pulse/#problem): Everyday problems caused by requirement drift, lost decisions, and subjective validation.
+- [Product surfaces](https://oktolabs.ai/platform/pulse/#evidence): Architecture, mockups, tasks, validation, analytics, and Knowledge Graph captures.
+- [Knowledge Graph demonstration](https://oktolabs.ai/platform/pulse/#knowledge): Why code is not the whole source of product truth, followed by initiative questions a connected agent can answer from durable project memory.
+- [MCP integration](https://oktolabs.ai/platform/pulse/#mcp): How existing coding agents connect to the Pulse work surface.
+- [Install Pulse](https://oktolabs.ai/platform/pulse/#install): Local installation and initialization commands.
 - [OktoLabs documentation](https://docs.oktolabs.ai): Product documentation.
 - [Okto Pulse source](https://github.com/OktoLabsAI/okto-pulse): Source-available project repository.
-- [Okto Nexus](https://nexus.oktolabs.ai/): Coordination layer for agent communication, ownership, handoffs, approvals, and audit history.
+- [Okto Nexus](https://oktolabs.ai/platform/nexus/): Coordination layer for agent communication, ownership, handoffs, approvals, and audit history.
 - [OktoLabs](https://oktolabs.ai/): Organization website.
 
 ## Notes for AI agents

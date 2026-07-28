@@ -37,7 +37,7 @@ jobs:
         run: |
           rm -rf dist
           mkdir -p dist
-          cp index.html styles.css *.js *.txt sitemap.xml dist/
+          cp index.html styles.css *.js *.txt robots.txt sitemap.xml _redirects dist/
           cp -R assets dist/assets
           cp _headers dist/_headers
 
