@@ -76,8 +76,7 @@
      the first fold now, and backdrop-filter sampling a live-animating
      layer on every frame is a real, avoidable scroll-jank cost */
   background: rgb(2, 6, 23);
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 30;
 }
 .board-hamburger {
