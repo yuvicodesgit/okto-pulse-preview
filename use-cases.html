@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Use Cases — Okto Pulse</title>
+  <meta name="description" content="Real Pulse boards, real agents, real evidence. Walkthroughs of how teams use Okto Pulse to govern software built with AI." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://oktolabs.ai/platform/pulse/use-cases.html" />
+  <meta property="og:title" content="Use Cases — Okto Pulse" />
+  <meta property="og:description" content="Real Pulse boards, real agents, real evidence. Walkthroughs of how teams use Okto Pulse to govern software built with AI." />
+  <meta property="og:image" content="https://oktolabs.ai/platform/pulse/assets/social/okto-pulse-share.png" />
+  <meta property="og:image:secure_url" content="https://oktolabs.ai/platform/pulse/assets/social/okto-pulse-share.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Use Cases — Okto Pulse" />
+  <meta name="twitter:description" content="Real Pulse boards, real agents, real evidence — walkthroughs of governed AI delivery." />
+  <meta name="twitter:image" content="https://oktolabs.ai/platform/pulse/assets/social/okto-pulse-share.png" />
+  <meta name="theme-color" content="#070709" />
+
+  <link rel="icon" type="image/svg+xml" href="./assets/logos/pulse-icon.svg" />
+  <link rel="icon" type="image/png" href="./assets/logos/pulse-dark-sq.png" />
+  <link rel="canonical" href="https://oktolabs.ai/platform/pulse/use-cases.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./styles.css?v=20260813-uc11" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Okto Pulse — Use Cases",
+      "url": "https://oktolabs.ai/platform/pulse/use-cases.html",
+      "isPartOf": { "@type": "WebSite", "name": "Okto Pulse", "url": "https://oktolabs.ai/platform/pulse/" },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://oktolabs.ai/platform/pulse/use-case-two-agents-governed-board.html",
+            "name": "Two Agents. One Governed Board."
+          }
+        ]
+      }
+    }
+  </script>
+
+  <script>
+    document.documentElement.classList.replace("no-js", "js");
+  </script>
+</head>
+
+<body class="usecase-page">
+  <!-- Ambient background: subtle dot grid + edge vignette -->
+  <div class="ambient" aria-hidden="true">
+    <canvas id="pulseDepthCanvas" class="pulse-depth-canvas" role="presentation" tabindex="-1"></canvas>
+    <div class="ambient__grid"></div>
+    <div class="ambient__vignette"></div>
+    <div class="ambient__aurora"></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="./index.html#top" aria-label="Okto Pulse home">
+        <img src="./assets/logos/pulse-icon.svg" alt="" class="nav__mark" width="32" height="32" />
+        <span class="nav__wordmark">Okto Pulse</span>
+      </a>
+      <span class="nav__context" aria-hidden="true"></span>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="./index.html#demo">Demo</a>
+        <a href="./index.html#problem">Why Pulse</a>
+        <a href="./index.html#evidence">Product</a>
+        <a href="./index.html#knowledge">Knowledge</a>
+        <a href="./index.html#install">Install</a>
+        <a href="./use-cases.html" class="is-active">Use cases</a>
+        <a href="https://docs.oktolabs.ai" rel="noopener">Docs</a>
+      </nav>
+      <div class="nav__cta">
+        <a class="nav__ext" href="https://oktolabs.ai" rel="noopener">OktoLabs<span class="nav__ext-arrow">&nbsp;&#8599;</span></a>
+        <a class="nav__ext" href="https://oktolabs.ai/contact/" rel="noopener">Contact</a>
+        <a class="nav__ext" href="https://pypi.org/project/okto-pulse/" rel="noopener">PyPI</a>
+        <a class="btn btn--quiet" href="./index.html#install">
+          <span>Install locally</span>
+        </a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <span class="nav__toggle-line" aria-hidden="true"></span>
+          <span class="nav__toggle-line" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <span class="nav__progress" aria-hidden="true"></span>
+  </header>
+
+  <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile" hidden>
+    <div class="mobile-menu__links">
+      <a href="./index.html#demo" style="--i:1">Demo</a>
+      <a href="./index.html#problem" style="--i:2">Why Pulse</a>
+      <a href="./index.html#evidence" style="--i:3">Product</a>
+      <a href="./index.html#knowledge" style="--i:4">Knowledge</a>
+      <a href="./index.html#install" style="--i:5">Install</a>
+      <a href="./use-cases.html" style="--i:6">Use cases</a>
+      <a href="https://docs.oktolabs.ai" rel="noopener" style="--i:7">Docs</a>
+    </div>
+    <div class="mobile-menu__meta" style="--i:8">
+      <a href="https://oktolabs.ai" rel="noopener">OktoLabs&nbsp;&#8599;</a>
+      <a href="https://oktolabs.ai/contact/" rel="noopener">Contact&nbsp;&#8599;</a>
+      <a href="https://pypi.org/project/okto-pulse/" rel="noopener">PyPI&nbsp;&#8599;</a>
+      <a href="https://github.com/OktoLabsAI/okto-pulse" rel="noopener">GitHub&nbsp;&#8599;</a>
+    </div>
+    <a class="btn btn--primary mobile-menu__cta" href="./index.html#install" style="--i:9">
+      <span>Get started</span>
+      <span class="btn__arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
+
+  <main id="top">
+
+    <!-- ───────────────────── INTRO ───────────────────── -->
+    <section class="section" style="padding-bottom: 0;">
+      <div class="section__inner">
+        <header class="section__head">
+          <span class="section__eyebrow">USE CASES</span>
+          <h1 class="section__title" data-kinetic>
+            Pulse in the field. <em>Not a mockup.</em>
+          </h1>
+          <p class="section__lede">
+            Every write-up here is pulled from a real board and real coding agents — not a demo
+            script. What blocked, what a gate refused, and what traced cleanly back to a decision.
+          </p>
+        </header>
+      </div>
+    </section>
+
+    <!-- ───────────────────── CASE GRID ───────────────────── -->
+    <section id="cases" class="section" style="padding-top: clamp(2.5rem, 4vw, 3.5rem);">
+      <div class="section__inner">
+        <div class="audience usecase-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+          <article class="audience-card audience-card--lead usecase-card">
+            <div>
+              <span class="usecase-card__kicker">CASE STUDY · 01</span>
+              <span class="audience-card__label" style="margin-top: 0.6rem; margin-bottom: 1.1rem;">Two Agents. Independent Review.</span>
+            </div>
+            <p>
+              A Builder Agent implements a real feature end to end while a separate Validator Agent independently checks every task. Pulse enforces role separation so builders cannot self-approve, gating delivery on real evidence and acceptance criteria.
+            </p>
+            <div class="pill-row">
+              <span>Multi-agent</span>
+              <span>Reviewer separation</span>
+              <span>Enforced gates</span>
+              <span>Traceability</span>
+            </div>
+            <span class="usecase-card__meta">Board: pulse-brownfield-feature-demo &middot; ID: af285ee4-9a28-4369-bc9a-a7c75c7b</span>
+            <div style="display: flex; align-items: center; gap: 1.2rem; margin-top: 0.4rem;">
+              <a class="usecase-card__cta" href="./use-case-two-agents-governed-board.html">
+                <span>Read the case study</span>
+                <span class="btn__arrow" aria-hidden="true">→</span>
+              </a>
+              <a class="usecase-card__cta" href="./use-case-two-agents-governed-board.html#live-board" style="color: var(--ink-dim);">
+                <span>Explore the real board</span>
+                <span class="btn__arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="audience-card usecase-card usecase-card--ghost">
+            <div>
+              <p>
+                More use cases are on the way. Building something on Pulse worth showing? We&rsquo;d
+                love to feature it.
+              </p>
+              <p style="margin-top: 0.8rem;">
+                <a href="mailto:dev@oktolabs.ai?subject=Okto%20Pulse%20use%20case">Tell us about your build&nbsp;&#8599;</a>
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ──────────────────── CLOSING CTA ──────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <div class="final-cta">
+          <div>
+            <h2 data-kinetic>Build fast. <em>Stay in control.</em></h2>
+            <p>Start locally if you&rsquo;re building. Request a demo if you&rsquo;re scaling.</p>
+          </div>
+          <div class="final-cta__actions">
+            <a class="btn btn--primary btn--large" href="./index.html#install">
+              <span>Start locally</span>
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn--quiet btn--large" href="./index.html#evidence">
+              <span>View product surfaces</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ──────────────────── FOOTER ──────────────────── -->
+  <footer class="foot">
+    <div class="foot__inner">
+      <div class="foot__brand">
+        <img src="./assets/logos/pulse-wordmark.svg" alt="Okto Pulse" class="foot__logo" width="240" height="48" />
+        <p class="foot__tag">Structured work, inspectable delivery, and durable project memory for teams building with AI.</p>
+      </div>
+
+      <div class="foot__cols">
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="./index.html#demo">Feature demo</a></li>
+            <li><a href="./index.html#problem">Why Pulse</a></li>
+            <li><a href="./index.html#evidence">Product surfaces</a></li>
+            <li><a href="./index.html#knowledge">Knowledge Graph</a></li>
+            <li><a href="./use-cases.html">Use cases</a></li>
+            <li><a href="https://oktolabs.ai/platform/nexus/" rel="noopener">Okto Nexus</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Install</h4>
+          <ul>
+            <li><a href="https://pypi.org/project/okto-pulse/" rel="noopener">PyPI</a></li>
+            <li><a href="https://pypi.org/project/okto-pulse-core/" rel="noopener">PyPI (core)</a></li>
+            <li><a href="https://github.com/OktoLabsAI/okto-pulse" rel="noopener">GitHub</a></li>
+            <li><a href="https://docs.oktolabs.ai" rel="noopener">Docs</a></li>
+            <li><a href="https://oktolabs.ai/contact/" rel="noopener">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="https://github.com/OktoLabsAI/okto-pulse/blob/main/LICENSE" rel="noopener">License</a></li>
+            <li><a href="https://github.com/OktoLabsAI/okto-pulse/blob/main/TRADEMARKS.md" rel="noopener">Trademarks</a></li>
+            <li><a href="mailto:dev@oktolabs.ai">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot__rule"></div>
+
+    <div class="foot__base">
+      <a class="foot__labs" href="https://oktolabs.ai" rel="noopener">
+        <img src="./assets/logos/oktolabs-icon.svg" alt="" width="20" height="20" />
+        <span>An <strong>OktoLabs</strong> product</span>
+      </a>
+      <span class="foot__copy">&copy; 2026 OktoLabs &middot; Elastic&nbsp;License&nbsp;2.0</span>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="toTop" class="to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+      <path d="M12 19V6" />
+      <path d="m6 12 6-6 6 6" />
+    </svg>
+  </button>
+
+  <script src="./script.js?v=20260813-uc6" defer></script>
+</body>
+</html>

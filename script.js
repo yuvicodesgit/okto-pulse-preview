@@ -1061,6 +1061,7 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
     ".claims > .claim",
     ".install > .install__step",
     ".mcp__tools > span",
+    ".arch-flow > .flow-node",
   ];
   const singleSelectors = [
     ".section__head",
@@ -1353,6 +1354,7 @@ const PREFERS_REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduc
     ".install__step",
     ".knowledge__node",
     ".highlight",
+    ".flow-node",
   ].join(", ");
 
   document.querySelectorAll(selector).forEach((card) => {

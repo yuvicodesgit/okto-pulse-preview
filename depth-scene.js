@@ -43,6 +43,16 @@
     mcp: { label: "MCP SURFACE", accent: COLORS.violet },
     install: { label: "ACTIVATE", accent: COLORS.cyan },
     claims: { label: "CONTROL", accent: COLORS.magenta },
+
+    // Use-case detail page chapters — "problem" above is intentionally
+    // reused so the same failure-mode section gets the red danger sweep.
+    "case-hero": { label: "TWO AGENTS", accent: COLORS.cyan },
+    "case-architecture": { label: "ARCHITECTURE", accent: COLORS.blue },
+    "case-walkthrough": { label: "WALKTHROUGH", accent: COLORS.cyan },
+    "case-reference": { label: "REFERENCE BUILD", accent: COLORS.blue },
+    "case-quickstart": { label: "ACTIVATE", accent: COLORS.cyan },
+    "case-capabilities": { label: "WHY IT MATTERS", accent: COLORS.violet },
+    "case-board": { label: "LIVE BOARD", accent: COLORS.cyan },
   };
 
   const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
@@ -161,6 +171,7 @@
     focal: 1,
     scrollY: window.scrollY || 0,
     cameraZ: 0,
+    targetZ: 0,
     activeIndex: 0,
     localProgress: 0,
     layoutDirty: true,
@@ -168,6 +179,14 @@
     enabled: true,
   };
   let lastDraw = 0;
+  // Chapters can be much shorter on some pages than the homepage's tall
+  // sections; without easing, a short chapter maps a normal scroll tick to
+  // a large cameraZ jump and the corridor snaps instead of gliding. Chasing
+  // the scroll-derived target with a damped lerp keeps motion fluid on any
+  // page, and the loop self-terminates once it catches up (still no
+  // permanent animation loop).
+  const CAMERA_FOLLOW = 0.22;
+  const CAMERA_SETTLE_EPSILON = 0.0015;
 
   const documentTop = (element) => {
     let top = 0;
@@ -225,8 +244,7 @@
 
     state.activeIndex = activeIndex;
     state.localProgress = localProgress;
-    state.cameraZ = (activeIndex + localProgress) * CHAPTER_DEPTH;
-
+    state.targetZ = (activeIndex + localProgress) * CHAPTER_DEPTH;
   };
 
   const project = (x, y, worldZ) => {
@@ -479,7 +497,13 @@
 
     context.setTransform(1, 0, 0, 1, 0, 0);
     context.clearRect(0, 0, canvas.width, canvas.height);
-    if (!state.enabled) return;
+    if (!state.enabled) {
+      state.cameraZ = state.targetZ;
+      return;
+    }
+
+    const settled = Math.abs(state.targetZ - state.cameraZ) < CAMERA_SETTLE_EPSILON;
+    state.cameraZ = settled ? state.targetZ : state.cameraZ + (state.targetZ - state.cameraZ) * CAMERA_FOLLOW;
 
     context.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
     context.lineCap = "round";
@@ -495,6 +519,10 @@
     drawGraph(look);
     drawPackets(look);
     drawShards(look);
+
+    // Keep chasing the target for a few settle frames after scrolling stops
+    // so the camera glides to rest instead of snapping to its final spot.
+    if (!settled) state.raf = window.requestAnimationFrame(render);
   };
 
   const schedule = () => {

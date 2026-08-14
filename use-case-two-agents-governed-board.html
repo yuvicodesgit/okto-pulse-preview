@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Two Agents. Independent Review. — Okto Pulse Use Case</title>
+  <meta name="description" content="A Builder Agent implements a real feature end to end; a Validator Agent independently checks every task against an approved Spec before it ships, on a real Okto Pulse board." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://oktolabs.ai/platform/pulse/use-case-two-agents-governed-board.html" />
+  <meta property="og:title" content="Two Agents. Independent Review. — Okto Pulse Use Case" />
+  <meta property="og:description" content="A Builder Agent implements a real feature end to end; a Validator Agent independently checks every task against an approved Spec before it ships, on a real Okto Pulse board." />
+  <meta property="og:image" content="https://oktolabs.ai/platform/pulse/assets/social/okto-pulse-share.png" />
+  <meta property="og:image:secure_url" content="https://oktolabs.ai/platform/pulse/assets/social/okto-pulse-share.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Two Agents. Independent Review. — Okto Pulse Use Case" />
+  <meta name="twitter:description" content="A Builder Agent implements a real feature end to end; a Validator Agent independently checks every task against an approved Spec before it ships, on a real Okto Pulse board." />
+  <meta name="twitter:image" content="https://oktolabs.ai/platform/pulse/assets/social/okto-pulse-share.png" />
+  <meta name="theme-color" content="#070709" />
+
+  <link rel="icon" type="image/svg+xml" href="./assets/logos/pulse-icon.svg" />
+  <link rel="icon" type="image/png" href="./assets/logos/pulse-dark-sq.png" />
+  <link rel="canonical" href="https://oktolabs.ai/platform/pulse/use-case-two-agents-governed-board.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./styles.css?v=20260813-uc11" />
+
+  <!-- Live board embed: fonts/tokens copied from the real Okto Pulse app,
+       scoped under .board-embed / .board-modal so they don't leak into the
+       rest of this page's own design system. -->
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./board.css?v=20260813-b4" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Two Agents. Independent Review.",
+      "description": "A Builder Agent implements a real feature end to end; a Validator Agent independently checks every task against an approved Spec before it ships, on a real Okto Pulse board.",
+      "url": "https://oktolabs.ai/platform/pulse/use-case-two-agents-governed-board.html",
+      "publisher": { "@type": "Organization", "name": "OktoLabs", "url": "https://oktolabs.ai" },
+      "isPartOf": { "@type": "WebPage", "name": "Okto Pulse — Use Cases", "url": "https://oktolabs.ai/platform/pulse/use-cases.html" }
+    }
+  </script>
+
+  <script>
+    document.documentElement.classList.replace("no-js", "js");
+  </script>
+</head>
+
+<body class="usecase-page">
+  <!-- Ambient background: subtle dot grid + edge vignette -->
+  <div class="ambient" aria-hidden="true">
+    <canvas id="pulseDepthCanvas" class="pulse-depth-canvas" role="presentation" tabindex="-1"></canvas>
+    <div class="ambient__grid"></div>
+    <div class="ambient__vignette"></div>
+    <div class="ambient__aurora"></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="./index.html#top" aria-label="Okto Pulse home">
+        <img src="./assets/logos/pulse-icon.svg" alt="" class="nav__mark" width="32" height="32" />
+        <span class="nav__wordmark">Okto Pulse</span>
+      </a>
+      <span class="nav__context" aria-hidden="true"></span>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="./index.html#demo">Demo</a>
+        <a href="./index.html#problem">Why Pulse</a>
+        <a href="./index.html#evidence">Product</a>
+        <a href="./index.html#knowledge">Knowledge</a>
+        <a href="./index.html#install">Install</a>
+        <a href="./use-cases.html" class="is-active">Use cases</a>
+        <a href="https://docs.oktolabs.ai" rel="noopener">Docs</a>
+      </nav>
+      <div class="nav__cta">
+        <a class="nav__ext" href="https://oktolabs.ai" rel="noopener">OktoLabs<span class="nav__ext-arrow">&nbsp;&#8599;</span></a>
+        <a class="nav__ext" href="https://oktolabs.ai/contact/" rel="noopener">Contact</a>
+        <a class="nav__ext" href="https://pypi.org/project/okto-pulse/" rel="noopener">PyPI</a>
+        <a class="btn btn--quiet" href="./index.html#install">
+          <span>Install locally</span>
+        </a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <span class="nav__toggle-line" aria-hidden="true"></span>
+          <span class="nav__toggle-line" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <span class="nav__progress" aria-hidden="true"></span>
+  </header>
+
+  <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile" hidden>
+    <div class="mobile-menu__links">
+      <a href="./index.html#demo" style="--i:1">Demo</a>
+      <a href="./index.html#problem" style="--i:2">Why Pulse</a>
+      <a href="./index.html#evidence" style="--i:3">Product</a>
+      <a href="./index.html#knowledge" style="--i:4">Knowledge</a>
+      <a href="./index.html#install" style="--i:5">Install</a>
+      <a href="./use-cases.html" style="--i:6">Use cases</a>
+      <a href="https://docs.oktolabs.ai" rel="noopener" style="--i:7">Docs</a>
+    </div>
+    <div class="mobile-menu__meta" style="--i:8">
+      <a href="https://oktolabs.ai" rel="noopener">OktoLabs&nbsp;&#8599;</a>
+      <a href="https://oktolabs.ai/contact/" rel="noopener">Contact&nbsp;&#8599;</a>
+      <a href="https://pypi.org/project/okto-pulse/" rel="noopener">PyPI&nbsp;&#8599;</a>
+      <a href="https://github.com/OktoLabsAI/okto-pulse" rel="noopener">GitHub&nbsp;&#8599;</a>
+    </div>
+    <a class="btn btn--primary mobile-menu__cta" href="./index.html#install" style="--i:9">
+      <span>Get started</span>
+      <span class="btn__arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
+
+  <main id="top">
+
+    <!-- ───────────────────── HERO ───────────────────── -->
+    <section class="section" style="padding-bottom: clamp(2rem, 4vw, 4rem);" data-depth-scene="case-hero" data-depth-title="Two agents" data-depth-number="00">
+      <div class="section__inner">
+        <a class="breadcrumb" href="./use-cases.html">
+          <span class="breadcrumb__arrow" aria-hidden="true">←</span> All use cases
+        </a>
+
+        <div class="grid--split" style="margin-top: 1.5rem;">
+          <div class="hero__left">
+            <header class="section__head" style="margin-bottom: 1.5rem; max-width: 100%;">
+              <span class="section__eyebrow">USE CASE · PULSE IN PRODUCTION</span>
+              <h1 class="section__title" data-kinetic style="font-size: clamp(2.2rem, 4.2vw, 3.2rem); line-height: 1.1;">
+                Two Agents. <br><em>Independent Review.</em>
+              </h1>
+              <p class="section__lede" style="margin-top: 1rem; max-width: 100%;">
+                Pulse coordinates a spec-driven workflow on a real board, enforcing structural role separation between the agent that builds and the agent that validates every task. Requirements, decisions, and test evidence stay linked end to end &mdash; so months later, &ldquo;why does this work this way&rdquo; still has an actual answer.
+              </p>
+              <span class="usecase-card__meta" style="display: block; margin-top: 1rem;">Board af285ee4-9a28-4369-bc9a-ac5ab7c75c7b &middot; Ideation v6 &middot; Refinement v4 &middot; Spec v20 approved</span>
+            </header>
+
+            <div class="hero__actions" style="margin-top: 1.5rem;">
+              <a class="btn btn--primary" href="#live-board">
+                <span>Explore the real board</span>
+                <span class="btn__arrow" aria-hidden="true">→</span>
+              </a>
+              <a class="btn btn--quiet" href="#walkthrough">
+                <span>See the walkthrough</span>
+              </a>
+              <a class="btn btn--quiet" href="https://github.com/Infrasity-Labs/pulse-brownfield-feature-demo" rel="noopener" target="_blank">
+                <span>View the repo</span>
+                <span class="btn__arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <ul class="hero__stats" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; border-top: 1px solid var(--hair); max-width: 100%;">
+              <li>
+                <span class="stat__value" data-count="6">0</span>
+                <span class="stat__label">Sprint tasks completed</span>
+              </li>
+              <li>
+                <span class="stat__value" data-count="4">0</span>
+                <span class="stat__label">Pipeline stage gates passed</span>
+              </li>
+              <li>
+                <span class="stat__value" data-count="3">0</span>
+                <span class="stat__label">Matching test scenarios verified</span>
+              </li>
+              <li>
+                <span class="stat__value" data-count="0">0</span>
+                <span class="stat__label">Self-approved cards</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="hero__right" style="margin-top: 1rem;">
+            <div class="demo-panel">
+              <div class="mcp__code" style="height: 100%;">
+                <div class="mcp__code-bar">
+                  <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                  <span class="mcp__code-title">pulse-brownfield-feature-demo · live board</span>
+                </div>
+                <div class="mcp__code-body" style="padding: 1.25rem 1.4rem;">
+                  <div class="demo-row" style="margin-bottom: 1rem;">
+                    <span class="demo-row__icon demo-row__icon--pass" aria-hidden="true">✓</span>
+                    <span class="demo-row__text"><strong>Validator</strong> submits an independent validation for a completed task.</span>
+                    <span class="demo-row__tag">okto_pulse_submit_task_validation</span>
+                  </div>
+                  <div class="demo-row" style="margin-bottom: 1rem;">
+                    <span class="demo-row__icon demo-row__icon--block" aria-hidden="true">✕</span>
+                    <span class="demo-row__text"><strong>Builder</strong>&rsquo;s attempt to validate its own card is blocked by role separation.</span>
+                    <span class="demo-row__tag">okto_pulse_move_card</span>
+                  </div>
+                  <div class="demo-row" style="margin-bottom: 1rem;">
+                    <span class="demo-row__icon demo-row__icon--block" aria-hidden="true">!</span>
+                    <span class="demo-row__text">Validation gate blocks a task until verified test evidence is attached.</span>
+                    <span class="demo-row__tag">okto_pulse_get_task_context</span>
+                  </div>
+                  <div class="demo-row">
+                    <span class="demo-row__icon demo-row__icon--pass" aria-hidden="true">✓</span>
+                    <span class="demo-row__text">Traceability report links shipped work back to its Spec requirements.</span>
+                    <span class="demo-row__tag">okto_pulse_get_traceability_report</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────── LIVE BOARD ───────────────────── -->
+    <section id="live-board" class="section" style="padding-top: 0;" data-depth-scene="case-board" data-depth-title="Live board" data-depth-number="01">
+      <div class="section__inner">
+        <header class="section__head">
+          <span class="section__eyebrow">01 · LIVE BOARD</span>
+          <h2 class="section__title">
+            This is the actual board. <em>Not a mockup.</em>
+          </h2>
+          <p class="section__lede">
+            Every ideation, refinement, spec, governance threshold, and activity entry below comes
+            from a real, sanitized export of this board &mdash; nothing here is staged. Read-only,
+            no credentials, no live connection back to the original.
+          </p>
+        </header>
+
+        <div class="board-embed" style="margin-top: 2rem; border: 1px solid var(--hair-strong); border-radius: var(--radius-lg);">
+          <header class="board-topbar">
+            <button class="board-hamburger" id="boardHamburger" aria-label="Toggle sidebar" aria-expanded="false" aria-controls="boardSidebar">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
+            </button>
+            <span class="board-topbar__brand"><img src="./assets/logos/pulse-icon.svg" alt="" /><span>Okto Pulse</span></span>
+            <span class="board-topbar__crumb">/ pulse-brownfield-feature-demo</span>
+          </header>
+          <div class="board-shell">
+            <aside class="board-sidebar" id="boardSidebar"></aside>
+            <main class="board-main">
+              <nav class="board-tabs" id="boardTabs" aria-label="Board sections"></nav>
+              <div id="boardPanel">
+                <div class="board-loading">Loading board snapshot…</div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────── PROBLEM ───────────────────── -->
+    <section id="problem" class="section" data-depth-scene="problem" data-depth-title="Problem" data-depth-number="02">
+      <div class="section__inner">
+        <header class="section__head">
+          <span class="section__eyebrow">02 · PROBLEM</span>
+          <h2 class="section__title">
+            Agentic pipelines are confident. <em>That&rsquo;s the problem.</em>
+          </h2>
+          <p class="section__lede">
+            Three failure modes this workflow is built to close, not just describe.
+          </p>
+        </header>
+
+        <div class="problem__grid grid--3col" style="margin-top: 2.4rem;">
+          <article class="risk-card" style="--risk-i:1">
+            <div class="risk-card__top">
+              <span class="context-icon risk-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M12 7v5l3.5 2" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+            <h3>Status Can Drift From Reality</h3>
+            <p>A card can be marked done, a sprint can close, tests can be marked passed &mdash; while the underlying work was never actually finished. Nothing about a status label guarantees it&rsquo;s true.</p>
+          </article>
+          <article class="risk-card" style="--risk-i:2">
+            <div class="risk-card__top">
+              <span class="context-icon risk-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+            <h3>Self-Review Isn&rsquo;t Review</h3>
+            <p>If the same agent that writes a task is also the one that approves it, &ldquo;approved&rdquo; just means the agent still agrees with itself.</p>
+          </article>
+          <article class="risk-card" style="--risk-i:3">
+            <div class="risk-card__top">
+              <span class="context-icon risk-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M12 3l9 16H3z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M12 10v4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                  <path d="M12 17h.01" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                </svg>
+              </span>
+            </div>
+            <h3>A Rule Nobody Enforces Is a Suggestion</h3>
+            <p>A guideline that only warns doesn&rsquo;t stop bad work from shipping &mdash; it just leaves a note next to it on the way out.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────── ARCHITECTURE ───────────────────── -->
+    <section id="architecture" class="section" data-depth-scene="case-architecture" data-depth-title="Architecture" data-depth-number="03">
+      <div class="section__inner">
+        <header class="section__head">
+          <span class="section__eyebrow">03 · ARCHITECTURE</span>
+          <h2 class="section__title">
+            One board. <em>A strict lineage.</em>
+          </h2>
+          <p class="section__lede">
+            Every stage on this board only opens once the one before it is actually in a state
+            that allows it &mdash; not merely claimed to be.
+          </p>
+        </header>
+
+        <ol class="pipeline" style="margin-top: 2.4rem;">
+          <li class="pipeline__step" style="--step-i:1">
+            <div class="card-meta">
+              <span class="context-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img"><path d="M9 18h6" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" /><path d="M12 3v11" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" /><path d="m8 10 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </div>
+            <div class="pipeline__body">
+              <h3>Ideation → Refinement → Spec</h3>
+              <p>An idea is refined and turned into a spec before any task exists. A spec must reach <strong>approved</strong> before its sprint can open.</p>
+            </div>
+          </li>
+          <li class="pipeline__step" style="--step-i:2">
+            <div class="card-meta">
+              <span class="context-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img"><rect x="4" y="4" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.75" /><path d="M4 10h16" fill="none" stroke="currentColor" stroke-width="1.75" /></svg>
+              </span>
+            </div>
+            <div class="pipeline__body">
+              <h3>Sprint → Tasks</h3>
+              <p>The sprint&rsquo;s tasks and their matching tests open once the work they depend on is actually ready, not just scheduled.</p>
+            </div>
+          </li>
+          <li class="pipeline__step" style="--step-i:3">
+            <div class="card-meta">
+              <span class="context-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.75" /><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </div>
+            <div class="pipeline__body">
+              <h3>Task lifecycle</h3>
+              <p>Every task moves started → in_progress → validation. The Builder can drive it this far &mdash; the preset structurally blocks it from going further.</p>
+            </div>
+          </li>
+          <li class="pipeline__step" style="--step-i:4">
+            <div class="card-meta">
+              <span class="context-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </div>
+            <div class="pipeline__body">
+              <h3>Validator gate</h3>
+              <p>Every submission is checked independently. Approved tasks move to <strong>done</strong>; anything short is sent back with a reason, not silently passed through.</p>
+            </div>
+          </li>
+          <li class="pipeline__step" style="--step-i:5">
+            <div class="card-meta">
+              <span class="context-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </div>
+            <div class="pipeline__body">
+              <h3>Sprint close-out</h3>
+              <p>Only once every task is approved <em>and</em> every test has genuinely passed does the Validator submit a sprint evaluation and close it.</p>
+            </div>
+          </li>
+        </ol>
+
+        <p style="margin-top: 2.4rem; font-size: 0.94rem; color: var(--ink-dim); max-width: 68ch;">
+          Implementation and validation run task by task, not stage by stage: prompt the Builder,
+          then prompt the Validator, and don&rsquo;t start a task&rsquo;s dependents until it&rsquo;s
+          actually approved. If a submission comes back with changes requested, the Builder fixes
+          it and resubmits &mdash; the task doesn&rsquo;t move forward until it&rsquo;s genuinely cleared.
+        </p>
+
+        <h3 style="margin-top: 3.2rem; font-size: 1rem; color: var(--ink); text-align: center;">How one task actually moves through the board</h3>
+        <div class="arch-flow arch-flow--loop" aria-label="Diagram: Ideation and Refinement lead to an approved Spec, which opens Sprint and Tasks, which unblocks a Foundation task, which unblocks Task A and Task B running in parallel. That work flows through the Validator gate, then Sprint close-out, ending at Spec marked complete; rejected work is sent back to the Builder.">
+          <div class="flow-node loop-t1">
+            <span class="context-icon flow-node__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><path d="M9 18h6" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" /><path d="M10 21h4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" /><path d="M12 3a6 6 0 0 0-3.5 10.9c.5.4.8 1 .8 1.6h5.4c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </span>
+            <span class="flow-node__tag">Spec Writer</span>
+            <strong>Ideation → Refinement</strong>
+            <p>An idea refined into a concrete shape before any task exists.</p>
+          </div>
+          <div class="arch-hflow loop-ht1" aria-hidden="true"></div>
+          <div class="flow-node flow-node--gate loop-t2">
+            <span class="context-icon flow-node__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </span>
+            <span class="flow-node__tag">Gate</span>
+            <strong>Spec</strong>
+            <p>Must reach <strong style="color: var(--pulse-cyan);">approved</strong> before a sprint opens.</p>
+          </div>
+          <div class="arch-hflow loop-ht2" aria-hidden="true"></div>
+          <div class="flow-node loop-t3">
+            <span class="context-icon flow-node__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><rect x="4" y="4" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.75" /><path d="M4 10h16" fill="none" stroke="currentColor" stroke-width="1.75" /><path d="M10 10v10" fill="none" stroke="currentColor" stroke-width="1.75" /></svg>
+            </span>
+            <strong>Sprint & Tasks</strong>
+            <p>Six tasks, dependency-ordered.</p>
+          </div>
+          <div class="arch-hflow loop-ht3" aria-hidden="true"></div>
+          <div class="flow-node flow-node--builder loop-t4">
+            <span class="context-icon flow-node__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><path d="M12 3v11" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" /><path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /><path d="M4 19h16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" /></svg>
+            </span>
+            <span class="flow-node__tag">Builder</span>
+            <strong>Foundation task</strong>
+            <p>No dependency &mdash; everything else waits on it.</p>
+          </div>
+          <div class="arch-vflow loop-v" aria-hidden="true"></div>
+          <div class="flow-node flow-node--builder loop-b4">
+            <span class="flow-node__badge" aria-hidden="true">B</span>
+            <span class="flow-node__tag">Builder · parallel</span>
+            <strong>Task A &amp; Task B</strong>
+            <p>Both: started → in_progress → validation.</p>
+          </div>
+          <div class="arch-hflow arch-hflow--reverse loop-hb3" aria-hidden="true"></div>
+          <div class="flow-node flow-node--validator loop-b3">
+            <span class="flow-node__badge flow-node__badge--validator" aria-hidden="true">V</span>
+            <span class="flow-node__tag">Validator</span>
+            <strong>Validator gate</strong>
+            <p>Confidence, completeness, drift &mdash; checked independently.</p>
+            <span class="arch-rejected">↺ Falls short → back to Builder</span>
+          </div>
+          <div class="arch-hflow arch-hflow--reverse loop-hb2" aria-hidden="true"></div>
+          <div class="flow-node flow-node--validator loop-b2">
+            <span class="context-icon flow-node__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </span>
+            <span class="flow-node__tag">Validator</span>
+            <strong>Sprint close-out</strong>
+            <p>Only once every task and test has genuinely cleared.</p>
+          </div>
+          <div class="arch-hflow arch-hflow--reverse loop-hb1" aria-hidden="true"></div>
+          <div class="flow-node flow-node--final loop-b1">
+            <span class="context-icon flow-node__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><path d="M12 2l2.6 6.2L21 9l-5 4.4L17.4 21 12 17.6 6.6 21 8 13.4 3 9l6.4-.8z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </span>
+            <strong>Spec marked complete</strong>
+            <p>Never before the sprint above it has closed.</p>
+          </div>
+        </div>
+
+        <div class="grid--split" style="margin-top: 3.2rem; align-items: start;">
+          <div>
+            <h3 style="font-size: 1rem; color: var(--ink); margin-bottom: 0.9rem;">This sprint&rsquo;s task graph</h3>
+            <div class="mcp__code">
+              <div class="mcp__code-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="mcp__code-title">6 tasks · 4 sequential stages</span>
+              </div>
+              <pre class="mcp__code-body"><code><span class="tk-c">Foundation task (no dependency)</span>
+      │
+      ├──▶ <span class="tk-k">Task A</span> ──▶ <span class="tk-p">Test A1</span>
+      │           └──▶ <span class="tk-p">Test A2</span>
+      └──▶ <span class="tk-k">Task B</span> ──▶ <span class="tk-p">Test B</span>
+                           │
+                           ▼
+                  <span class="tk-s">Sprint close-out</span></code></pre>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-size: 1rem; color: var(--ink); margin-bottom: 0.9rem;">Path to completion</h3>
+            <ol style="display: flex; flex-direction: column; gap: 0.75rem; color: var(--ink-dim); font-size: 0.92rem; line-height: 1.55; padding-left: 1.2rem;">
+              <li>All implementation tasks reviewed and approved.</li>
+              <li>All test tasks have their scenarios genuinely passing &mdash; not just executed.</li>
+              <li>The sprint is submitted for evaluation and closed on approval.</li>
+              <li>The specification is marked complete only once all sprint work is closed out.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────── WALKTHROUGH ───────────────────── -->
+    <section id="walkthrough" class="section" data-depth-scene="case-walkthrough" data-depth-title="Walkthrough" data-depth-number="04">
+      <div class="section__inner">
+        <header class="section__head">
+          <span class="section__eyebrow">04 · HOW IT WORKS</span>
+          <h2 class="section__title">
+            Six steps, <em>one shared board.</em>
+          </h2>
+          <p class="section__lede">
+            Every step below is a real captured moment from the pulse-brownfield-feature-demo board
+            &mdash; not a mockup.
+          </p>
+        </header>
+
+        <ol class="pipeline walk-steps" style="margin-top: 2.4rem;">
+          <li class="pipeline__step walk-step">
+            <div class="walk-step__num">STEP<strong>01</strong></div>
+            <div>
+              <h3>Ground it in what already exists</h3>
+              <p>Before drafting the spec, the team reads what the codebase already does and records it as a Pulse Decision &mdash; so both agents start from the same ground truth, not assumption.</p>
+              <span class="walk-step__moment">Decision recorded before the Sprint opens</span>
+            </div>
+          </li>
+          <li class="pipeline__step walk-step">
+            <div class="walk-step__num">STEP<strong>02</strong></div>
+            <div>
+              <h3>Foundation task clears first</h3>
+              <p>Stage 1 (Foundation): the sprint&rsquo;s first task has no dependencies. Everything else on the board waits for it to clear review before starting.</p>
+              <span class="walk-step__moment">okto_pulse_get_task_context</span>
+            </div>
+          </li>
+          <li class="pipeline__step walk-step">
+            <div class="walk-step__num">STEP<strong>03</strong></div>
+            <div>
+              <h3>Independent tasks run in parallel</h3>
+              <p>Stage 2 (Implementation): once the foundation task is done, two independent tasks open at once and move through the same lifecycle &mdash; started → in_progress → validation.</p>
+              <span class="walk-step__moment">okto_pulse_move_card (gate: builder != validator)</span>
+            </div>
+          </li>
+          <li class="pipeline__step walk-step">
+            <div class="walk-step__num">STEP<strong>04</strong></div>
+            <div>
+              <h3>Independent review checks</h3>
+              <p>The Validator loads full spec context &mdash; including Decisions the Builder may not have referenced &mdash; and checks three things: <strong>confidence</strong> (does the Builder&rsquo;s account hold up?), <strong>completeness</strong> (the full requirement, not part of it), and <strong>drift</strong> (does it match the spec). Short on any one, and it goes back with a specific reason, not a generic rejection.</p>
+              <span class="walk-step__moment">okto_pulse_submit_task_validation</span>
+            </div>
+          </li>
+          <li class="pipeline__step walk-step">
+            <div class="walk-step__num">STEP<strong>05</strong></div>
+            <div>
+              <h3>Verify test execution evidence</h3>
+              <p>Stage 3 (Testing): three test tasks, each matched to an implementation task, must actually run their scenario &mdash; recording a result as passed isn&rsquo;t accepted without evidence it executed.</p>
+              <span class="walk-step__moment">okto_pulse_submit_task_validation</span>
+            </div>
+          </li>
+          <li class="pipeline__step walk-step">
+            <div class="walk-step__num">STEP<strong>06</strong></div>
+            <div>
+              <h3>Close-out sprint & spec</h3>
+              <p>Stage 4 (Close-out): with all 6 tasks approved, the Validator submits the sprint evaluation and closes it. The spec is marked complete only after that &mdash; never before.</p>
+              <span class="walk-step__moment">okto_pulse_submit_sprint_evaluation</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ───────────────────── REFERENCE BUILD ───────────────────── -->
+    <section id="reference-build" class="section" data-depth-scene="case-reference" data-depth-title="Reference build" data-depth-number="05">
+      <div class="section__inner">
+        <header class="section__head">
+          <span class="section__eyebrow">05 · REFERENCE BUILD</span>
+          <h2 class="section__title">
+            Two real agents. <em>Separate identities.</em>
+          </h2>
+          <p class="section__lede">
+            Two separate MCP connections, each with its own credentials &mdash; not one identity
+            switching roles &mdash; working the same board end to end.
+          </p>
+        </header>
+
+        <div class="grid--features grid--agents" style="margin-top: 2.4rem;">
+          <article class="feature agent-card">
+            <div class="agent-card__top">
+              <span class="agent-card__badge">
+                <img src="./assets/logos/builder.svg" alt="Builder logo" class="agent-card__logo" />
+              </span>
+              <div>
+                <div class="agent-card__name">Builder</div>
+                <div class="agent-card__role">Executor</div>
+              </div>
+            </div>
+            <ul>
+              <li>Implements each task end to end against the real codebase</li>
+              <li>Submits a completeness estimate and any deviation from spec</li>
+              <li>Moves cards: started → in_progress → validation</li>
+              <li>Cannot submit task validation or self-approve cards</li>
+            </ul>
+          </article>
+          <article class="feature agent-card">
+            <div class="agent-card__top">
+              <span class="agent-card__badge">
+                <img src="./assets/logos/validator.svg" alt="Validator logo" class="agent-card__logo" />
+              </span>
+              <div>
+                <div class="agent-card__name">Validator</div>
+                <div class="agent-card__role">Reviewer</div>
+              </div>
+            </div>
+            <ul>
+              <li>Never implements or modifies code</li>
+              <li>Reviews every submission independently for confidence, completeness, and drift</li>
+              <li>Submits validated test evidence to the board</li>
+              <li>Moves cards: validation → done</li>
+            </ul>
+          </article>
+        </div>
+
+        <p style="margin-top: 2rem; font-size: 0.94rem; color: var(--ink-dim);">
+          Builder runs on the <strong style="color: var(--ink);">Executor</strong> preset and
+          Validator on the <strong style="color: var(--ink);">Validator</strong> preset &mdash;
+          two of Pulse&rsquo;s four board-wide permission presets, enforced structurally, not by
+          instruction either agent could ignore:
+        </p>
+        <div class="pulse-table">
+          <table>
+            <thead>
+              <tr><th>Preset</th><th>Can do</th><th>Cannot do</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Spec Writer</td><td>Owns ideation, refinement, and spec content</td><td>Cannot move a spec past approved</td></tr>
+              <tr class="pulse-table--used"><td>Executor (Builder)</td><td>Implements tasks, moves cards through started → in_progress → validation</td><td>Cannot submit a validation or move a card to done</td></tr>
+              <tr class="pulse-table--used"><td>Validator</td><td>Submits task/spec validation, moves cards validation → done</td><td>Does not implement</td></tr>
+              <tr><td>QA</td><td>Writes test scenarios</td><td>Cannot submit any gate</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────── QUICKSTART ───────────────────── -->
+    <section id="developer" class="section" data-depth-scene="case-quickstart" data-depth-title="Activate" data-depth-number="06">
+      <div class="section__inner">
+        <header class="section__head">
+          <span class="section__eyebrow">06 · QUICKSTART</span>
+          <h2 class="section__title">
+            Install it. <em>Record the first Decision.</em>
+          </h2>
+          <p class="section__lede">
+            The real install commands, plus the snippet that recorded a baseline convention as a
+            Decision before any new work opened.
+          </p>
+        </header>
+
+        <div class="grid--split" style="margin-top: 2.4rem;">
+          <div>
+            <ol class="install" style="grid-template-columns: 1fr; margin-top: 0; margin-bottom: 0;">
+              <li class="install__step">
+                <span class="install__num">01</span>
+                <div class="install__body">
+                  <h3>Install the CLI from PyPI</h3>
+                  <div class="terminal" data-copy>
+                    <div class="terminal__prompt">
+                      <span class="terminal__sigil">&gt;</span>
+                      <code>pip install okto-pulse</code>
+                    </div>
+                    <button class="terminal__copy" type="button" aria-label="Copy command">
+                      <span class="terminal__copy-label">Copy</span>
+                    </button>
+                  </div>
+                </div>
+              </li>
+              <li class="install__step">
+                <span class="install__num">02</span>
+                <div class="install__body">
+                  <h3>Initialise local repository data</h3>
+                  <div class="terminal" data-copy>
+                    <div class="terminal__prompt">
+                      <span class="terminal__sigil">&gt;</span>
+                      <code>okto-pulse init</code>
+                    </div>
+                    <button class="terminal__copy" type="button" aria-label="Copy command">
+                      <span class="terminal__copy-label">Copy</span>
+                    </button>
+                  </div>
+                </div>
+              </li>
+              <li class="install__step">
+                <span class="install__num">03</span>
+                <div class="install__body">
+                  <h3>Seed the demo board</h3>
+                  <div class="terminal" data-copy>
+                    <div class="terminal__prompt">
+                      <span class="terminal__sigil">&gt;</span>
+                      <code>cp data/pulse.db ~/.okto-pulse/data/pulse.db</code>
+                    </div>
+                    <button class="terminal__copy" type="button" aria-label="Copy command">
+                      <span class="terminal__copy-label">Copy</span>
+                    </button>
+                  </div>
+                  <span style="font-size: 11.5px; color: var(--ink-faint); margin-top: 0.25rem; display: block;">Loads pulse-brownfield-feature-demo with Ideation, Refinement, and an approved Spec already recorded.</span>
+                </div>
+              </li>
+              <li class="install__step">
+                <span class="install__num">04</span>
+                <div class="install__body">
+                  <h3>Start Web UI & MCP server</h3>
+                  <div class="terminal" data-copy>
+                    <div class="terminal__prompt">
+                      <span class="terminal__sigil">&gt;</span>
+                      <code>okto-pulse serve</code>
+                    </div>
+                    <button class="terminal__copy" type="button" aria-label="Copy command">
+                      <span class="terminal__copy-label">Copy</span>
+                    </button>
+                  </div>
+                  <span style="font-size: 11.5px; color: var(--ink-faint); margin-top: 0.25rem; display: block;">Web UI on port :8100 &middot; MCP server on port :8101/mcp &middot; connect two separate agent identities &mdash; Executor and Validator &mdash; each with its own credentials.</span>
+                </div>
+              </li>
+              <li class="install__step">
+                <span class="install__num">05</span>
+                <div class="install__body">
+                  <h3>Wire up a coding agent</h3>
+                  <div class="terminal" data-copy>
+                    <div class="terminal__prompt">
+                      <span class="terminal__sigil">&gt;</span>
+                      <code>okto-pulse init --agents</code>
+                    </div>
+                    <button class="terminal__copy" type="button" aria-label="Copy command">
+                      <span class="terminal__copy-label">Copy</span>
+                    </button>
+                  </div>
+                  <span style="font-size: 11.5px; color: var(--ink-faint); margin-top: 0.25rem; display: block;">Generates a project-local <code class="mono">.mcp.json</code> so Claude Code, Claude Desktop, Cursor, or Cline can discover the board and query it directly.</span>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div>
+            <div class="mcp__code" style="margin-top: 0;">
+              <div class="mcp__code-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="mcp__code-title">record_decision.py</span>
+              </div>
+              <pre class="mcp__code-body"><code><span class="tk-c"># Read what the codebase already does, then record it</span>
+<span class="tk-c"># as a Pulse Decision before writing anything new.</span>
+
+<span class="tk-k">from</span> okto_pulse <span class="tk-k">import</span> add_decision
+
+add_decision<span class="tk-p">(</span>
+    topic<span class="tk-p">=</span><span class="tk-s">"baseline-api-convention"</span><span class="tk-p">,</span>
+    summary<span class="tk-p">=</span><span class="tk-s">"Existing routes already define the auth and error-handling "</span>
+        <span class="tk-s">"pattern; reuse it instead of inventing a third convention."</span><span class="tk-p">,</span>
+    recorded_by<span class="tk-p">=</span><span class="tk-s">"card_executor"</span><span class="tk-p">,</span>
+<span class="tk-p">)</span></code></pre>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top: 2.4rem; font-size: 0.94rem; color: var(--ink-dim);">
+          Both agents work through the same MCP surface &mdash; Pulse exposes 312 core MCP tools
+          over <code class="mono">okto-pulse serve</code>. A sample of what this workflow actually calls:
+        </p>
+        <div class="pulse-table">
+          <table>
+            <thead>
+              <tr><th>Tool</th><th>Used for</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>get_task_context</code></td><td>Builder pulls a task&rsquo;s requirements and linked spec context before implementing</td></tr>
+              <tr><td><code>move_card</code></td><td>Moving a task through its status lifecycle</td></tr>
+              <tr><td><code>submit_task_validation</code></td><td>Validator submits a confidence / completeness / drift assessment</td></tr>
+              <tr><td><code>get_traceability_report</code></td><td>Tracing shipped code back through its task, spec, and originating Decision</td></tr>
+              <tr><td><code>get_board_guidelines</code></td><td>Checking what governance rules are actually active on the board</td></tr>
+              <tr><td><code>submit_sprint_evaluation</code></td><td>Closing out the sprint once every task clears</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────── WHY THIS MATTERS ───────────────────── -->
+    <section id="capabilities" class="section" data-depth-scene="case-capabilities" data-depth-title="Why it matters" data-depth-number="07">
+      <div class="section__inner">
+        <header class="section__head">
+          <span class="section__eyebrow">07 · WHY IT MATTERS</span>
+          <h2 class="section__title">
+            Delivery that <em>actually holds.</em>
+          </h2>
+        </header>
+
+        <div class="capabilities-flow" style="margin-top: 2.4rem;">
+          <!-- Card 1: Traceable Decisions (Top Left) -->
+          <article class="feature">
+            <div class="feature__top">
+              <span class="context-icon feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img"><path d="M4 19h16" /><path d="M8 15v4" /><path d="M12 11v8" /><path d="M16 7v12" /></svg>
+              </span>
+            </div>
+            <h3>Traceable Decisions</h3>
+            <p>Pre-existing conventions are recorded as Decisions before new work starts, aligning both agents on codebase state.</p>
+            
+            <!-- Outgoing arrows -->
+            <div class="card-arrow card-arrow--right" aria-hidden="true">
+              <svg viewBox="0 0 80 10" preserveAspectRatio="none"><path d="M 0 5 L 76 5 M 70 1 L 76 5 L 70 9" /></svg>
+            </div>
+            <div class="card-arrow card-arrow--down" aria-hidden="true">
+              <svg viewBox="0 0 10 80" preserveAspectRatio="none"><path d="M 5 0 L 5 76 M 1 70 L 5 76 L 9 70" /></svg>
+            </div>
+          </article>
+
+          <!-- Card 2: Enforced Role Separation (Top Right) -->
+          <article class="feature">
+            <div class="feature__top">
+              <span class="context-icon feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img"><path d="M9 12l2 2 4-4" /><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" /></svg>
+              </span>
+            </div>
+            <h3>Enforced Role Separation</h3>
+            <p>The agent that builds a task is not the agent that can validate it — enforced by identity on the board.</p>
+
+            <!-- Outgoing arrows -->
+            <div class="card-arrow card-arrow--down" aria-hidden="true">
+              <svg viewBox="0 0 10 80" preserveAspectRatio="none"><path d="M 5 0 L 5 76 M 1 70 L 5 76 L 9 70" /></svg>
+            </div>
+          </article>
+
+          <!-- Card 3: Enforced Approval Gates (Bottom Left) -->
+          <article class="feature">
+            <div class="feature__top">
+              <span class="context-icon feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z" /><path d="M9 12l2 2 4-4" /></svg>
+              </span>
+            </div>
+            <h3>Enforced Approval Gates</h3>
+            <p>Guideline gates require verified test evidence to be submitted, preventing cards from moving to done without proof.</p>
+
+            <!-- Outgoing arrows -->
+            <div class="card-arrow card-arrow--right" aria-hidden="true">
+              <svg viewBox="0 0 80 10" preserveAspectRatio="none"><path d="M 0 5 L 76 5 M 70 1 L 76 5 L 70 9" /></svg>
+            </div>
+          </article>
+
+          <!-- Card 4: Full Traceability (Bottom Right) -->
+          <article class="feature">
+            <div class="feature__top">
+              <span class="context-icon feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img"><path d="M4 6h16" /><path d="M4 12h10" /><path d="M4 18h16" /><path d="m17 9 3 3-3 3" /></svg>
+              </span>
+            </div>
+            <h3>Full Traceability</h3>
+            <p>Shipped features trace directly back from implementation commits to tasks, test results, and the original spec.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ──────────────────── CLOSING CTA ──────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <div class="final-cta">
+          <div>
+            <h2 data-kinetic>Build fast. <em>Stay in control.</em></h2>
+            <p>Start locally if you&rsquo;re building. Request a demo if you&rsquo;re scaling.</p>
+          </div>
+          <div class="final-cta__actions">
+            <a class="btn btn--primary btn--large" href="./index.html#install">
+              <span>Start locally</span>
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn--quiet btn--large" href="./index.html#evidence">
+              <span>View product surfaces</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ──────────────────── FOOTER ──────────────────── -->
+  <footer class="foot">
+    <div class="foot__inner">
+      <div class="foot__brand">
+        <img src="./assets/logos/pulse-wordmark.svg" alt="Okto Pulse" class="foot__logo" width="240" height="48" />
+        <p class="foot__tag">Structured work, inspectable delivery, and durable project memory for teams building with AI.</p>
+      </div>
+
+      <div class="foot__cols">
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="./index.html#demo">Feature demo</a></li>
+            <li><a href="./index.html#problem">Why Pulse</a></li>
+            <li><a href="./index.html#evidence">Product surfaces</a></li>
+            <li><a href="./index.html#knowledge">Knowledge Graph</a></li>
+            <li><a href="./use-cases.html">Use cases</a></li>
+            <li><a href="https://oktolabs.ai/platform/nexus/" rel="noopener">Okto Nexus</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Install</h4>
+          <ul>
+            <li><a href="https://pypi.org/project/okto-pulse/" rel="noopener">PyPI</a></li>
+            <li><a href="https://pypi.org/project/okto-pulse-core/" rel="noopener">PyPI (core)</a></li>
+            <li><a href="https://github.com/OktoLabsAI/okto-pulse" rel="noopener">GitHub</a></li>
+            <li><a href="https://docs.oktolabs.ai" rel="noopener">Docs</a></li>
+            <li><a href="https://oktolabs.ai/contact/" rel="noopener">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="https://github.com/OktoLabsAI/okto-pulse/blob/main/LICENSE" rel="noopener">License</a></li>
+            <li><a href="https://github.com/OktoLabsAI/okto-pulse/blob/main/TRADEMARKS.md" rel="noopener">Trademarks</a></li>
+            <li><a href="mailto:dev@oktolabs.ai">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot__rule"></div>
+
+    <div class="foot__base">
+      <a class="foot__labs" href="https://oktolabs.ai" rel="noopener">
+        <img src="./assets/logos/oktolabs-icon.svg" alt="" width="20" height="20" />
+        <span>An <strong>OktoLabs</strong> product</span>
+      </a>
+      <span class="foot__copy">&copy; 2026 OktoLabs &middot; Elastic&nbsp;License&nbsp;2.0</span>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="toTop" class="to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+      <path d="M12 19V6" />
+      <path d="m6 12 6-6 6 6" />
+    </svg>
+  </button>
+
+  <!-- Live board modal: kept outside the reveal-animated sections above —
+       any ancestor with a CSS transform (our scroll-reveal system applies
+       one) becomes a new containing block for position:fixed children,
+       which would break this modal's full-viewport overlay. -->
+  <div class="board-modal-backdrop" id="boardModalBackdrop" hidden>
+    <div class="board-modal" id="boardModal" role="dialog" aria-modal="true"></div>
+  </div>
+
+  <script src="./script.js?v=20260813-uc6" defer></script>
+  <script src="./depth-scene.js?v=20260813-uc3" defer></script>
+  <script src="./board.js?v=20260813-b5" defer></script>
+</body>
+</html>
