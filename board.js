@@ -98,6 +98,45 @@
     renderSidebar();
     renderPanel();
     if (els.sidebar) els.sidebar.classList.remove("is-open");
+    scheduleAutoplay();
+  }
+
+  // ---------------- autoplay ----------------
+  // Cycles through every board view every 5s so the embed visibly reads as
+  // an interactive product, not a static screenshot — pauses on hover and
+  // while a card modal is open so it never fights the reader.
+  const ROTATE_SEQUENCE = ["ideations", "refinements", "specs", "stories", "sprints", "tasks", "activity", "governance"];
+  let autoplayTimer = null;
+  let autoplayPaused = false;
+
+  function restartAutoplayBar() {
+    const bar = els.autoplayBar && els.autoplayBar.querySelector("span");
+    if (!bar) return;
+    els.autoplayBar.classList.remove("is-paused");
+    bar.style.animation = "none";
+    void bar.offsetWidth; // force reflow so the animation restarts from 0%
+    bar.style.animation = "";
+  }
+
+  function scheduleAutoplay() {
+    clearTimeout(autoplayTimer);
+    if (autoplayPaused) return;
+    restartAutoplayBar();
+    autoplayTimer = setTimeout(() => {
+      const idx = ROTATE_SEQUENCE.indexOf(activeTopTab);
+      setView(ROTATE_SEQUENCE[(idx + 1) % ROTATE_SEQUENCE.length]);
+    }, 5000);
+  }
+
+  function pauseAutoplay() {
+    autoplayPaused = true;
+    clearTimeout(autoplayTimer);
+    if (els.autoplayBar) els.autoplayBar.classList.add("is-paused");
+  }
+
+  function resumeAutoplay() {
+    autoplayPaused = false;
+    scheduleAutoplay();
   }
 
   function renderTabs() {
@@ -252,24 +291,67 @@
     els.panel.querySelectorAll(".board-card[data-open]").forEach((card) => {
       card.addEventListener("click", () => openModal(card.dataset.open));
     });
-
-    if (activeTopTab === "activity") wireActivitySearch();
   }
 
   // ---------------- activity ----------------
 
-  function renderActivity(filter) {
-    const rows = DATA.activity
-      .slice()
-      .reverse()
-      .filter((e) => {
-        if (!filter) return true;
-        const hay = `${e.action} ${e.actor_name} ${JSON.stringify(e.details || {})}`.toLowerCase();
-        return hay.includes(filter.toLowerCase());
+  // The raw log runs to 300+ events, dominated by noisy repeated actions
+  // (quality re-scores, context-guard checks). Score toward the handful
+  // that actually carry this use case's narrative — role separation,
+  // independent review, rework loops, traceability, delivery — and cap it
+  // to a readable highlight reel instead of a wall of timestamps.
+  const HIGHLIGHT_PRIORITY = {
+    board_created: 100,
+    ideation_created: 88,
+    refinement_created: 88,
+    spec_created: 88,
+    agent_granted_access: 80,
+    spec_validation_submitted: 74,
+    spec_evaluation_submitted: 55,
+    card_traceability_linked: 58,
+    sprint_created: 70,
+  };
+  function curateActivityHighlights(activity, max) {
+    const moveActions = new Set(["ideation_moved", "refinement_moved", "spec_moved", "sprint_moved"]);
+    const scored = activity
+      .map((e) => {
+        let score = HIGHLIGHT_PRIORITY[e.action] || 0;
+        if (moveActions.has(e.action) && e.details) {
+          const { to_status, from_status } = e.details;
+          if (["done", "approved", "closed", "validated"].includes(to_status)) score = 65;
+          // an approved/reviewed item sent back to draft is the validator
+          // rejecting it — the single most on-narrative moment in the log.
+          if (e.action === "spec_moved" && to_status === "draft" && ["review", "approved"].includes(from_status)) {
+            score = 96;
+          }
+        }
+        return { e, score };
       })
-      .slice(0, 150);
+      .filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score);
+
+    // Cap per action type so one noisy category (e.g. repeated spec_moved
+    // transitions) can't crowd out the rest of the story.
+    const seenCount = new Map();
+    const picked = [];
+    for (const { e } of scored) {
+      const n = seenCount.get(e.action) || 0;
+      if (n >= 2) continue;
+      seenCount.set(e.action, n + 1);
+      picked.push(e);
+      if (picked.length >= max) break;
+    }
+    return picked.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+  }
+
+  function renderActivity() {
+    const rows = curateActivityHighlights(DATA.activity, 12);
     return `
-      <input class="activity-search" id="activitySearch" type="text" placeholder="Filter activity (actor, action)…" />
+      <p style="font-size:12.5px;color:var(--surface-500);margin:-0.25rem 0 1rem;">
+        ${rows.length} key events from this board's actual governance pipeline &mdash;
+        role separation, independent review, and traceability moments — out of
+        ${DATA.activity.length} recorded total.
+      </p>
       <div class="activity-feed" id="activityFeed">
         ${rows
           .map(
@@ -281,17 +363,7 @@
           </div>`
           )
           .join("")}
-        ${rows.length === 150 ? '<div class="board-empty" style="margin-top:1rem;border:none;">Showing the most recent 150 of ' + DATA.activity.length + " events.</div>" : ""}
       </div>`;
-  }
-
-  function wireActivitySearch() {
-    const input = document.getElementById("activitySearch");
-    if (!input) return;
-    input.addEventListener("input", () => {
-      const feed = document.getElementById("activityFeed");
-      feed.outerHTML = renderActivity(input.value).match(/<div class="activity-feed"[\s\S]*/)[0];
-    });
   }
 
   // ---------------- governance ----------------
@@ -369,10 +441,12 @@
     renderModal();
     els.modalBackdrop.hidden = false;
     document.body.style.overflow = "hidden";
+    pauseAutoplay();
   }
   function closeModal() {
     els.modalBackdrop.hidden = true;
     document.body.style.overflow = "";
+    resumeAutoplay();
   }
 
   function renderModal() {
@@ -549,11 +623,20 @@
     els.hamburger = document.getElementById("boardHamburger");
     els.modalBackdrop = document.getElementById("boardModalBackdrop");
     els.modal = document.getElementById("boardModal");
+    els.autoplayBar = document.getElementById("boardAutoplay");
+    els.embedRoot = document.querySelector(".board-embed");
 
     if (els.hamburger && els.sidebar) {
       els.hamburger.addEventListener("click", () => {
         const open = els.sidebar.classList.toggle("is-open");
         els.hamburger.setAttribute("aria-expanded", String(open));
+      });
+    }
+
+    if (els.embedRoot) {
+      els.embedRoot.addEventListener("mouseenter", pauseAutoplay);
+      els.embedRoot.addEventListener("mouseleave", () => {
+        if (els.modalBackdrop.hidden) resumeAutoplay();
       });
     }
 
@@ -575,6 +658,7 @@
     renderTabs();
     renderSidebar();
     renderPanel();
+    scheduleAutoplay();
   }
 
   document.addEventListener("DOMContentLoaded", boot);

@@ -38,7 +38,7 @@
        rest of this page's own design system. -->
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./board.css?v=20260813-b4" />
+  <link rel="stylesheet" href="./board.css?v=20260814-b6" />
 
   <script type="application/ld+json">
     {
@@ -235,11 +235,15 @@
             </button>
             <span class="board-topbar__brand"><img src="./assets/logos/pulse-icon.svg" alt="" /><span>Okto Pulse</span></span>
             <span class="board-topbar__crumb">/ pulse-brownfield-feature-demo</span>
+            <span class="board-topbar__live" id="boardLiveBadge" title="Auto-cycling through board views — hover the board to pause">
+              <span class="board-topbar__live-dot"></span> Auto-cycling &middot; hover to pause
+            </span>
           </header>
           <div class="board-shell">
             <aside class="board-sidebar" id="boardSidebar"></aside>
             <main class="board-main">
               <nav class="board-tabs" id="boardTabs" aria-label="Board sections"></nav>
+              <div class="board-autoplay" id="boardAutoplay" aria-hidden="true"><span></span></div>
               <div id="boardPanel">
                 <div class="board-loading">Loading board snapshot…</div>
               </div>
@@ -934,6 +938,6 @@ add_decision<span class="tk-p">(</span>
 
   <script src="./script.js?v=20260813-uc6" defer></script>
   <script src="./depth-scene.js?v=20260813-uc3" defer></script>
-  <script src="./board.js?v=20260813-b5" defer></script>
+  <script src="./board.js?v=20260814-b6" defer></script>
 </body>
 </html>
