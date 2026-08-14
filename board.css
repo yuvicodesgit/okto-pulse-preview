@@ -411,6 +411,35 @@
   color: var(--surface-300);
   font-family: ui-monospace, monospace;
 }
+.pill--synthetic {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+}
+
+/* non-interactive card variant (synthetic sprint/task examples) — same
+   shape as .board-card but no click affordance, since there's nothing
+   to open */
+.board-card--static {
+  cursor: default;
+}
+.board-card--static:hover {
+  border-color: var(--surface-800);
+  background: var(--surface-900);
+  transform: none;
+  box-shadow: none;
+}
+.board-card--static::after {
+  content: none;
+}
+
+.board-synthetic-note {
+  margin: 0 0 0.9rem;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--surface-500);
+  max-width: 62ch;
+}
 
 /* empty state */
 .board-empty {
@@ -426,26 +455,26 @@
 /* ---------- governance grid ---------- */
 .gov-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
 }
 .gov-tile {
   background: var(--surface-900);
   border: 1px solid var(--surface-800);
   border-radius: var(--radius-lg);
-  padding: 0.9rem 1rem;
+  padding: 0.65rem 0.8rem;
 }
 .gov-tile__label {
-  font-size: 10.5px;
+  font-size: 10px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--surface-500);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
 }
 .gov-tile__value {
   font-family: "Satoshi", sans-serif;
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.02rem;
   color: #fff;
 }
 .gov-tile__value.is-on { color: #34d399; }

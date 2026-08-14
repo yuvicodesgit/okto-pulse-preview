@@ -112,8 +112,8 @@
     if (key === "refinements") return DATA.refinement ? 1 : 0;
     if (key === "specs") return DATA.spec ? 1 : 0;
     if (key === "stories") return 0;
-    if (key === "sprints") return 0;
-    if (key === "tasks") return 0;
+    if (key === "sprints") return 1;
+    if (key === "tasks") return 6;
     return 0;
   }
 
@@ -208,9 +208,10 @@
         </button>`
       ).join("")}
       <div class="board-sidebar__note">
-        <strong>This is a snapshot, not a live connection.</strong><br />
-        Real data exported from the board on 2026-08-13, sanitized (no credentials) and rendered
-        statically for this use case.
+        <strong>Static, not a live connection.</strong><br />
+        Ideations, Refinements, Specs, and Activity are a real sanitized export from this board
+        (no credentials). Sprints and Tasks are synthetic examples &mdash; marked as such &mdash;
+        since this board&rsquo;s real run hadn&rsquo;t reached that stage yet.
       </div>
     `;
     els.sidebar.querySelectorAll("[data-view]").forEach((btn) => {
@@ -254,6 +255,58 @@
       </div>`;
     }
     return "";
+  }
+
+  // ---------------- synthetic sprint/task illustration ----------------
+  // This board's real data stops at an approved (not yet validated) spec
+  // — Sprints and Tasks never actually opened in the captured run. Rather
+  // than leave two tabs permanently empty, these are hand-authored,
+  // clearly-labeled illustrative cards showing what this stage looks like
+  // once a spec clears the Validation Gate — using the same status/
+  // priority/card-type vocabulary as the real app. Not board data.
+  const SYNTHETIC_SPRINT = {
+    title: "Sprint 1 — Threaded replies + @mentions",
+    status: "closed",
+  };
+  const SYNTHETIC_TASKS = [
+    { title: "Add reply-thread data model", card_type: "normal", status: "done", priority: "high", assignee: "Builder" },
+    { title: "Threaded replies API + persistence", card_type: "normal", status: "done", priority: "high", assignee: "Builder" },
+    { title: "@Mentions parsing + notification hook", card_type: "normal", status: "done", priority: "medium", assignee: "Builder" },
+    { title: "Verify reply-thread schema migration", card_type: "test", status: "done", priority: "high", assignee: "Validator" },
+    { title: "Verify threaded-reply API contract", card_type: "test", status: "done", priority: "high", assignee: "Validator" },
+    { title: "Verify @mention parsing + notification delivery", card_type: "test", status: "done", priority: "medium", assignee: "Validator" },
+  ];
+  const syntheticTag = () =>
+    `<span class="pill pill--synthetic" title="A hand-built example — not data from the real board">Synthetic example</span>`;
+
+  function renderSprintCard(sprint) {
+    return `
+      <div class="board-card board-card--static">
+        <div class="board-card__top">
+          ${statusPill(sprint.status)}
+          ${syntheticTag()}
+        </div>
+        <div class="board-card__title">${esc(sprint.title)}</div>
+        <div class="board-card__metrics">
+          <span class="pill pill--metric">6 tasks</span>
+          <span class="pill pill--metric">3 implementation</span>
+          <span class="pill pill--metric">3 test</span>
+        </div>
+        <p class="board-card__desc">Illustrates a closed sprint once a spec clears the Validation Gate &mdash; every task approved, every test genuinely passed.</p>
+      </div>`;
+  }
+
+  function renderTaskCard(task) {
+    return `
+      <div class="board-card board-card--static">
+        <div class="board-card__top">
+          ${statusPill(task.status)}
+          <span class="pill pill--complexity">${esc(task.priority)}</span>
+          <span class="pill pill--tag">${esc(task.card_type)}</span>
+        </div>
+        <div class="board-card__title">${esc(task.title)}</div>
+        <div class="board-card__metrics"><span class="pill pill--metric">${esc(task.assignee)}</span></div>
+      </div>`;
   }
 
   function stageCard(kind, item) {
@@ -306,15 +359,13 @@
     } else if (activeTopTab === "stories") {
       body = emptyState("No stories on this board", "This board runs the Ideation → Refinement → Spec → Sprint pipeline directly, without a separate Stories stage in this run.");
     } else if (activeTopTab === "sprints") {
-      body = emptyState(
-        "No sprints yet",
-        "The spec is currently “approved”, not “validated.” Sprints and implementation tasks can’t open until the Spec Validation Gate clears — test cards linked to every scenario, then a passing spec evaluation."
-      );
+      body = `
+        <p class="board-synthetic-note">This board's real data stops at an approved spec, so no sprint had opened yet in the captured run. Below is a hand-built example of what a closed sprint looks like once one does.</p>
+        <div class="board-list">${renderSprintCard(SYNTHETIC_SPRINT)}</div>`;
     } else if (activeTopTab === "tasks") {
-      body = emptyState(
-        "No tasks yet",
-        "Tasks are created once a sprint opens. This board hasn’t reached that stage in the current cycle — see Governance for the exact gate blocking it."
-      );
+      body = `
+        <p class="board-synthetic-note">Same here &mdash; these 6 tasks are a synthetic example, not from the real board, showing the Foundation → parallel tasks → test-evidence pattern once a sprint opens.</p>
+        <div class="board-list">${SYNTHETIC_TASKS.map(renderTaskCard).join("")}</div>`;
     } else if (activeTopTab === "activity") {
       body = renderActivity();
     } else if (activeTopTab === "governance") {
