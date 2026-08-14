@@ -48,23 +48,61 @@
     ideation_created: "opened the ideation",
     ideation_updated: "updated the ideation",
     ideation_status_changed: "moved the ideation",
+    ideation_moved: "moved the ideation",
+    ideation_complexity_evaluated: "evaluated the ideation's complexity",
     refinement_created: "opened the refinement",
     refinement_updated: "updated the refinement",
+    refinement_moved: "moved the refinement",
     spec_created: "opened the spec",
     spec_updated: "updated the spec",
     spec_moved: "moved the spec",
+    spec_validation_submitted: "submitted an independent validation for the spec",
+    spec_evaluation_submitted: "scored the spec's validation quality",
+    test_scenario_status_changed: "verified test evidence for a scenario",
+    card_traceability_linked: "linked shipped work back to a spec requirement",
+    sprint_created: "opened a sprint against the approved spec",
+    sprint_moved: "moved the sprint",
     agent_granted_access: "was granted board access",
   };
+
+  // The raw log identifies actors by their literal agent name ("Claude
+  // Assistant", "AGY Assistant", raw UUIDs...) — accurate, but it hides
+  // the thing this use case is actually about: two *roles* in independent
+  // review. Re-voice every activity line as Builder / Validator / Board
+  // owner based on what the action actually does, matching the framing
+  // used everywhere else on this page.
+  const ADMIN_ACTIONS = new Set(["board_created", "agent_granted_access"]);
+  const VALIDATOR_ACTIONS = new Set([
+    "spec_validation_submitted",
+    "spec_evaluation_submitted",
+    "test_scenario_status_changed",
+    "ideation_complexity_evaluated",
+  ]);
+  function roleLabel(entry) {
+    if (ADMIN_ACTIONS.has(entry.action)) return "Board owner";
+    if (entry.action === "spec_moved" && entry.details) {
+      const { from_status, to_status } = entry.details;
+      // a spec knocked from review/approved back to draft is the
+      // validator rejecting it, not the builder progressing it.
+      if (to_status === "draft" && ["review", "approved"].includes(from_status)) return "Validator";
+    }
+    if (VALIDATOR_ACTIONS.has(entry.action)) return "Validator";
+    return "Builder";
+  }
 
   function activityLine(entry) {
     const label = ACTIVITY_LABELS[entry.action] || entry.action.replace(/_/g, " ");
     let extra = "";
-    if (entry.action === "spec_moved" && entry.details) {
-      extra = ` <b>${esc(entry.details.from_status)} → ${esc(entry.details.to_status)}</b>`;
+    if (entry.action.endsWith("_moved") && entry.details && entry.details.from_status && entry.details.to_status) {
+      const { from_status, to_status } = entry.details;
+      extra = ` <b>${esc(from_status)} → ${esc(to_status)}</b>`;
+      if (entry.action === "spec_moved" && to_status === "draft" && ["review", "approved"].includes(from_status)) {
+        extra += " <span style=\"color:var(--surface-500);\">— sent back for rework</span>";
+      }
     } else if (entry.details && entry.details.version) {
       extra = ` <b>v${esc(entry.details.version)}</b>`;
     }
-    return `<b>${esc(entry.actor_name)}</b> ${esc(label)}${extra}`;
+    return `<b>${esc(roleLabel(entry))}</b> ${esc(label)}${extra}`;
   }
 
   // ---------------- top tabs ----------------
