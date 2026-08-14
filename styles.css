@@ -309,6 +309,7 @@ ol {
 
 .nav__links {
   display: flex;
+  flex-shrink: 0;
   gap: 1.9rem;
   margin-left: auto;
   font-family: var(--font-sans);
@@ -320,6 +321,7 @@ ol {
 
 .nav__links a {
   position: relative;
+  white-space: nowrap;
   transition: color 180ms var(--ease);
 }
 
@@ -346,6 +348,7 @@ ol {
 
 .nav__cta {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 1rem;
   margin-left: 0;
@@ -357,6 +360,7 @@ ol {
   font-weight: 500;
   letter-spacing: 0;
   color: var(--ink-dim);
+  white-space: nowrap;
   transition: color 180ms var(--ease);
 }
 
@@ -364,7 +368,7 @@ ol {
   color: var(--ink);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1080px) {
   .nav__links,
   .nav__ext[href*="pypi"],
   .nav__ext-arrow {
@@ -5818,7 +5822,7 @@ main section[id] {
   transform: rotate(-45deg);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1080px) {
   .nav__toggle {
     display: block;
   }
@@ -6100,6 +6104,10 @@ html.js-reveal [data-reveal].is-in {
   text-transform: uppercase;
   color: var(--ink-mid);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex-shrink: 1;
   opacity: 0;
   transform: translateY(4px);
   transition: opacity 280ms var(--ease), transform 280ms var(--ease);
