@@ -10121,6 +10121,8 @@ html.js .pulse-relay.is-ready .pulse-relay__steps li.is-active p {
   display: grid;
   grid-template-columns: 84px 1fr;
   gap: 1.4rem;
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
 }
 @media (max-width: 640px) {
   .walk-step { grid-template-columns: 1fr; gap: 0.6rem; }
@@ -10304,7 +10306,7 @@ html.js .pulse-relay.is-ready .pulse-relay__steps li.is-active p {
 .capabilities-flow {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 4rem 5rem;
+  gap: 1.1rem;
   position: relative;
   margin-top: 3rem;
 }
@@ -10312,109 +10314,22 @@ html.js .pulse-relay.is-ready .pulse-relay__steps li.is-active p {
 .capabilities-flow .feature {
   position: relative;
   margin-top: 0 !important; /* reset default feature margin */
+  border: 1px solid var(--hair-strong);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 42%), var(--surface);
+  transition: border-color 180ms var(--ease), transform 180ms var(--ease);
 }
 
-.card-arrow {
-  position: absolute;
-  pointer-events: none;
-  z-index: 10;
-  display: block;
+.capabilities-flow .feature:hover {
+  border-color: var(--pulse-cyan);
+  transform: translateY(-1px);
 }
-
-.card-arrow svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.card-arrow path {
-  stroke: var(--hair-strong);
-  stroke-width: 1.5;
-  fill: none;
-}
-
-/* Animated glowing pulse inside the arrow */
-.card-arrow::after {
-  content: "";
-  position: absolute;
-  opacity: 0;
-}
-
-/* Right arrow */
-.card-arrow--right {
-  width: 5rem;
-  height: 10px;
-  right: -5rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.card-arrow--right::after {
-  height: 2px;
-  width: 30px;
-  top: 4px;
-  left: -30px;
-  background: linear-gradient(90deg, transparent, var(--pulse-cyan), transparent);
-  animation: pulse-h 2.5s infinite linear;
-}
-
-/* Down arrow */
-.card-arrow--down {
-  width: 10px;
-  height: 4rem;
-  bottom: -4rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.card-arrow--down::after {
-  width: 2px;
-  height: 30px;
-  left: 4px;
-  top: -30px;
-  background: linear-gradient(180deg, transparent, var(--pulse-cyan), transparent);
-  animation: pulse-v 2.5s infinite linear;
-}
-
-@keyframes pulse-h {
-  0% { left: -30px; opacity: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
-}
-
-@keyframes pulse-v {
-  0% { top: -30px; opacity: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
-}
-
-/* Stagger the animations */
-.capabilities-flow article:nth-child(1) .card-arrow--down::after { animation-delay: 0.6s; }
-.capabilities-flow article:nth-child(2) .card-arrow--down::after { animation-delay: 1.2s; }
-.capabilities-flow article:nth-child(3) .card-arrow--right::after { animation-delay: 1.2s; }
 
 /* Responsive layout overrides */
 @media (max-width: 900px) {
   .capabilities-flow {
     grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  .card-arrow {
-    display: none !important;
-  }
-  /* Render simple line connecting stacked cards on mobile */
-  .capabilities-flow .feature:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -2.2rem;
-    transform: translateX(-50%);
-    width: 1.5px;
-    height: 1.4rem;
-    background: linear-gradient(180deg, var(--hair-strong), var(--pulse-cyan));
-    opacity: 0.8;
+    gap: 1rem;
   }
 }
 

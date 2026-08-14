@@ -31,7 +31,7 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="./styles.css?v=20260815-uc15" />
+  <link rel="stylesheet" href="./styles.css?v=20260815-uc16" />
 
   <!-- Live board embed: fonts/tokens copied from the real Okto Pulse app,
        scoped under .board-embed / .board-modal so they don't leak into the
@@ -322,72 +322,13 @@
           </p>
         </header>
 
-        <ol class="pipeline" style="margin-top: 2.4rem;">
-          <li class="pipeline__step" style="--step-i:1">
-            <div class="card-meta">
-              <span class="context-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img"><path d="M9 18h6" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" /><path d="M12 3v11" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" /><path d="m8 10 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              </span>
-            </div>
-            <div class="pipeline__body">
-              <h3>Ideation → Refinement → Spec</h3>
-              <p>An idea is refined and turned into a spec before any task exists. A spec must reach <strong>approved</strong> before its sprint can open.</p>
-            </div>
-          </li>
-          <li class="pipeline__step" style="--step-i:2">
-            <div class="card-meta">
-              <span class="context-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img"><rect x="4" y="4" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.75" /><path d="M4 10h16" fill="none" stroke="currentColor" stroke-width="1.75" /></svg>
-              </span>
-            </div>
-            <div class="pipeline__body">
-              <h3>Sprint → Tasks</h3>
-              <p>The sprint&rsquo;s tasks and their matching tests open once the work they depend on is actually ready, not just scheduled.</p>
-            </div>
-          </li>
-          <li class="pipeline__step" style="--step-i:3">
-            <div class="card-meta">
-              <span class="context-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.75" /><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              </span>
-            </div>
-            <div class="pipeline__body">
-              <h3>Task lifecycle</h3>
-              <p>Every task moves started → in_progress → validation. The Builder can drive it this far &mdash; the preset structurally blocks it from going further.</p>
-            </div>
-          </li>
-          <li class="pipeline__step" style="--step-i:4">
-            <div class="card-meta">
-              <span class="context-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              </span>
-            </div>
-            <div class="pipeline__body">
-              <h3>Validator gate</h3>
-              <p>Every submission is checked independently. Approved tasks move to <strong>done</strong>; anything short is sent back with a reason, not silently passed through.</p>
-            </div>
-          </li>
-          <li class="pipeline__step" style="--step-i:5">
-            <div class="card-meta">
-              <span class="context-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              </span>
-            </div>
-            <div class="pipeline__body">
-              <h3>Sprint close-out</h3>
-              <p>Only once every task is approved <em>and</em> every test has genuinely passed does the Validator submit a sprint evaluation and close it.</p>
-            </div>
-          </li>
-        </ol>
-
-        <p style="margin-top: 2.4rem; font-size: 0.94rem; color: var(--ink-dim); max-width: 68ch;">
-          Implementation and validation run task by task, not stage by stage: prompt the Builder,
-          then prompt the Validator, and don&rsquo;t start a task&rsquo;s dependents until it&rsquo;s
-          actually approved. If a submission comes back with changes requested, the Builder fixes
-          it and resubmits &mdash; the task doesn&rsquo;t move forward until it&rsquo;s genuinely cleared.
+        <p style="margin-top: 1.8rem; font-size: 0.94rem; color: var(--ink-dim); max-width: 68ch;">
+          Implementation and validation run task by task, not stage by stage &mdash; a submission
+          that comes back with changes requested doesn&rsquo;t move forward until it&rsquo;s
+          genuinely cleared.
         </p>
 
-        <h3 style="margin-top: 3.2rem; font-size: 1rem; color: var(--ink); text-align: center;">How one task actually moves through the board</h3>
+        <h3 style="margin-top: 2.4rem; font-size: 1rem; color: var(--ink); text-align: center;">How one task actually moves through the board</h3>
         <div class="arch-flow arch-flow--loop" aria-label="Diagram: Ideation and Refinement lead to an approved Spec, which opens Sprint and Tasks, which unblocks a Foundation task, which unblocks Task A and Task B running in parallel. That work flows through the Validator gate, then Sprint close-out, ending at Spec marked complete; rejected work is sent back to the Builder.">
           <div class="flow-node loop-t1">
             <span class="context-icon flow-node__icon" aria-hidden="true">
@@ -457,34 +398,6 @@
           </div>
         </div>
 
-        <div class="grid--split" style="margin-top: 3.2rem; align-items: start;">
-          <div>
-            <h3 style="font-size: 1rem; color: var(--ink); margin-bottom: 0.9rem;">This sprint&rsquo;s task graph</h3>
-            <div class="mcp__code">
-              <div class="mcp__code-bar">
-                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                <span class="mcp__code-title">6 tasks · 4 sequential stages</span>
-              </div>
-              <pre class="mcp__code-body"><code><span class="tk-c">Foundation task (no dependency)</span>
-      │
-      ├──▶ <span class="tk-k">Task A</span> ──▶ <span class="tk-p">Test A1</span>
-      │           └──▶ <span class="tk-p">Test A2</span>
-      └──▶ <span class="tk-k">Task B</span> ──▶ <span class="tk-p">Test B</span>
-                           │
-                           ▼
-                  <span class="tk-s">Sprint close-out</span></code></pre>
-            </div>
-          </div>
-          <div>
-            <h3 style="font-size: 1rem; color: var(--ink); margin-bottom: 0.9rem;">Path to completion</h3>
-            <ol style="display: flex; flex-direction: column; gap: 0.75rem; color: var(--ink-dim); font-size: 0.92rem; line-height: 1.55; padding-left: 1.2rem;">
-              <li>All implementation tasks reviewed and approved.</li>
-              <li>All test tasks have their scenarios genuinely passing &mdash; not just executed.</li>
-              <li>The sprint is submitted for evaluation and closed on approval.</li>
-              <li>The specification is marked complete only once all sprint work is closed out.</li>
-            </ol>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -531,7 +444,7 @@
             <div class="walk-step__num">STEP<strong>04</strong></div>
             <div>
               <h3>Independent review checks</h3>
-              <p>The Validator loads full spec context &mdash; including Decisions the Builder may not have referenced &mdash; and checks three things: <strong>confidence</strong> (does the Builder&rsquo;s account hold up?), <strong>completeness</strong> (the full requirement, not part of it), and <strong>drift</strong> (does it match the spec). Short on any one, and it goes back with a specific reason, not a generic rejection.</p>
+              <p>The Validator loads full spec context and checks three things: <strong>confidence</strong>, <strong>completeness</strong>, and <strong>drift</strong> from spec. Short on any one, and it goes back with a specific reason &mdash; not a generic rejection.</p>
               <span class="walk-step__moment">okto_pulse_submit_task_validation</span>
             </div>
           </li>
@@ -607,24 +520,10 @@
         </div>
 
         <p style="margin-top: 2rem; font-size: 0.94rem; color: var(--ink-dim);">
-          Builder runs on the <strong style="color: var(--ink);">Executor</strong> preset and
+          Builder runs on the <strong style="color: var(--ink);">Executor</strong> preset,
           Validator on the <strong style="color: var(--ink);">Validator</strong> preset &mdash;
-          two of Pulse&rsquo;s four board-wide permission presets, enforced structurally, not by
-          instruction either agent could ignore:
+          both enforced structurally on the board, not by instruction either agent could ignore.
         </p>
-        <div class="pulse-table">
-          <table>
-            <thead>
-              <tr><th>Preset</th><th>Can do</th><th>Cannot do</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Spec Writer</td><td>Owns ideation, refinement, and spec content</td><td>Cannot move a spec past approved</td></tr>
-              <tr class="pulse-table--used"><td>Executor (Builder)</td><td>Implements tasks, moves cards through started → in_progress → validation</td><td>Cannot submit a validation or move a card to done</td></tr>
-              <tr class="pulse-table--used"><td>Validator</td><td>Submits task/spec validation, moves cards validation → done</td><td>Does not implement</td></tr>
-              <tr><td>QA</td><td>Writes test scenarios</td><td>Cannot submit any gate</td></tr>
-            </tbody>
-          </table>
-        </div>
       </div>
     </section>
 
@@ -780,7 +679,6 @@ add_decision<span class="tk-p">(</span>
         </header>
 
         <div class="capabilities-flow" style="margin-top: 2.4rem;">
-          <!-- Card 1: Traceable Decisions (Top Left) -->
           <article class="feature">
             <div class="feature__top">
               <span class="context-icon feature__icon" aria-hidden="true">
@@ -789,17 +687,8 @@ add_decision<span class="tk-p">(</span>
             </div>
             <h3>Traceable Decisions</h3>
             <p>Pre-existing conventions are recorded as Decisions before new work starts, aligning both agents on codebase state.</p>
-            
-            <!-- Outgoing arrows -->
-            <div class="card-arrow card-arrow--right" aria-hidden="true">
-              <svg viewBox="0 0 80 10" preserveAspectRatio="none"><path d="M 0 5 L 76 5 M 70 1 L 76 5 L 70 9" /></svg>
-            </div>
-            <div class="card-arrow card-arrow--down" aria-hidden="true">
-              <svg viewBox="0 0 10 80" preserveAspectRatio="none"><path d="M 5 0 L 5 76 M 1 70 L 5 76 L 9 70" /></svg>
-            </div>
           </article>
 
-          <!-- Card 2: Enforced Role Separation (Top Right) -->
           <article class="feature">
             <div class="feature__top">
               <span class="context-icon feature__icon" aria-hidden="true">
@@ -808,14 +697,8 @@ add_decision<span class="tk-p">(</span>
             </div>
             <h3>Enforced Role Separation</h3>
             <p>The agent that builds a task is not the agent that can validate it — enforced by identity on the board.</p>
-
-            <!-- Outgoing arrows -->
-            <div class="card-arrow card-arrow--down" aria-hidden="true">
-              <svg viewBox="0 0 10 80" preserveAspectRatio="none"><path d="M 5 0 L 5 76 M 1 70 L 5 76 L 9 70" /></svg>
-            </div>
           </article>
 
-          <!-- Card 3: Enforced Approval Gates (Bottom Left) -->
           <article class="feature">
             <div class="feature__top">
               <span class="context-icon feature__icon" aria-hidden="true">
@@ -824,14 +707,8 @@ add_decision<span class="tk-p">(</span>
             </div>
             <h3>Enforced Approval Gates</h3>
             <p>Guideline gates require verified test evidence to be submitted, preventing cards from moving to done without proof.</p>
-
-            <!-- Outgoing arrows -->
-            <div class="card-arrow card-arrow--right" aria-hidden="true">
-              <svg viewBox="0 0 80 10" preserveAspectRatio="none"><path d="M 0 5 L 76 5 M 70 1 L 76 5 L 70 9" /></svg>
-            </div>
           </article>
 
-          <!-- Card 4: Full Traceability (Bottom Right) -->
           <article class="feature">
             <div class="feature__top">
               <span class="context-icon feature__icon" aria-hidden="true">
