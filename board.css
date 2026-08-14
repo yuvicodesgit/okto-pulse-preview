@@ -72,8 +72,10 @@
   gap: 0.75rem;
   padding: 0 1rem;
   border-bottom: 1px solid var(--surface-800);
-  background: rgba(2, 6, 23, 0.9);
-  backdrop-filter: blur(10px);
+  /* solid, not blurred: this sits over the animated depth-scene canvas in
+     the first fold now, and backdrop-filter sampling a live-animating
+     layer on every frame is a real, avoidable scroll-jank cost */
+  background: rgb(2, 6, 23);
   position: sticky;
   top: 0;
   z-index: 30;

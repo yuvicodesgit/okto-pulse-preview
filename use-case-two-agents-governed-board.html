@@ -31,14 +31,14 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="./styles.css?v=20260815-uc16" />
+  <link rel="stylesheet" href="./styles.css?v=20260815-uc18" />
 
   <!-- Live board embed: fonts/tokens copied from the real Okto Pulse app,
        scoped under .board-embed / .board-modal so they don't leak into the
        rest of this page's own design system. -->
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./board.css?v=20260814-b6" />
+  <link rel="stylesheet" href="./board.css?v=20260815-b9" />
 
   <script type="application/ld+json">
     {
@@ -123,112 +123,54 @@
 
   <main id="top">
 
-    <!-- ───────────────────── HERO ───────────────────── -->
+    <!-- ───────────────────── HERO + LIVE BOARD (first fold) ───────────────────── -->
     <section class="section" style="padding-bottom: clamp(2rem, 4vw, 4rem);" data-depth-scene="case-hero" data-depth-title="Two agents" data-depth-number="00">
       <div class="section__inner">
         <a class="breadcrumb" href="./use-cases.html">
           <span class="breadcrumb__arrow" aria-hidden="true">←</span> All use cases
         </a>
 
-        <div class="grid--split" style="margin-top: 1.5rem;">
-          <div class="hero__left">
-            <header class="section__head" style="margin-bottom: 1.5rem; max-width: 100%;">
-              <span class="section__eyebrow">USE CASE · PULSE IN PRODUCTION</span>
-              <h1 class="section__title" data-kinetic style="font-size: clamp(2.2rem, 4.2vw, 3.2rem); line-height: 1.1;">
-                Two Agents. <br><em>Independent Review.</em>
-              </h1>
-              <p class="section__lede" style="margin-top: 1rem; max-width: 100%;">
-                Pulse coordinates a spec-driven workflow on a real board, enforcing structural role separation between the agent that builds and the agent that validates every task. Requirements, decisions, and test evidence stay linked end to end &mdash; so months later, &ldquo;why does this work this way&rdquo; still has an actual answer.
-              </p>
-              <span class="usecase-card__meta" style="display: block; margin-top: 1rem;">Board af285ee4-9a28-4369-bc9a-ac5ab7c75c7b &middot; Ideation v6 &middot; Refinement v4 &middot; Spec v20 approved</span>
-            </header>
-
-            <div class="hero__actions" style="margin-top: 1.5rem;">
-              <a class="btn btn--primary" href="#live-board">
-                <span>Explore the real board</span>
-                <span class="btn__arrow" aria-hidden="true">→</span>
-              </a>
-              <a class="btn btn--quiet" href="#walkthrough">
-                <span>See the walkthrough</span>
-              </a>
-              <a class="btn btn--quiet" href="https://github.com/Infrasity-Labs/pulse-brownfield-feature-demo" rel="noopener" target="_blank">
-                <span>View the repo</span>
-                <span class="btn__arrow" aria-hidden="true">↗</span>
-              </a>
-            </div>
-
-            <ul class="hero__stats" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; border-top: 1px solid var(--hair); max-width: 100%;">
-              <li>
-                <span class="stat__value" data-count="6">0</span>
-                <span class="stat__label">Sprint tasks completed</span>
-              </li>
-              <li>
-                <span class="stat__value" data-count="4">0</span>
-                <span class="stat__label">Pipeline stage gates passed</span>
-              </li>
-              <li>
-                <span class="stat__value" data-count="3">0</span>
-                <span class="stat__label">Matching test scenarios verified</span>
-              </li>
-              <li>
-                <span class="stat__value" data-count="0">0</span>
-                <span class="stat__label">Self-approved cards</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="hero__right" style="margin-top: 1rem;">
-            <div class="demo-panel">
-              <div class="mcp__code" style="height: 100%;">
-                <div class="mcp__code-bar">
-                  <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                  <span class="mcp__code-title">pulse-brownfield-feature-demo · live board</span>
-                </div>
-                <div class="mcp__code-body" style="padding: 1.25rem 1.4rem;">
-                  <div class="demo-row" style="margin-bottom: 1rem;">
-                    <span class="demo-row__icon demo-row__icon--pass" aria-hidden="true">✓</span>
-                    <span class="demo-row__text"><strong>Validator</strong> submits an independent validation for a completed task.</span>
-                    <span class="demo-row__tag">okto_pulse_submit_task_validation</span>
-                  </div>
-                  <div class="demo-row" style="margin-bottom: 1rem;">
-                    <span class="demo-row__icon demo-row__icon--block" aria-hidden="true">✕</span>
-                    <span class="demo-row__text"><strong>Builder</strong>&rsquo;s attempt to validate its own card is blocked by role separation.</span>
-                    <span class="demo-row__tag">okto_pulse_move_card</span>
-                  </div>
-                  <div class="demo-row" style="margin-bottom: 1rem;">
-                    <span class="demo-row__icon demo-row__icon--block" aria-hidden="true">!</span>
-                    <span class="demo-row__text">Validation gate blocks a task until verified test evidence is attached.</span>
-                    <span class="demo-row__tag">okto_pulse_get_task_context</span>
-                  </div>
-                  <div class="demo-row">
-                    <span class="demo-row__icon demo-row__icon--pass" aria-hidden="true">✓</span>
-                    <span class="demo-row__text">Traceability report links shipped work back to its Spec requirements.</span>
-                    <span class="demo-row__tag">okto_pulse_get_traceability_report</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ───────────────────── LIVE BOARD ───────────────────── -->
-    <section id="live-board" class="section" style="padding-top: 0;" data-depth-scene="case-board" data-depth-title="Live board" data-depth-number="01">
-      <div class="section__inner">
-        <header class="section__head">
-          <span class="section__eyebrow">01 · LIVE BOARD</span>
-          <h2 class="section__title">
-            This is the actual board. <em>Not a mockup.</em>
-          </h2>
-          <p class="section__lede">
-            Every ideation, refinement, spec, governance threshold, and activity entry below comes
-            from a real, sanitized export of this board &mdash; nothing here is staged. Read-only,
-            no credentials, no live connection back to the original.
+        <header class="section__head" style="margin-top: 1.5rem; margin-bottom: 1.5rem; max-width: 100%;">
+          <span class="section__eyebrow">USE CASE · PULSE IN PRODUCTION</span>
+          <h1 class="section__title" data-kinetic style="font-size: clamp(2.2rem, 4.2vw, 3.2rem); line-height: 1.1;">
+            Two Agents. <em>Independent Review.</em>
+          </h1>
+          <p class="section__lede" style="margin-top: 1rem; max-width: 68ch;">
+            Pulse coordinates a spec-driven workflow on a real board, enforcing structural role separation between the agent that builds and the agent that validates every task &mdash; every card below is that actual board, not a mockup.
           </p>
+          <span class="usecase-card__meta" style="display: block; margin-top: 1rem;">Board af285ee4-9a28-4369-bc9a-ac5ab7c75c7b &middot; Ideation v6 &middot; Refinement v4 &middot; Spec v20 approved</span>
         </header>
 
-        <div class="board-embed" style="margin-top: 2rem; border: 1px solid var(--hair-strong); border-radius: var(--radius-lg);">
+        <div class="hero__actions" style="margin-bottom: 2rem;">
+          <a class="btn btn--quiet" href="#walkthrough">
+            <span>See the walkthrough</span>
+          </a>
+          <a class="btn btn--quiet" href="https://github.com/Infrasity-Labs/pulse-brownfield-feature-demo" rel="noopener" target="_blank">
+            <span>View the repo</span>
+            <span class="btn__arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <ul class="hero__stats" style="margin-bottom: 2rem; max-width: 100%;">
+          <li>
+            <span class="stat__value" data-count="6">0</span>
+            <span class="stat__label">Sprint tasks completed</span>
+          </li>
+          <li>
+            <span class="stat__value" data-count="4">0</span>
+            <span class="stat__label">Pipeline stage gates passed</span>
+          </li>
+          <li>
+            <span class="stat__value" data-count="3">0</span>
+            <span class="stat__label">Matching test scenarios verified</span>
+          </li>
+          <li>
+            <span class="stat__value" data-count="0">0</span>
+            <span class="stat__label">Self-approved cards</span>
+          </li>
+        </ul>
+
+        <div class="board-embed" id="live-board" style="border: 1px solid var(--hair-strong); border-radius: var(--radius-lg);">
           <header class="board-topbar">
             <button class="board-hamburger" id="boardHamburger" aria-label="Toggle sidebar" aria-expanded="false" aria-controls="boardSidebar">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
@@ -250,14 +192,17 @@
             </main>
           </div>
         </div>
+        <p style="margin-top: 0.85rem; font-size: 11.5px; color: var(--ink-faint);">
+          Read-only snapshot &mdash; no credentials, no live connection back to the original board.
+        </p>
       </div>
     </section>
 
     <!-- ───────────────────── PROBLEM ───────────────────── -->
-    <section id="problem" class="section" data-depth-scene="problem" data-depth-title="Problem" data-depth-number="02">
+    <section id="problem" class="section" data-depth-scene="problem" data-depth-title="Problem" data-depth-number="01">
       <div class="section__inner">
         <header class="section__head">
-          <span class="section__eyebrow">02 · PROBLEM</span>
+          <span class="section__eyebrow">01 · PROBLEM</span>
           <h2 class="section__title">
             Agentic pipelines are confident. <em>That&rsquo;s the problem.</em>
           </h2>
@@ -309,10 +254,10 @@
     </section>
 
     <!-- ───────────────────── ARCHITECTURE ───────────────────── -->
-    <section id="architecture" class="section" data-depth-scene="case-architecture" data-depth-title="Architecture" data-depth-number="03">
+    <section id="architecture" class="section" data-depth-scene="case-architecture" data-depth-title="Architecture" data-depth-number="02">
       <div class="section__inner">
         <header class="section__head">
-          <span class="section__eyebrow">03 · ARCHITECTURE</span>
+          <span class="section__eyebrow">02 · ARCHITECTURE</span>
           <h2 class="section__title">
             One board. <em>A strict lineage.</em>
           </h2>
@@ -402,10 +347,10 @@
     </section>
 
     <!-- ───────────────────── WALKTHROUGH ───────────────────── -->
-    <section id="walkthrough" class="section" data-depth-scene="case-walkthrough" data-depth-title="Walkthrough" data-depth-number="04">
+    <section id="walkthrough" class="section" data-depth-scene="case-walkthrough" data-depth-title="Walkthrough" data-depth-number="03">
       <div class="section__inner">
         <header class="section__head">
-          <span class="section__eyebrow">04 · HOW IT WORKS</span>
+          <span class="section__eyebrow">03 · HOW IT WORKS</span>
           <h2 class="section__title">
             Six steps, <em>one shared board.</em>
           </h2>
@@ -469,10 +414,10 @@
     </section>
 
     <!-- ───────────────────── REFERENCE BUILD ───────────────────── -->
-    <section id="reference-build" class="section" data-depth-scene="case-reference" data-depth-title="Reference build" data-depth-number="05">
+    <section id="reference-build" class="section" data-depth-scene="case-reference" data-depth-title="Reference build" data-depth-number="04">
       <div class="section__inner">
         <header class="section__head">
-          <span class="section__eyebrow">05 · REFERENCE BUILD</span>
+          <span class="section__eyebrow">04 · REFERENCE BUILD</span>
           <h2 class="section__title">
             Two real agents. <em>Separate identities.</em>
           </h2>
@@ -528,10 +473,10 @@
     </section>
 
     <!-- ───────────────────── QUICKSTART ───────────────────── -->
-    <section id="developer" class="section" data-depth-scene="case-quickstart" data-depth-title="Activate" data-depth-number="06">
+    <section id="developer" class="section" data-depth-scene="case-quickstart" data-depth-title="Activate" data-depth-number="05">
       <div class="section__inner">
         <header class="section__head">
-          <span class="section__eyebrow">06 · QUICKSTART</span>
+          <span class="section__eyebrow">05 · QUICKSTART</span>
           <h2 class="section__title">
             Install it. <em>Record the first Decision.</em>
           </h2>
@@ -669,10 +614,10 @@ add_decision<span class="tk-p">(</span>
     </section>
 
     <!-- ───────────────────── WHY THIS MATTERS ───────────────────── -->
-    <section id="capabilities" class="section" data-depth-scene="case-capabilities" data-depth-title="Why it matters" data-depth-number="07">
+    <section id="capabilities" class="section" data-depth-scene="case-capabilities" data-depth-title="Why it matters" data-depth-number="06">
       <div class="section__inner">
         <header class="section__head">
-          <span class="section__eyebrow">07 · WHY IT MATTERS</span>
+          <span class="section__eyebrow">06 · WHY IT MATTERS</span>
           <h2 class="section__title">
             Delivery that <em>actually holds.</em>
           </h2>
@@ -814,7 +759,7 @@ add_decision<span class="tk-p">(</span>
   </div>
 
   <script src="./script.js?v=20260813-uc6" defer></script>
-  <script src="./depth-scene.js?v=20260813-uc3" defer></script>
-  <script src="./board.js?v=20260814-b8" defer></script>
+  <script src="./depth-scene.js?v=20260815-d2" defer></script>
+  <script src="./board.js?v=20260815-b9" defer></script>
 </body>
 </html>

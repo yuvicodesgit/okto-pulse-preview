@@ -52,7 +52,6 @@
     "case-reference": { label: "REFERENCE BUILD", accent: COLORS.blue },
     "case-quickstart": { label: "ACTIVATE", accent: COLORS.cyan },
     "case-capabilities": { label: "WHY IT MATTERS", accent: COLORS.violet },
-    "case-board": { label: "LIVE BOARD", accent: COLORS.cyan },
   };
 
   const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
