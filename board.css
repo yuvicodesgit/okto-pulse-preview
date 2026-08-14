@@ -238,21 +238,47 @@
 .board-main { padding: 1.25rem 1.5rem 3rem; min-width: 0; }
 
 /* ---------- embed mode: capped to ~one viewport, own scroll ---------- */
+@keyframes board-embed-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes board-panel-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .board-embed {
   display: flex;
   flex-direction: column;
   height: min(88vh, 720px);
   overflow: hidden;
+  animation: board-embed-entrance 800ms var(--ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
 }
 .board-embed .board-shell { flex: 1; min-height: 0; }
-.board-embed .board-main { height: 100%; overflow-y: auto; }
+.board-embed .board-main { height: 100%; overflow-y: auto; padding-top: 0; }
 .board-embed .board-sidebar { height: 100%; overflow-y: auto; }
 .board-embed .board-tabs {
   position: sticky;
   top: 0;
   background: var(--surface-950);
   z-index: 5;
-  padding-top: 2px;
+  padding-top: 1.25rem;
+}
+
+#boardPanel > * {
+  animation: board-panel-fade-in 350ms var(--ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
 }
 
 /* ---------- tabs ---------- */
