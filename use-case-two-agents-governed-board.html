@@ -31,7 +31,7 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="./styles.css?v=20260815-uc18" />
+  <link rel="stylesheet" href="./styles.css?v=20260815-uc19" />
 
   <!-- Live board embed: fonts/tokens copied from the real Okto Pulse app,
        scoped under .board-embed / .board-modal so they don't leak into the
@@ -136,18 +136,18 @@
             Two Agents. <em>Independent Review.</em>
           </h1>
           <p class="section__lede" style="margin-top: 1rem; max-width: 68ch;">
-            Pulse coordinates a spec-driven workflow on a real board, enforcing structural role separation between the agent that builds and the agent that validates every task &mdash; every card below is that actual board, not a mockup.
+            Pulse enforces structural role separation between the agent that builds and the agent that validates every task &mdash; every card below is that actual board, not a mockup.
           </p>
-          <span class="usecase-card__meta" style="display: block; margin-top: 1rem;">Board af285ee4-9a28-4369-bc9a-ac5ab7c75c7b &middot; Ideation v6 &middot; Refinement v4 &middot; Spec v20 approved</span>
+          <span class="usecase-card__meta" style="display: block; margin-top: 1rem;">
+            Board af285ee4-9a28-4369-bc9a-ac5ab7c75c7b &middot; Ideation v6 &middot; Refinement v4 &middot; Spec v20 approved
+            &middot; <a href="https://github.com/Infrasity-Labs/pulse-brownfield-feature-demo" rel="noopener" target="_blank" style="color: inherit; text-decoration: underline;">View the repo &#8599;</a>
+          </span>
         </header>
 
         <div class="hero__actions" style="margin-bottom: 2rem;">
-          <a class="btn btn--quiet" href="#walkthrough">
+          <a class="btn btn--primary" href="#walkthrough">
             <span>See the walkthrough</span>
-          </a>
-          <a class="btn btn--quiet" href="https://github.com/Infrasity-Labs/pulse-brownfield-feature-demo" rel="noopener" target="_blank">
-            <span>View the repo</span>
-            <span class="btn__arrow" aria-hidden="true">↗</span>
+            <span class="btn__arrow" aria-hidden="true">→</span>
           </a>
         </div>
 
@@ -365,7 +365,7 @@
             <div class="walk-step__num">STEP<strong>01</strong></div>
             <div>
               <h3>Ground it in what already exists</h3>
-              <p>Before drafting the spec, the team reads what the codebase already does and records it as a Pulse Decision &mdash; so both agents start from the same ground truth, not assumption.</p>
+              <p>The team records what the codebase already does as a Pulse Decision, so both agents start from the same ground truth.</p>
               <span class="walk-step__moment">Decision recorded before the Sprint opens</span>
             </div>
           </li>
@@ -373,7 +373,7 @@
             <div class="walk-step__num">STEP<strong>02</strong></div>
             <div>
               <h3>Foundation task clears first</h3>
-              <p>Stage 1 (Foundation): the sprint&rsquo;s first task has no dependencies. Everything else on the board waits for it to clear review before starting.</p>
+              <p>The sprint&rsquo;s first task has no dependencies &mdash; everything else waits for it to clear review.</p>
               <span class="walk-step__moment">okto_pulse_get_task_context</span>
             </div>
           </li>
@@ -381,7 +381,7 @@
             <div class="walk-step__num">STEP<strong>03</strong></div>
             <div>
               <h3>Independent tasks run in parallel</h3>
-              <p>Stage 2 (Implementation): once the foundation task is done, two independent tasks open at once and move through the same lifecycle &mdash; started → in_progress → validation.</p>
+              <p>Once the foundation task clears, two independent tasks open and move through started → in_progress → validation.</p>
               <span class="walk-step__moment">okto_pulse_move_card (gate: builder != validator)</span>
             </div>
           </li>
@@ -389,7 +389,7 @@
             <div class="walk-step__num">STEP<strong>04</strong></div>
             <div>
               <h3>Independent review checks</h3>
-              <p>The Validator loads full spec context and checks three things: <strong>confidence</strong>, <strong>completeness</strong>, and <strong>drift</strong> from spec. Short on any one, and it goes back with a specific reason &mdash; not a generic rejection.</p>
+              <p>The Validator checks <strong>confidence</strong>, <strong>completeness</strong>, and <strong>drift</strong> from spec &mdash; short on any one, and it goes back with a specific reason.</p>
               <span class="walk-step__moment">okto_pulse_submit_task_validation</span>
             </div>
           </li>
@@ -397,7 +397,7 @@
             <div class="walk-step__num">STEP<strong>05</strong></div>
             <div>
               <h3>Verify test execution evidence</h3>
-              <p>Stage 3 (Testing): three test tasks, each matched to an implementation task, must actually run their scenario &mdash; recording a result as passed isn&rsquo;t accepted without evidence it executed.</p>
+              <p>Three test tasks must actually run their scenario &mdash; a result marked passed isn&rsquo;t accepted without evidence.</p>
               <span class="walk-step__moment">okto_pulse_submit_task_validation</span>
             </div>
           </li>
@@ -405,7 +405,7 @@
             <div class="walk-step__num">STEP<strong>06</strong></div>
             <div>
               <h3>Close-out sprint & spec</h3>
-              <p>Stage 4 (Close-out): with all 6 tasks approved, the Validator submits the sprint evaluation and closes it. The spec is marked complete only after that &mdash; never before.</p>
+              <p>Once all 6 tasks are approved, the Validator closes the sprint &mdash; the spec is marked complete only after that.</p>
               <span class="walk-step__moment">okto_pulse_submit_sprint_evaluation</span>
             </div>
           </li>
