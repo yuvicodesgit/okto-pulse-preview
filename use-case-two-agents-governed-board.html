@@ -40,6 +40,110 @@
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./board.css?v=20260815-b10" />
 
+  <style>
+    /* Fix sticky board-topbar overlaying navigation */
+    .board-embed .board-topbar {
+      position: relative !important;
+      top: auto !important;
+    }
+
+    /* Hero fold component enlargement & premium visual hierarchy */
+    .usecase-page .breadcrumb {
+      font-size: 13.5px;
+      margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+    }
+    
+    .usecase-page .section__eyebrow {
+      font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+      letter-spacing: 0.15em;
+      color: var(--pulse-cyan);
+    }
+
+    .usecase-page .section__title {
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem) !important;
+      line-height: 1.05 !important;
+      letter-spacing: -0.02em !important;
+      margin-top: 1rem;
+    }
+
+    .usecase-page .section__lede {
+      font-size: clamp(1.15rem, 1.45vw, 1.35rem) !important;
+      line-height: 1.65 !important;
+      max-width: 78ch !important;
+      margin-top: 1.5rem !important;
+      color: var(--ink-dim) !important;
+    }
+
+    .usecase-page .usecase-card__meta {
+      font-size: clamp(0.9rem, 1.1vw, 1rem) !important;
+      margin-top: 1.5rem !important;
+      color: var(--ink-faint) !important;
+    }
+
+    .usecase-page .hero__actions {
+      margin-top: 2.2rem !important;
+      margin-bottom: 3.5rem !important;
+    }
+
+    .usecase-page .hero__actions .btn {
+      padding: 14px 28px !important;
+      font-size: 15px !important;
+      border-radius: var(--radius-md) !important;
+    }
+
+    /* Premium styled, elevated stat dashboard panels */
+    .usecase-page .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 1.5rem 1.8rem !important;
+      padding-top: clamp(2.2rem, 4.5vw, 3.5rem) !important;
+      border-top: 1px solid var(--hair-strong) !important;
+      max-width: 100% !important;
+      margin-bottom: clamp(2.5rem, 5vw, 4rem) !important;
+    }
+
+    .usecase-page .hero__stats li {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 2rem;
+      transition: transform 250ms var(--ease), border-color 250ms var(--ease), background-color 250ms var(--ease);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .usecase-page .hero__stats li:hover {
+      transform: translateY(-3px);
+      border-color: rgba(34, 211, 238, 0.25);
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    .usecase-page .stat__value {
+      font-size: clamp(2.6rem, 5.2vw, 3.8rem) !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      line-height: 1 !important;
+    }
+
+    .usecase-page .stat__label {
+      font-size: clamp(13px, 1.1vw, 14.5px) !important;
+      color: var(--ink-mid) !important;
+      line-height: 1.45 !important;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 960px) {
+      .usecase-page .hero__stats {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .usecase-page .hero__stats {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -124,34 +228,34 @@
   <main id="top">
 
     <!-- ───────────────────── HERO + LIVE BOARD (first fold) ───────────────────── -->
-    <section class="section" style="padding-bottom: clamp(2rem, 4vw, 4rem);" data-depth-scene="case-hero" data-depth-title="Two agents" data-depth-number="00">
+    <section class="section" data-depth-scene="case-hero" data-depth-title="Two agents" data-depth-number="00">
       <div class="section__inner">
         <a class="breadcrumb" href="./use-cases.html">
           <span class="breadcrumb__arrow" aria-hidden="true">←</span> All use cases
         </a>
 
-        <header class="section__head" style="margin-top: 1.5rem; margin-bottom: 1.5rem; max-width: 100%;">
+        <header class="section__head">
           <span class="section__eyebrow">USE CASE · PULSE IN PRODUCTION</span>
-          <h1 class="section__title" data-kinetic style="font-size: clamp(2.2rem, 4.2vw, 3.2rem); line-height: 1.1;">
+          <h1 class="section__title" data-kinetic>
             Two Agents. <em>Independent Review.</em>
           </h1>
-          <p class="section__lede" style="margin-top: 1rem; max-width: 68ch;">
+          <p class="section__lede">
             Pulse enforces structural role separation between the agent that builds and the agent that validates every task &mdash; the board below is that actual board, not a mockup.
           </p>
-          <span class="usecase-card__meta" style="display: block; margin-top: 1rem;">
+          <span class="usecase-card__meta">
             Board af285ee4-9a28-4369-bc9a-ac5ab7c75c7b &middot; Ideation v6 &middot; Refinement v4 &middot; Spec v20 approved
             &middot; <a href="https://github.com/Infrasity-Labs/pulse-brownfield-feature-demo" rel="noopener" target="_blank" style="color: inherit; text-decoration: underline;">View the repo &#8599;</a>
           </span>
         </header>
 
-        <div class="hero__actions" style="margin-bottom: 2rem;">
+        <div class="hero__actions">
           <a class="btn btn--primary" href="#walkthrough">
             <span>See the walkthrough</span>
             <span class="btn__arrow" aria-hidden="true">→</span>
           </a>
         </div>
 
-        <ul class="hero__stats" style="margin-bottom: 2rem; max-width: 100%;">
+        <ul class="hero__stats">
           <li>
             <span class="stat__value" data-count="6">0</span>
             <span class="stat__label">Sprint tasks completed</span>
@@ -584,16 +688,16 @@
     <span class="tk-c">// cannot submit a validation or move a card to done.</span>
     <span class="tk-s">"okto-pulse-executor"</span><span class="tk-p">:</span> <span class="tk-p">{</span>
       <span class="tk-s">"url"</span><span class="tk-p">:</span> <span class="tk-s">"http://localhost:8101/mcp"</span><span class="tk-p">,</span>
-      <span class="tk-s">"headers"</span><span class="tk-p">:</span> <span class="tk-p">{</span> <span class="tk-s">"Authorization"</span><span class="tk-p">:</span> <span class="tk-s">"Bearer &lt;executor-token&gt;"</span> <span class="tk-p">}</span>
+      <span class="tk-s">"headers"</span><span class="tk-p">:</span> <span class="tk-p">{ "Authorization"</span><span class="tk-p">:</span> <span class="tk-s">"Bearer &lt;executor-token&gt;"</span> <span class="tk-p">}</span>
     <span class="tk-p">},</span>
     <span class="tk-c">// Validator's identity &mdash; a separate MCP connection,</span>
     <span class="tk-c">// separate credentials, not the same agent switching roles.</span>
     <span class="tk-s">"okto-pulse-validator"</span><span class="tk-p">:</span> <span class="tk-p">{</span>
       <span class="tk-s">"url"</span><span class="tk-p">:</span> <span class="tk-s">"http://localhost:8101/mcp"</span><span class="tk-p">,</span>
-      <span class="tk-s">"headers"</span><span class="tk-p">:</span> <span class="tk-p">{</span> <span class="tk-s">"Authorization"</span><span class="tk-p">:</span> <span class="tk-s">"Bearer &lt;validator-token&gt;"</span> <span class="tk-p">}</span>
+      <span class="tk-s">"headers"</span><span class="tk-p">:</span> <span class="tk-p">{ "Authorization"</span><span class="tk-p">:</span> <span class="tk-s">"Bearer &lt;validator-token&gt;"</span> <span class="tk-p">}</span>
     <span class="tk-p">}</span>
-  <span class="tk-p">}</span>
-<span class="tk-p">}</span></code></pre>
+  }
+}</code></pre>
             </div>
           </div>
         </div>
