@@ -10490,6 +10490,18 @@ html.js .pulse-relay.is-ready .pulse-relay__steps li.is-active p {
   background: rgba(168, 85, 247, 0.06);
 }
 
+.arch-caption {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.06);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--pulse-cyan);
+}
+
 /* closed-loop diagram: two columns, down the left, across the bottom, up
    the right, ending top-right — with a small dot animating along every
    connector to show the direction of flow */
